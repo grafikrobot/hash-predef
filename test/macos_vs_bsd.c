@@ -11,9 +11,9 @@ http://www.boost.org/LICENSE_1_0.txt)
  */
 #if defined(__APPLE__)
 #   include <sys/param.h>
-#   include <boost/predef/os/bsd.h>
-#   include <boost/predef/os/macos.h>
-#   if !BOOST_OS_MACOS || BOOST_OS_BSD
-#       error "BOOST_OS_MACOS not detected and/or BOOST_OS_BSD mis-detected."
+#   include <predef/os/bsd.h>
+#   include <predef/os/macos.h>
+#   if !HASH_PREDEF_OS_MACOS || HASH_PREDEF_OS_BSD
+#       error "HASH_PREDEF_OS_MACOS not detected and/or HASH_PREDEF_OS_BSD mis-detected."
 #   endif
 #endif

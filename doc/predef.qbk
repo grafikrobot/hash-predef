@@ -1,6 +1,6 @@
-[article Boost.Predef
+[article Hash Predef
     [quickbook 1.7]
-    [version 1.6]
+    [version 1.7]
     [authors [Rivera, Rene]]
     [copyright 2005-2016 Rene Rivera]
     [copyright 2015 Charly Chevalier]
@@ -32,13 +32,13 @@ an edited version of that brief proposal.
 The idea is to define a set of macros to identify compilers and
 consistently represent their version. This includes:
 
-* A unique BOOST_VERSION_NUMBER(major,minor,patch) macro to specify version
+* A unique HASH_PREDEF_VERSION_NUMBER(major,minor,patch) macro to specify version
   numbers (unfortunately, the name BOOST_VERSION is already taken to designate
   the version number of boost itself).
 * A compiler identification macro, suitable for use in `#if`/`#elif` directives,
   for each of the supported compilers. All macros would be defined, regardless
   of the compiler. The one macro corresponding to the compiler being used would
-  be defined, in terms of BOOST_VERSION_NUMBER, to carry the exact compiler
+  be defined, in terms of HASH_PREDEF_VERSION_NUMBER, to carry the exact compiler
   version. All other macros would expand to an expression evaluating to false
   (for instance, the token 0) to indicate that the corresponding compiler is not
   present.
@@ -58,9 +58,9 @@ languages, libraries, operating systems, and endianness. The key benefits are:
 * Version numbers that are always defined so that one doesn't have to guard
   with `#ifdef`.
 * Guard macros that can be used for `#ifdef` checks.
-* All possible definitions are included with the single `#include <boost/predef.h>`
+* All possible definitions are included with the single `#include <predef.h>`
   so that it's friendly to precompiled header usage.
-* Specific definitions can be included, ex. `#include <boost/predef/os/windows.h>`
+* Specific definitions can be included, ex. `#include <predef/os/windows.h>`
   for single checks.
 * Predefs can be directly used in both preprocessor and compiler expressions
   for comparison to other similarly defined values.
@@ -96,7 +96,7 @@ for instance, of limiting the major version number to 20 (or, with further
 constraints, to 21).]
 
 It might reassure the reader that this decision is actually encoded in one place
-in the code; the definition of `BOOST_VERSION_NUMBER`.
+in the code; the definition of `HASH_PREDEF_VERSION_NUMBER`.
 
 [heading Future work]
 
@@ -127,7 +127,7 @@ To use the automatically defined predefs one needs to only include the
 single top-level header:
 
 ``
-  #include <boost/predef.h>
+  #include <predef.h>
 ``
 
 This defines [*all] the version macros known to the library. For each
@@ -136,32 +136,32 @@ the particular item is not detected, and to a /positive/ value if it
 is detected. The predef macros fall onto five categories each with
 macros of a particular prefix:
 
-* `BOOST_ARCH_`for system/CPU architecture one is compiling for.
-* `BOOST_COMP_` for the compiler one is using.
-* `BOOST_LANG_` for language standards one is compiling against.
-* `BOOST_LIB_C_` and `BOOST_LIB_STD_` for the C and C++ standard library
+* `HASH_PREDEF_ARCH_`for system/CPU architecture one is compiling for.
+* `HASH_PREDEF_COMP_` for the compiler one is using.
+* `HASH_PREDEF_LANG_` for language standards one is compiling against.
+* `HASH_PREDEF_LIB_C_` and `HASH_PREDEF_LIB_STD_` for the C and C++ standard library
   in use.
-* `BOOST_OS_` for the operating system we are compiling to.
-* `BOOST_PLAT_` for platforms on top of operating system or compilers.
-* `BOOST_ENDIAN_` for endianness of the os and architecture combination.
-* `BOOST_HW_` for hardware specific features.
-* `BOOST_HW_SIMD` for SIMD (Single Instruction Multiple Data) detection.
+* `HASH_PREDEF_OS_` for the operating system we are compiling to.
+* `HASH_PREDEF_PLAT_` for platforms on top of operating system or compilers.
+* `HASH_PREDEF_ENDIAN_` for endianness of the os and architecture combination.
+* `HASH_PREDEF_HW_` for hardware specific features.
+* `HASH_PREDEF_HW_SIMD` for SIMD (Single Instruction Multiple Data) detection.
 
 [note The detected definitions are for the configuration one is targeting
 during the compile. In particular in a cross-compile this means the target
 system, and not the host system.]
 
 One uses the individual definitions to compare against specific versions
-by comparing against the `BOOST_VERSION_NUMBER` macro. For example, to make
+by comparing against the `HASH_PREDEF_VERSION_NUMBER` macro. For example, to make
 a choice based on the version of the GCC C++ compiler one would:
 
 ``
-  #include <boost/predef.h>
+  #include <predef.h>
   #include <iostream>
 
   int main()
   {
-    if (BOOST_COMP_GNUC >= BOOST_VERSION_NUMBER(4,0,0))
+    if (HASH_PREDEF_COMP_GNUC >= HASH_PREDEF_VERSION_NUMBER(4,0,0))
       std::cout << "GCC compiler is at least version 4.0.0" << std::endl;
     else
       std::cout << "GCC compiler is at older than version 4.0.0, or not a GCC compiler" << std::endl;
@@ -176,12 +176,12 @@ as a zero (0) expression when not detected. Hence one could use the
 detection with a natural single condition. For example:
 
 ``
-  #include <boost/predef.h>
+  #include <predef.h>
   #include <iostream>
 
   int main()
   {
-    if (BOOST_COMP_GNUC)
+    if (HASH_PREDEF_COMP_GNUC)
       std::cout << "This is GNU GCC!" << std::endl;
     else
       std::cout << "Not GNU GCC." << std::endl;
@@ -193,11 +193,11 @@ And since the predef's are preprocessor definitions the same is possible
 from the preprocessor:
 
 ``
-  #include <boost/predef.h>
+  #include <predef.h>
   #include <iostream>
 
-  #if BOOST_COMP_GNUC
-    #if BOOST_COMP_GNUC >= BOOST_VERSION_NUMBER(4,0,0)
+  #if HASH_PREDEF_COMP_GNUC
+    #if HASH_PREDEF_COMP_GNUC >= HASH_PREDEF_VERSION_NUMBER(4,0,0)
       const char * the_compiler = "GNU GCC, of at least version 4."
     #else
       const char * the_compiler = "GNU GCC, less than version 4."
@@ -218,8 +218,8 @@ In addition, for each version macro defined there is an
 detected. I.e. a definition equivalent to:
 
 ``
-  #if BOOST_PREDEF_ABC
-    #define BOOST_PREDEF_ABC_AVAILABLE
+  #if HASH_PREDEF_ABC
+    #define HASH_PREDEF_ABC_AVAILABLE
   #endif
 ``
 
@@ -235,15 +235,15 @@ commonly emulated by other compilers by defining the same base macros. To
 account for this detection headers are allowed to define `*_EMULATED` predefs
 when this situation is detected. The emulated predefs will be set to the
 version number of the detection instead of the regular predef macro for that
-detection. For example MSVC will set `BOOST_COMP_MSVC_EMULATED` but not set `BOOST_COM_MSVC`, and it will also set `BOOST_COMP_MSVC_AVAILABLE`.
+detection. For example MSVC will set `HASH_PREDEF_COMP_MSVC_EMULATED` but not set `HASH_PREDEF_COMP_MSVC`, and it will also set `HASH_PREDEF_COMP_MSVC_AVAILABLE`.
 
-[heading Using the `BOOST_VERSION_NUMBER` macro]
+[heading Using the `HASH_PREDEF_VERSION_NUMBER` macro]
 
-All the predefs are defined to be a use of the `BOOST_VERSION_NUMBER` macro.
+All the predefs are defined to be a use of the `HASH_PREDEF_VERSION_NUMBER` macro.
 The macro takes individual major, minor, and patch value expressions:
 
 ``
-  #define BOOST_VERSION_NUMBER( major, minor, patch ) ...
+  #define HASH_PREDEF_VERSION_NUMBER( major, minor, patch ) ...
 ``
 
 The arguments are:
@@ -261,18 +261,18 @@ or non-detections. It is up to the individual predefs to ensure correct
 usage beyond the range guarantee.
 
 The values for the arguments can be any preprocessor valid constant value expression.
-Only constant value arithmetic is used in the definition of the `BOOST_VERSION_NUMBER`
+Only constant value arithmetic is used in the definition of the `HASH_PREDEF_VERSION_NUMBER`
 macro and in any of the other predef macros. This means that any allowed base is
 possible, i.e. binary, octal, decimal, and hexadecimal. For example:
 
 ``
-  #define MY_APPLICATION_VERSION_NUMBER BOOST_VERSION_NUMBER(2,0xA,015)
+  #define MY_APPLICATION_VERSION_NUMBER HASH_PREDEF_VERSION_NUMBER(2,0xA,015)
 ``
 
 Is equivalent to:
 
 ``
-  #define MY_APPLICATION_VERSION_NUMBER BOOST_VERSION_NUMBER(2,10,13)
+  #define MY_APPLICATION_VERSION_NUMBER HASH_PREDEF_VERSION_NUMBER(2,10,13)
 ``
 
 [endsect]
@@ -290,9 +290,9 @@ the same structure and requirements.
 All predefs need to follow a set of requirements:
 
 * The headers must use the Boost Software License.
-* The predef must, by default, be defined as `BOOST_VERSION_NUMBER_NOT_AVAILABLE`.
+* The predef must, by default, be defined as `HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE`.
 * The predef must be redefined to a non-zero value once detected.
-* The predef must, by default, be defined to `BOOST_VERSION_NUMBER_AVAILABLE`
+* The predef must, by default, be defined to `HASH_PREDEF_VERSION_NUMBER_AVAILABLE`
   when the predef is detected.
 * If possible, the predef will be defined as the version number detected.
 * The predef must define `*_AVAILABLE` macros as needed.
@@ -331,15 +331,15 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
-#ifndef BOOST_PREDEF_category_tag_H
-#define BOOST_PREDEF_category_tag_H
+#ifndef HASH_PREDEF_category_tag_H
+#define HASH_PREDEF_category_tag_H
 ``
 
 If the detection depends on the detection of another predef you should
 include those headers here.
 
 ``
-#include <boost/predef/CATEGORY_TAG/DEPENDENCY.h>
+#include <predef/CATEGORY_TAG/DEPENDENCY.h>
 ``
 
 Depending on how you are defining the predef you will at minimum have
@@ -348,8 +348,8 @@ include the `make.h` header for the version number decomposing utility
 macros:
 
 ``
-#include <boost/predef/version_number.h>
-#include <boost/predef/make.h>
+#include <predef/version_number.h>
+#include <predef/make.h>
 ``
 
 The Predef library uses Quickbook for documentation and for the
@@ -362,30 +362,30 @@ for the macro. In particular this works for the popular Eclipse IDE:
 
 ``
 /*`
-[heading `BOOST_category_tag`]
+[heading `HASH_PREDEF_category_tag`]
 
 Documentation about what is detected.
 */
 
-#define BOOST_category_tag BOOST_VERSION_NUMBER_NOT_AVAILABLE
+#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 ``
 
 Next is the detection and definition of the particular predef. The
 structure for this is to do a single overall check (`condition_a`) and
 place further version detection inside this. The first action inside
-the overall check is to "`#undef BOOST_category_tag`" which undefines
+the overall check is to "`#undef HASH_PREDEF_category_tag`" which undefines
 the zero-value default. The rest is up to the you how to do the checks
 for defining the version. But at minimum it must
-"`#define BOOST_category_tag BOOST_VERSION_NUMBER_AVAILABLE`" as the fallback
+"`#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE`" as the fallback
 to minimally indicate that the predef was detected:
 
 ``
 #if (condition_a)
-#   undef BOOST_category_tag
+#   undef HASH_PREDEF_category_tag
 #   if (condition_b)
-#        define BOOST_category_tag BOOST_VERSION_NUMBER(major,minor,patch)
+#        define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER(major,minor,patch)
 #    else
-#        define BOOST_category_tag BOOST_VERSION_NUMBER_AVAILABLE
+#        define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #    endif
 #endif
 ``
@@ -393,15 +393,15 @@ to minimally indicate that the predef was detected:
 We also need to provide the `*_AVAILABLE` versions of the predef.
 
 ``
-#if BOOST_category_tag
-#   define BOOST_category_tag_AVAILABLE
+#if HASH_PREDEF_category_tag
+#   define HASH_PREDEF_category_tag_AVAILABLE
 #endif
 ``
 
 And for convenience we also want to provide a `*_NAME` macro:
 
 ``
-#define BOOST_catagory_tag_NAME "Name"
+#define HASH_PREDEF_category_tag_NAME "Name"
 ``
 
 The testing of the predef macros is automated to generate checks for all
@@ -411,8 +411,8 @@ regular use. And during the test programs they expand out specially
 to create informational output:
 
 ``
-#include <boost/predef/detail/test.h>
-BOOST_PREDEF_DECLARE_TEST(BOOST_category_tag,BOOST_category_tag_NAME)
+#include <predef/detail/test.h>
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_category_tag,HASH_PREDEF_category_tag_NAME)
 ``
 
 And, of course, we last need to close out the include guard:
@@ -428,19 +428,19 @@ we need to add checks and definitions to detect when the predef is
 detected by multiple headers.
 
 Internally compiler, operating system, and platforms define
-`BOOST_PREDEF_DETAIL_COMP_DETECTED`, `BOOST_PREDEF_DEFAIL_OS_DETECTED`, and
-`BOOST_PREDEF_DETAIL_PLAT_DETECTED` respectively when the predef is first
+`HASH_PREDEF_DETAIL_COMP_DETECTED`, `HASH_PREDEF_DEFAIL_OS_DETECTED`, and
+`HASH_PREDEF_DETAIL_PLAT_DETECTED` respectively when the predef is first
 detected. This is used to guard against multiple definition of the detection
 in later included headers. In those cases the detection would instead be
 written as:
 
 ``
-#if !BOOST_PREDEF_DETAIL_category_DETECTED && (condition_a)
-#   undef BOOST_category_tag
+#if !HASH_PREDEF_DETAIL_category_DETECTED && (condition_a)
+#   undef HASH_PREDEF_category_tag
 #   if (condition_b)
-#        define BOOST_category_tag BOOST_VERSION_NUMBER(major,minor,patch)
+#        define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER(major,minor,patch)
 #    else
-#        define BOOST_category_tag BOOST_VERSION_NUMBER(0,0,1)
+#        define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER(0,0,1)
 #    endif
 #endif
 ``
@@ -449,9 +449,9 @@ And we also include a header that defines the `*_DETECTED` macro when we have
 the detection:
 
 ``
-#if BOOST_category_tag
-#   define BOOST_category_tag_AVAILABLE
-#   include <boost/predef/detail/CATEGORY_detected.h>
+#if HASH_PREDEF_category_tag
+#   define HASH_PREDEF_category_tag_AVAILABLE
+#   include <predef/detail/CATEGORY_detected.h>
 #endif
 ``
 
@@ -463,17 +463,17 @@ Because compilers are frequently emulated by other compilers we both want
 to have exclusive detection of the compiler and also provide information
 that we detected the emulation of the compiler. To accomplish this we define
 a local `*_DETECTION` macro for the compiler detection. And conditionally
-define either the base compiler predef `BOOST_COMP_compiler` or the alternate
-`BOOST_COMP_compiler_EMULATED` predef.
+define either the base compiler predef `HASH_PREDEF_COMP_compiler` or the alternate
+`HASH_PREDEF_COMP_compiler_EMULATED` predef.
 
 The initial detection would look like:
 
 ``
 #if (condition_a)
 #   if (condition_b)
-#        define BOOST_COMP_tag_DETECTION BOOST_VERSION_NUMBER(major,minor,patch)
+#        define HASH_PREDEF_COMP_tag_DETECTION HASH_PREDEF_VERSION_NUMBER(major,minor,patch)
 #    else
-#        define BOOST_COMP_tag_DETECTION BOOST_VERSION_NUMBER_AVAILABLE
+#        define HASH_PREDEF_COMP_tag_DETECTION HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #    endif
 #endif
 ``
@@ -481,15 +481,15 @@ The initial detection would look like:
 And then we can conditionally define the base or emulated predefs:
 
 ``
-#ifdef BOOST_COMP_tag_DETECTION
-#   if defined(BOOST_PREDEF_DETAIL_COMP_DETECTED)
-#       define BOOST_COMP_tag_EMULATED BOOST_COMP_tag_DETECTION
+#ifdef HASH_PREDEF_COMP_tag_DETECTION
+#   if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
+#       define HASH_PREDEF_COMP_tag_EMULATED HASH_PREDEF_COMP_tag_DETECTION
 #   else
-#       undef BOOST_COMP_tag
-#       define BOOST_COMP_tag BOOST_COMP_tag_DETECTION
+#       undef HASH_PREDEF_COMP_tag
+#       define HASH_PREDEF_COMP_tag HASH_PREDEF_COMP_tag_DETECTION
 #   endif
-#   define BOOST_category_tag_AVAILABLE
-#   include <boost/predef/detail/comp_detected.h>
+#   define HASH_PREDEF_category_tag_AVAILABLE
+#   include <predef/detail/comp_detected.h>
 #endif
 ``
 
@@ -498,7 +498,7 @@ And then we can conditionally define the base or emulated predefs:
 By including:
 
 ``
-#include <boost/predef/make.h>
+#include <predef/make.h>
 ``
 
 One will get a set of utility macros to decompose common version
@@ -507,7 +507,7 @@ uses a simple 3-digit version macro (M,N,P). It can be decomposed
 and defined as:
 
 ``
-#define BOOST_CCOMP_EDG BOOST_PREDEF_MAKE_N_N_N(__EDG_VERSION__)
+#define HASH_PREDEF_COMP_EDG HASH_PREDEF_MAKE_N_N_N(__EDG_VERSION__)
 ``
 
 The decomposition macros are split into three types: decimal
@@ -523,44 +523,44 @@ and "Y", "M", "D" for dates.
 
 [section Reference]
 
-[section `BOOST_ARCH` architecture macros]
-[include ../include/boost/predef/architecture/*.h]
-[include ../include/boost/predef/architecture/x86/*.h]
+[section `HASH_PREDEF_ARCH` architecture macros]
+[include ../include/predef/architecture/*.h]
+[include ../include/predef/architecture/x86/*.h]
 [endsect]
 
-[section `BOOST_COMP` compiler macros]
-[include ../include/boost/predef/compiler/*.h]
+[section `HASH_PREDEF_COMP` compiler macros]
+[include ../include/predef/compiler/*.h]
 [endsect]
 
-[section `BOOST_LANG` language standards macros]
-[include ../include/boost/predef/language/*.h]
+[section `HASH_PREDEF_LANG` language standards macros]
+[include ../include/predef/language/*.h]
 [endsect]
 
-[section `BOOST_LIB` library macros]
-[include ../include/boost/predef/library/c/*.h]
-[include ../include/boost/predef/library/std/*.h]
+[section `HASH_PREDEF_LIB` library macros]
+[include ../include/predef/library/c/*.h]
+[include ../include/predef/library/std/*.h]
 [endsect]
 
-[section `BOOST_OS` operating system macros]
-[include ../include/boost/predef/os/*.h]
-[include ../include/boost/predef/os/bsd/*.h]
+[section `HASH_PREDEF_OS` operating system macros]
+[include ../include/predef/os/*.h]
+[include ../include/predef/os/bsd/*.h]
 [endsect]
 
-[section `BOOST_PLAT` platform macros]
-[include ../include/boost/predef/platform/*.h]
+[section `HASH_PREDEF_PLAT` platform macros]
+[include ../include/predef/platform/*.h]
 [endsect]
 
-[section `BOOST_HW` hardware macros]
-[include ../include/boost/predef/hardware/*.h]
+[section `HASH_PREDEF_HW` hardware macros]
+[include ../include/predef/hardware/*.h]
 [endsect]
 
 [section Other macros]
-[include ../include/boost/predef/other/*.h]
+[include ../include/predef/other/*.h]
 [endsect]
 
 [section Version definition macros]
-[include ../include/boost/predef/version_number.h]
-[include ../include/boost/predef/make.h]
+[include ../include/predef/version_number.h]
+[include ../include/predef/make.h]
 [endsect]
 
 [endsect]
@@ -590,7 +590,7 @@ predef-definition [ relational-operator version-value ]
 [c++]
 
 [~predef-definition] can be any of the Predef definitions. For
-example `BOOST_COMP_GCC`.
+example `HASH_PREDEF_COMP_GCC`.
 
 [~relational-operator] can be any of: [^>], [^<], [^>=], [^<=],
 [^==] and [^!=].
@@ -623,7 +623,7 @@ import path-to-predef-src/tools/check/predef
     : predef-check predef-require ;
 
 exe my_windows_program : windows_source.cpp
-    : [ predef-require "BOOST_OS_WINDOWS" ] ;
+    : [ predef-require "HASH_PREDEF_OS_WINDOWS" ] ;
 ``
 [c++]
 
@@ -639,7 +639,7 @@ import path-to-predef-src/tools/check/predef
     : predef-check predef-require ;
 
 lib my_special_lib : source.cpp
-    : [ predef-require "BOOST_OS_WINDOWS != 0" "BOOST_OS_VMS != 0"] ;
+    : [ predef-require "HASH_PREDEF_OS_WINDOWS != 0" "HASH_PREDEF_OS_VMS != 0"] ;
 ``
 [c++]
 
@@ -667,7 +667,7 @@ import path-to-predef-src/tools/check/predef
     : predef-check predef-require ;
 
 lib my_special_lib : source.cpp
-    : [ predef-require "BOOST_OS_WINDOWS" or "BOOST_OS_VMS"] ;
+    : [ predef-require "HASH_PREDEF_OS_WINDOWS" or "HASH_PREDEF_OS_VMS"] ;
 ``
 [c++]
 
@@ -694,7 +694,7 @@ import path-to-predef-src/tools/check/predef
     : predef-check predef-require ;
 
 exe my_special_exe : source.cpp
-    : [ predef-check "BOOST_OS_WINDOWS == 0"
+    : [ predef-check "HASH_PREDEF_OS_WINDOWS == 0"
         : : <define>ENABLE_WMF=0
         : <define>ENABLE_WMF=1 ] ;
 ``

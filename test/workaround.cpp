@@ -4,8 +4,8 @@ Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
 */
-#include <boost/predef/version_number.h>
-#include <boost/predef/other/workaround.h>
+#include <predef/version_number.h>
+#include <predef/other/workaround.h>
 #include <exception>
 #include <vector>
 #include <string>
@@ -27,18 +27,18 @@ namespace
 
 #define PREDEF_CHECK(X) test_results.push_back(test_info(#X,(X)))
 
-void test_BOOST_PREDEF_WORKAROUND()
+void test_HASH_PREDEF_WORKAROUND()
 {
-    PREDEF_CHECK(BOOST_PREDEF_WORKAROUND(BOOST_VERSION_NUMBER(15,15,15),==,0xF,0xF,0xF));
-    PREDEF_CHECK(BOOST_PREDEF_WORKAROUND(BOOST_VERSION_NUMBER(0,9,0),<,1,0,0));
-    PREDEF_CHECK(BOOST_PREDEF_WORKAROUND(BOOST_VERSION_NUMBER(0,9,0),!=,1,0,0));
-    PREDEF_CHECK(BOOST_PREDEF_WORKAROUND(BOOST_VERSION_NUMBER_MIN,<,1,0,0));
-    PREDEF_CHECK(BOOST_PREDEF_WORKAROUND(BOOST_VERSION_NUMBER_MIN,>,0,0,0));
+    PREDEF_CHECK(HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER(15,15,15),==,0xF,0xF,0xF));
+    PREDEF_CHECK(HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER(0,9,0),<,1,0,0));
+    PREDEF_CHECK(HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER(0,9,0),!=,1,0,0));
+    PREDEF_CHECK(HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER_MIN,<,1,0,0));
+    PREDEF_CHECK(HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER_MIN,>,0,0,0));
 }
 
 int main()
 {
-    test_BOOST_PREDEF_WORKAROUND();
+    test_HASH_PREDEF_WORKAROUND();
 
     unsigned fail_count = 0;
     std::vector<test_info>::iterator i = test_results.begin();

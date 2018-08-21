@@ -11,12 +11,12 @@ architecture.]
 To check if any SIMD extension has been enabled, you can use:
 
 ``
-#include <boost/predef/hardware/simd.h>
+#include <predef/hardware/simd.h>
 #include <iostream>
 
 int main()
 {
-#if defined(BOOST_HW_SIMD_AVAILABLE)
+#if defined(HASH_PREDEF_HW_SIMD_AVAILABLE)
     std::cout << "SIMD detected!" << std::endl;
 #endif
     return 0;
@@ -25,20 +25,20 @@ int main()
 
 When writing SIMD specific code, you may want to check if a particular extension
 has been detected. To do so you have to use the right architecture predef and
-compare it. Those predef are of the form `BOOST_HW_SIMD_"ARCH"` (where `"ARCH"`
+compare it. Those predef are of the form `HASH_PREDEF_HW_SIMD_"ARCH"` (where `"ARCH"`
 is either `ARM`, `PPC`, or `X86`). For example, if you compile code for x86
-architecture, you will have to use `BOOST_HW_SIMD_X86`. Its value will be the
+architecture, you will have to use `HASH_PREDEF_HW_SIMD_X86`. Its value will be the
 version number of the most recent SIMD extension detected for the architecture.
 
 To check if an extension has been enabled:
 
 ``
-#include <boost/predef/hardware/simd.h>
+#include <predef/hardware/simd.h>
 #include <iostream>
 
 int main()
 {
-#if BOOST_HW_SIMD_X86 >= BOOST_HW_SIMD_X86_SSE3_VERSION
+#if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION
     std::cout << "This is SSE3!" << std::endl;
 #endif
     return 0;
@@ -52,12 +52,12 @@ version numbers.]
 To *"stricly"* check the most recent detected extension:
 
 ``
-#include <boost/predef/hardware/simd.h>
+#include <predef/hardware/simd.h>
 #include <iostream>
 
 int main()
 {
-#if BOOST_HW_SIMD_X86 == BOOST_HW_SIMD_X86_SSE3_VERSION
+#if HASH_PREDEF_HW_SIMD_X86 == HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION
     std::cout << "This is SSE3 and this is the most recent enabled extension!"
         << std::endl;
 #endif
@@ -69,13 +69,13 @@ Because of the version systems of predefs and of the inclusive property of SIMD
 extensions macros, you can easily check for ranges of supported extensions:
 
 ``
-#include <boost/predef/hardware/simd.h>
+#include <predef/hardware/simd.h>
 #include <iostream>
 
 int main()
 {
-#if BOOST_HW_SIMD_X86 >= BOOST_HW_SIMD_X86_SSE2_VERSION &&\
-    BOOST_HW_SIMD_X86 <= BOOST_HW_SIMD_X86_SSSE3_VERSION
+#if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION &&\
+    HASH_PREDEF_HW_SIMD_X86 <= HASH_PREDEF_HW_SIMD_X86_SSSE3_VERSION
     std::cout << "This is SSE2, SSE3 and SSSE3!" << std::endl;
 #endif
     return 0;

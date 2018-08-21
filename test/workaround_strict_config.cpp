@@ -4,13 +4,13 @@ Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
 */
-#include <boost/predef/version_number.h>
-#define BOOST_STRICT_CONFIG
-#include <boost/predef/other/workaround.h>
+#include <predef/version_number.h>
+#define HASH_PREDEF_STRICT_CONFIG
+#include <predef/other/workaround.h>
 
 int main()
 {
-#if BOOST_PREDEF_WORKAROUND(BOOST_VERSION_NUMBER_AVAILABLE,==,0,0,1)
+#if HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER_AVAILABLE,==,0,0,1)
     fail();
 #endif
     return 0;

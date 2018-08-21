@@ -1,0 +1,97 @@
+/*
+Copyright Rene Rivera 2008-2015
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENSE_1_0.txt or copy at
+http://www.boost.org/LICENSE_1_0.txt)
+*/
+#include <predef/detail/test.h>
+
+#ifndef HASH_PREDEF_MAKE_H
+#define HASH_PREDEF_MAKE_H
+
+/*
+Shorthands for the common version number formats used by vendors...
+*/
+
+/*`
+[heading `HASH_PREDEF_MAKE_..` macros]
+
+These set of macros decompose common vendor version number
+macros which are composed version, revision, and patch digits.
+The naming convention indicates:
+
+* The base of the specified version number. "`HASH_PREDEF_MAKE_0X`" for
+  hexadecimal digits, and "`HASH_PREDEF_MAKE_10`" for decimal digits.
+* The format of the vendor version number. Where "`V`" indicates the version digits,
+  "`R`" indicates the revision digits, "`P`" indicates the patch digits, and "`0`"
+  indicates an ignored digit.
+
+Macros are:
+*/
+/*` `HASH_PREDEF_MAKE_0X_VRP(V)` */
+#define HASH_PREDEF_MAKE_0X_VRP(V) HASH_PREDEF_VERSION_NUMBER((V&0xF00)>>8,(V&0xF0)>>4,(V&0xF))
+/*` `HASH_PREDEF_MAKE_0X_VVRP(V)` */
+#define HASH_PREDEF_MAKE_0X_VVRP(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF00)>>8,(V&0xF0)>>4,(V&0xF))
+/*` `HASH_PREDEF_MAKE_0X_VRPP(V)` */
+#define HASH_PREDEF_MAKE_0X_VRPP(V) HASH_PREDEF_VERSION_NUMBER((V&0xF000)>>12,(V&0xF00)>>8,(V&0xFF))
+/*` `HASH_PREDEF_MAKE_0X_VVRR(V)` */
+#define HASH_PREDEF_MAKE_0X_VVRR(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF00)>>8,(V&0xFF),0)
+/*` `HASH_PREDEF_MAKE_0X_VRRPPPP(V)` */
+#define HASH_PREDEF_MAKE_0X_VRRPPPP(V) HASH_PREDEF_VERSION_NUMBER((V&0xF000000)>>24,(V&0xFF0000)>>16,(V&0xFFFF))
+/*` `HASH_PREDEF_MAKE_0X_VVRRP(V)` */
+#define HASH_PREDEF_MAKE_0X_VVRRP(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF000)>>12,(V&0xFF0)>>4,(V&0xF))
+/*` `HASH_PREDEF_MAKE_0X_VRRPP000(V)` */
+#define HASH_PREDEF_MAKE_0X_VRRPP000(V) HASH_PREDEF_VERSION_NUMBER((V&0xF0000000)>>28,(V&0xFF00000)>>20,(V&0xFF000)>>12)
+/*` `HASH_PREDEF_MAKE_0X_VVRRPP(V)` */
+#define HASH_PREDEF_MAKE_0X_VVRRPP(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF0000)>>16,(V&0xFF00)>>8,(V&0xFF))
+/*` `HASH_PREDEF_MAKE_10_VPPP(V)` */
+#define HASH_PREDEF_MAKE_10_VPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/1000)%10,0,(V)%1000)
+/*` `HASH_PREDEF_MAKE_10_VR0(V)` */
+#define HASH_PREDEF_MAKE_10_VR0(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%10,((V)/10)%10,0)
+/*` `HASH_PREDEF_MAKE_10_VRP(V)` */
+#define HASH_PREDEF_MAKE_10_VRP(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%10,((V)/10)%10,(V)%10)
+/*` `HASH_PREDEF_MAKE_10_VRP000(V)` */
+#define HASH_PREDEF_MAKE_10_VRP000(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%10,((V)/10000)%10,((V)/1000)%10)
+/*` `HASH_PREDEF_MAKE_10_VRPPPP(V)` */
+#define HASH_PREDEF_MAKE_10_VRPPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%10,((V)/10000)%10,(V)%10000)
+/*` `HASH_PREDEF_MAKE_10_VRPP(V)` */
+#define HASH_PREDEF_MAKE_10_VRPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/1000)%10,((V)/100)%10,(V)%100)
+/*` `HASH_PREDEF_MAKE_10_VRR(V)` */
+#define HASH_PREDEF_MAKE_10_VRR(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%10,(V)%100,0)
+/*` `HASH_PREDEF_MAKE_10_VRRPP(V)` */
+#define HASH_PREDEF_MAKE_10_VRRPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000)%10,((V)/100)%100,(V)%100)
+/*` `HASH_PREDEF_MAKE_10_VRR000(V)` */
+#define HASH_PREDEF_MAKE_10_VRR000(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%10,((V)/1000)%100,0)
+/*` `HASH_PREDEF_MAKE_10_VV00(V)` */
+#define HASH_PREDEF_MAKE_10_VV00(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%100,0,0)
+/*` `HASH_PREDEF_MAKE_10_VVRR(V)` */
+#define HASH_PREDEF_MAKE_10_VVRR(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%100,(V)%100,0)
+/*` `HASH_PREDEF_MAKE_10_VVRRP(V)` */
+#define HASH_PREDEF_MAKE_10_VVRRP(V) HASH_PREDEF_VERSION_NUMBER(((V)/1000)%100,((V)/10)%100,(V)%10)
+/*` `HASH_PREDEF_MAKE_10_VVRRPP(V)` */
+#define HASH_PREDEF_MAKE_10_VVRRPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000)%100,((V)/100)%100,(V)%100)
+/*` `HASH_PREDEF_MAKE_10_VVRRPPP(V)` */
+#define HASH_PREDEF_MAKE_10_VVRRPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%100,((V)/1000)%100,(V)%1000)
+/*` `HASH_PREDEF_MAKE_10_VVRR0PP00(V)` */
+#define HASH_PREDEF_MAKE_10_VVRR0PP00(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000000)%100,((V)/100000)%100,((V)/100)%100)
+/*` `HASH_PREDEF_MAKE_10_VVRR0PPPP(V)` */
+#define HASH_PREDEF_MAKE_10_VVRR0PPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000000)%100,((V)/100000)%100,(V)%10000)
+/*` `HASH_PREDEF_MAKE_10_VVRR00PP00(V)` */
+#define HASH_PREDEF_MAKE_10_VVRR00PP00(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000000)%100,((V)/1000000)%100,((V)/100)%100)
+/*`
+[heading `HASH_PREDEF_MAKE_*..` date macros]
+
+Date decomposition macros return a date in the relative to the 1970
+Epoch date. If the month is not available, January 1st is used as the month and day.
+If the day is not available, but the month is, the 1st of the month is used as the day.
+*/
+/*` `HASH_PREDEF_MAKE_DATE(Y,M,D)` */
+#define HASH_PREDEF_MAKE_DATE(Y,M,D) HASH_PREDEF_VERSION_NUMBER((Y)%10000-1970,(M)%100,(D)%100)
+/*` `HASH_PREDEF_MAKE_YYYYMMDD(V)` */
+#define HASH_PREDEF_MAKE_YYYYMMDD(V) HASH_PREDEF_MAKE_DATE(((V)/10000)%10000,((V)/100)%100,(V)%100)
+/*` `HASH_PREDEF_MAKE_YYYY(V)` */
+#define HASH_PREDEF_MAKE_YYYY(V) HASH_PREDEF_MAKE_DATE(V,1,1)
+/*` `HASH_PREDEF_MAKE_YYYYMM(V)` */
+#define HASH_PREDEF_MAKE_YYYYMM(V) HASH_PREDEF_MAKE_DATE((V)/100,(V)%100,1)
+
+#endif

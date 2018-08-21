@@ -11,7 +11,7 @@ http://www.boost.org/LICENSE_1_0.txt)
  * program and the related BB support.
  */
 
-#include <boost/predef.h>
+#include <predef.h>
 #include <iostream>
 #include <string>
 
