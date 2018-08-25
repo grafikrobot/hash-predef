@@ -13,13 +13,6 @@ notifications:
     recipients:
       - grafikrobot@gmail.com
 
-# For now the CI scripts only support the two main branches available
-# on the boost super-project.
-branches:
-  only:
-    - master
-    - develop
-
 # We specify a generic language instead of C++ as Travis sets up
 # additional environment vars that point to its default toolset
 # instead of the one we install. The extra env doesn't interfere,
