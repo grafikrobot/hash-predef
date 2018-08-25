@@ -677,7 +677,7 @@ class ci_travis(object):
         '''
         info = toolset_info[toolset]
         if sys.platform.startswith('linux'):
-            os.chdir(self.work_dir)
+            os.chdir(self.script.build_dir)
             if 'ppa' in info:
                 for ppa in info['ppa']:
                     utils.check_call(
