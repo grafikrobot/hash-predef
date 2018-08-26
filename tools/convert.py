@@ -31,7 +31,40 @@ class convert():
 
     def hash2boost(self):
         print('### hash2boost')
+        source_transform_prog = [
+            [self.replace_,r'HASH_PREDEF([_`].*_H[^A-Z_])','BOOST_PREDEF\\1'],
+            [self.replace_,r'HASH_PREDEF_ARCH([_`])','BOOST_ARCH\\1'],
+            [self.replace_,r'HASH_PREDEF_COMP([_`])','BOOST_COMP\\1'],
+            [self.replace_,r'HASH_PREDEF_HW([_`])','BOOST_HW\\1'],
+            [self.replace_,r'HASH_PREDEF_LANG([_`])','BOOST_LANG\\1'],
+            [self.replace_,r'HASH_PREDEF_LIB([_`])','BOOST_LIB\\1'],
+            [self.replace_,r'HASH_PREDEF_OS([_`])','BOOST_OS\\1'],
+            [self.replace_,r'HASH_PREDEF_PLAT([_`])','BOOST_PLAT\\1'],
+            [self.replace_,r'HASH_PREDEF_ENDIAN([_`])','BOOST_ENDIAN\\1'],
+            [self.replace_,r'HASH_PREDEF_VERSION([_`])','BOOST_VERSION\\1'],
+            [self.replace_,r'HASH_PREDEF_STRICT_CONFIG','BOOST_STRICT_CONFIG'],
+            [self.replace_,r'HASH_PREDEF_DETECT_OUTDATED_WORKAROUNDS','BOOST_DETECT_OUTDATED_WORKAROUNDS'],
+            [self.replace_,r'HASH_PREDEF([_`])','BOOST_PREDEF\\1'],
+            [self.replace_,r'include <predef','include <boost/predef'],
+            [self.replace_,r'Hash Predef','Boost Predef']
+            ]
         self.do_conversion([
+            [r'^include/predef(.*)[.]h', [
+                [self.rename_,r'^(include/)(.*)','\\1boost/\\2']
+                ]+source_transform_prog
+            ],
+            [r'^doc/(.*)[.]qbk', [
+                [self.replace_,r'Hash Predef','Boost.Predef'],
+                [self.replace_,r'HASH_PREDEF_category_tag_H','BOOST_PREDEF_category_tag_H'],
+                [self.replace_,r'HASH_PREDEF_category_tag','BOOST_category_tag'],
+                [self.replace_,r'include [.][.]/include/predef','include ../include/boost/predef'],
+                ]+source_transform_prog
+            ],
+            [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
+            [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
+            [r'^tools/check/predef.jam', source_transform_prog],
+            [r'^tools/ci/(.*)[.]py$', []],
+            [r'^(.*)[.]git(ignore|attributes)', []],
         ])
 
     def boost2hash(self):
@@ -54,6 +87,9 @@ class convert():
             [self.replace_,r'Boost Predef','Hash Predef']
             ]
         self.do_conversion([
+            [r'^include/boost/predef/detail/endian_compat[.]h', [
+                [self.remove_]
+            ]],
             [r'^include/boost/predef(.*)[.]h', [
                 [self.rename_,r'^(include/)boost/(.*)','\\1\\2']
                 ]+source_transform_prog
@@ -67,7 +103,7 @@ class convert():
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/predef.jam', source_transform_prog],
-            [r'^tools/ci/(.*)[.]py', []],
+            [r'^tools/ci/(.*)[.]py$', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
         ])
 
@@ -87,6 +123,10 @@ class convert():
                     entry_info['transfer'] = True
                     for step in action[1]:
                         entry_info = step[0](entry_info, *step[1:])
+                        if not entry_info['transfer']:
+                            break
+                    if not entry_info['transfer']:
+                        break
             entry_info['name_target'] = os.path.join(self.target_dir, entry_info['name'])
             if entry_info['transfer']:
                 print('#### '+entry_info['name_target'])
@@ -121,6 +161,10 @@ class convert():
             entry['content'] = re.sub(pattern, repl, entry['content'].decode('utf-8'))
         else:
             entry['content'] = re.sub(pattern, repl, entry['content'])
+        return entry
+    
+    def remove_(self, entry):
+        entry['transfer'] = False
         return entry
 
 convert().main()
