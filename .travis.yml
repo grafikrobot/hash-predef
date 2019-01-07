@@ -48,6 +48,21 @@ matrix:
   exclude:
     - env: TRAVIS_EMPTY_JOB_WORKAROUND=true
   include:
+    # Check CMake project use support.
+    - env: TEST_CMAKE
+      # Skip all the unneeded steps from the normal unit test jobs
+      install: true
+      before_script: true
+      before_cache: true
+      before_cache: true
+      after_success: true
+      after_failure: true
+      after_script: true
+      # Build CMake simple test project that uses Predef.
+      script:
+        - mkdir __build__ && cd __build__
+        - cmake ../test/test_cmake
+        - cmake --build .
     - env: TOOLSET=clang-3.4
     - env: TOOLSET=clang-3.5
     - env: TOOLSET=clang-3.6
