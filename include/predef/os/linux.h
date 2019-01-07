@@ -21,13 +21,16 @@ http://www.boost.org/LICENSE_1_0.txt)
 
     [[`linux`] [__predef_detection__]]
     [[`__linux`] [__predef_detection__]]
+    [[`__linux__`] [__predef_detection__]]
+    [[`__gnu_linux__`] [__predef_detection__]]
     ]
  */
 
 #define HASH_PREDEF_OS_LINUX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
 #if !defined(HASH_PREDEF_DETAIL_OS_DETECTED) && ( \
-    defined(linux) || defined(__linux) \
+    defined(linux) || defined(__linux) || \
+    defined(__linux__) || defined(__gnu_linux__) \
     )
 #   undef HASH_PREDEF_OS_LINUX
 #   define HASH_PREDEF_OS_LINUX HASH_PREDEF_VERSION_NUMBER_AVAILABLE
