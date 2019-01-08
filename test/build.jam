@@ -7,6 +7,7 @@ import ../tools/check/predef : require check : predef-require predef-check ;
 
 project
     :   requirements
+        <include>$(HASH_PREDEF_INCLUDE)
         # Add explicit dependency since we don't have header scanner for
         # .m and .mm files.
         <dependency>$(HASH_PREDEF_INCLUDE)/predef.h
