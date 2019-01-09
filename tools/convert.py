@@ -82,6 +82,16 @@ class convert():
                 [self.replace_, r'hash-predef', 'boost-predef'],
                 [self.replace_, r'HashPredef', 'BoostPredef'],
                 [self.replace_, r'hash_predef', 'boost_predef'],
+            ]],
+            [r'^test/build[.]jam', [
+                [self.replace_, r'"HASH_PREDEF_', '"BOOST_'],
+                [self.replace_, r'HASH_PREDEF', 'BOOST_PREDEF'],
+                [self.replace_, r'/predef[.]h', '/boost/predef.h'],
+            ]],
+            [r'^build[.]jam', [
+                [self.replace_, r'HASH_PREDEF', 'BOOST_PREDEF'],
+                [self.replace_, r'/hash-predef', '/boost/predef'],
+                [self.replace_, r'PREDEF_DIST : hash ', 'PREDEF_DIST : boost '],
             ]]
         ])
 
@@ -133,6 +143,11 @@ class convert():
                 [self.replace_, r'boost-predef', 'hash-predef'],
                 [self.replace_, r'BoostPredef', 'HashPredef'],
                 [self.replace_, r'boost_predef', 'hash_predef'],
+            ]],
+            [r'^build[.]jam', [
+                [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
+                [self.replace_, r'/boost/predef', '/hash-predef'],
+                [self.replace_, r'PREDEF_DIST : boost ', 'PREDEF_DIST : hash '],
             ]]
         ])
 
