@@ -20,6 +20,7 @@ http://www.boost.org/LICENSE_1_0.txt)
     [[__predef_symbol__] [__predef_version__]]
 
     [[`TARGET_IPHONE_SIMULATOR`] [__predef_detection__]]
+    [[`TARGET_OS_SIMULATOR`] [__predef_detection__]]
     ]
  */
 
@@ -29,7 +30,10 @@ http://www.boost.org/LICENSE_1_0.txt)
 // https://opensource.apple.com/source/CarbonHeaders/CarbonHeaders-18.1/TargetConditionals.h
 #if HASH_PREDEF_OS_IOS
 #    include <TargetConditionals.h>
-#    if TARGET_IPHONE_SIMULATOR == 1
+#    if defined(TARGET_OS_SIMULATOR) && (TARGET_OS_SIMULATOR == 1)
+#        undef HASH_PREDEF_PLAT_IOS_SIMULATOR
+#        define HASH_PREDEF_PLAT_IOS_SIMULATOR HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#    elif defined(TARGET_IPHONE_SIMULATOR) && (TARGET_IPHONE_SIMULATOR == 1)
 #        undef HASH_PREDEF_PLAT_IOS_SIMULATOR
 #        define HASH_PREDEF_PLAT_IOS_SIMULATOR HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #    else
