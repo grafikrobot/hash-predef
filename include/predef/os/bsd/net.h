@@ -76,7 +76,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #   include <predef/detail/os_detected.h>
 #endif
 
-#define HASH_PREDEF_OS_BSD_NET_NAME "DragonFly BSD"
+#define HASH_PREDEF_OS_BSD_NET_NAME "NetBSD"
 
 #endif
 
