@@ -89,15 +89,13 @@ of BSD. If the above variants is detected the corresponding macro is also set.]
 
 #define HASH_PREDEF_OS_BSD_NAME "BSD"
 
-#else
+#endif
 
 #include <predef/os/bsd/bsdi.h>
 #include <predef/os/bsd/dragonfly.h>
 #include <predef/os/bsd/free.h>
 #include <predef/os/bsd/open.h>
 #include <predef/os/bsd/net.h>
-
-#endif
 
 #include <predef/detail/test.h>
 HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_OS_BSD,HASH_PREDEF_OS_BSD_NAME)
