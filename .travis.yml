@@ -97,19 +97,7 @@ matrix:
     - env: TOOLSET=xcode-10.0
       os: osx
       osx_image: xcode10.0
-    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++03
-      os: osx
-      osx_image: xcode10.1
-    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++11
-      os: osx
-      osx_image: xcode10.1
-    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++14
-      os: osx
-      osx_image: xcode10.1
-    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++17
-      os: osx
-      osx_image: xcode10.1
-    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++2a
+    - env: TOOLSET=xcode-10.1 CXXSTD=03,11,14,17,2a
       os: osx
       osx_image: xcode10.1
 
