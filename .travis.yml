@@ -78,16 +78,8 @@ matrix:
     - env: TOOLSET=gcc-6
     - env: TOOLSET=gcc-7
     - env: TOOLSET=gcc-8
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=c++03
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=c++11
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=c++14
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=c++17
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=c++2a
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=gnu++03
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=gnu++11
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=gnu++14
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=gnu++17
-    - env: TOOLSET=gcc-8 CXXFLAGS=-std=gnu++2a
+    - env: TOOLSET=gcc-8 CXXSTD=03,11,14,17,2a
+    - env: TOOLSET=gcc-8 CXXSTD=03,11,14,17,2a CXXDIALECT=gnu
     - env: TOOLSET=xcode-6.1
       os: osx
     - env: TOOLSET=xcode-6.4
@@ -99,24 +91,27 @@ matrix:
     - env: TOOLSET=xcode-8.3
       os: osx
       osx_image: xcode8.3
-    - env: TOOLSET=xcode-9.4 CXXFLAGS=-std=c++03
-      os: osx
-      osx_image: xcode9.4
-    - env: TOOLSET=xcode-9.4 CXXFLAGS=-std=c++11
-      os: osx
-      osx_image: xcode9.4
-    - env: TOOLSET=xcode-9.4 CXXFLAGS=-std=c++14
-      os: osx
-      osx_image: xcode9.4
-    - env: TOOLSET=xcode-9.4 CXXFLAGS=-std=c++17
-      os: osx
-      osx_image: xcode9.4
-    - env: TOOLSET=xcode-9.4 CXXFLAGS=-std=c++2a
+    - env: TOOLSET=xcode-9.4
       os: osx
       osx_image: xcode9.4
     - env: TOOLSET=xcode-10.0
       os: osx
       osx_image: xcode10.0
+    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++03
+      os: osx
+      osx_image: xcode10.1
+    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++11
+      os: osx
+      osx_image: xcode10.1
+    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++14
+      os: osx
+      osx_image: xcode10.1
+    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++17
+      os: osx
+      osx_image: xcode10.1
+    - env: TOOLSET=xcode-10.1 CXXFLAGS=-std=c++2a
+      os: osx
+      osx_image: xcode10.1
 
 install: python "${TRAVIS_BUILD_DIR}/tools/ci/library_test.py" install
 before_script: python "${TRAVIS_BUILD_DIR}/tools/ci/library_test.py" before_script
