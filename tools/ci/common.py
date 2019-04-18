@@ -325,7 +325,7 @@ class utils:
         result = subprocess.call(command, **kargs)
         t = time.time()-t
         if result != 0:
-            print "Failed: '%s' ERROR = %s" % ("' '".join(command), result)
+            print("Failed: '%s' ERROR = %s" % ("' '".join(command), result))
         utils.call_stats.append((t, os.getcwd(), command, result))
         utils.log("%s> '%s' execution time %s seconds" %
                   (os.getcwd(), "' '".join(command), t))
