@@ -19,52 +19,49 @@ import threading
 
 toolset_info = {
     'clang-3.4': {
-        'ppa': ["ppa:h-rayflood/llvm"],
+        'ppa': ["ppa:ubuntu-toolchain-r/test"],
         'package': 'clang-3.4',
         'command': 'clang++-3.4',
         'toolset': 'clang',
         'version': ''
     },
     'clang-3.5': {
-        'ppa': ["ppa:h-rayflood/llvm"],
+        'ppa': ["ppa:ubuntu-toolchain-r/test"],
         'package': 'clang-3.5',
         'command': 'clang++-3.5',
         'toolset': 'clang',
         'version': ''
     },
     'clang-3.6': {
-        'ppa': ["ppa:h-rayflood/llvm"],
+        'ppa': ["ppa:ubuntu-toolchain-r/test"],
         'package': 'clang-3.6',
         'command': 'clang++-3.6',
         'toolset': 'clang',
         'version': ''
     },
     'clang-3.7': {
-        'deb': ["http://apt.llvm.org/trusty/", "llvm-toolchain-trusty-3.7", "main"],
-        'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
+        'ppa': ["ppa:ubuntu-toolchain-r/test"],
         'package': 'clang-3.7',
         'command': 'clang++-3.7',
         'toolset': 'clang',
         'version': ''
     },
     'clang-3.8': {
-        'deb': ["http://apt.llvm.org/trusty/", "llvm-toolchain-trusty-3.8", "main"],
-        'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
+        'ppa': ["ppa:ubuntu-toolchain-r/test"],
         'package': 'clang-3.8',
         'command': 'clang++-3.8',
         'toolset': 'clang',
         'version': ''
     },
     'clang-3.9': {
-        'deb': ["http://apt.llvm.org/trusty/", "llvm-toolchain-trusty-3.9", "main"],
-        'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
+        'ppa': ["ppa:ubuntu-toolchain-r/test"],
         'package': 'clang-3.9',
         'command': 'clang++-3.9',
         'toolset': 'clang',
         'version': ''
     },
     'clang-4.0': {
-        'deb': ["http://apt.llvm.org/trusty/", "llvm-toolchain-trusty-4.0", "main"],
+        'deb': ["http://apt.llvm.org/xenial/", "llvm-toolchain-xenial-4.0", "main"],
         'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
         'package': 'clang-4.0',
         'command': 'clang++-4.0',
@@ -72,7 +69,7 @@ toolset_info = {
         'version': ''
     },
     'clang-5.0': {
-        'deb': ["http://apt.llvm.org/trusty/", "llvm-toolchain-trusty-5.0", "main"],
+        'deb': ["http://apt.llvm.org/xenial/", "llvm-toolchain-xenial-5.0", "main"],
         'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
         'package': 'clang-5.0',
         'command': 'clang++-5.0',
@@ -80,7 +77,23 @@ toolset_info = {
         'version': ''
     },
     'clang-6.0': {
-        'deb': ["http://apt.llvm.org/trusty/", "llvm-toolchain-trusty-6.0", "main"],
+        'deb': ["http://apt.llvm.org/xenial/", "llvm-toolchain-xenial-6.0", "main"],
+        'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
+        'package': 'clang-6.0',
+        'command': 'clang++-6.0',
+        'toolset': 'clang',
+        'version': ''
+    },
+    'clang-7': {
+        'deb': ["http://apt.llvm.org/xenial/", "llvm-toolchain-xenial-7", "main"],
+        'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
+        'package': 'clang-6.0',
+        'command': 'clang++-6.0',
+        'toolset': 'clang',
+        'version': ''
+    },
+    'clang-8': {
+        'deb': ["http://apt.llvm.org/xenial/", "llvm-toolchain-xenial-8", "main"],
         'apt-key': ['http://apt.llvm.org/llvm-snapshot.gpg.key'],
         'package': 'clang-6.0',
         'command': 'clang++-6.0',
@@ -144,14 +157,9 @@ toolset_info = {
         'toolset': 'gcc',
         'version': ''
     },
-    'mingw-5': {
+    'mingw-8': {
         'toolset': 'gcc',
-        'command': 'C:\\\\MinGW\\\\bin\\\\g++.exe',
-        'version': ''
-    },
-    'mingw64-6': {
-        'toolset': 'gcc',
-        'command': 'C:\\\\mingw-w64\\\\x86_64-6.3.0-posix-seh-rt_v5-rev1\\\\mingw64\\\\bin\\\\g++.exe',
+        'command': 'g++.exe',
         'version': ''
     },
     'vs-2008': {
@@ -900,6 +908,81 @@ class ci_appveyor(object):
         pass
 
     def command_on_finish(self):
+        pass
+
+
+class ci_azp(object):
+    '''
+    This variant build releases in the context of the Azure Pipelines service.
+    '''
+
+    def __init__(self, script):
+        self.script = script
+
+    def init(self, opt, kargs):
+        set_arg(kargs, 'repo_dir', os.path.join(
+            os.getenv("HOME"), os.getenv("CIRCLE_PROJECT_REPONAME")))
+        set_arg(kargs, 'branch', os.getenv("CIRCLE_BRANCH"))
+        set_arg(kargs, 'commit', os.getenv("CIRCLE_SHA1"))
+        set_arg(kargs, 'repo', os.getenv(
+            "CIRCLE_PROJECT_REPONAME").split("/")[1])
+        set_arg(kargs, 'pull_request', os.getenv('CIRCLE_PR_NUMBER'))
+        return kargs
+
+    def finish(self, result):
+        exit(result)
+
+    def command_machine_post(self):
+        # Apt update for the pckages installs we'll do later.
+        utils.check_call('sudo', 'apt-get', '-qq', 'update')
+        # Need PyYAML to read Travis yaml in a later step.
+        utils.check_call("pip", "install", "--user", "PyYAML")
+
+    def command_checkout_post(self):
+        os.chdir(self.script.repo_dir)
+        utils.check_call("git", "submodule", "update",
+                         "--quiet", "--init", "--recursive")
+
+    def command_dependencies_pre(self):
+        # Read in .travis.yml for list of packages to install
+        # as CircleCI doesn't have a convenient apt install method.
+        import yaml
+        utils.check_call('sudo', '-E', 'apt-get', '-yqq', 'update')
+        utils.check_call('sudo', 'apt-get', '-yqq', 'purge', 'texlive*')
+        with open(os.path.join(self.script.repo_dir, '.travis.yml')) as yml:
+            travis_yml = yaml.load(yml)
+            utils.check_call('sudo', 'apt-get', '-yqq',
+                             '--no-install-suggests', '--no-install-recommends', '--force-yes', 'install',
+                             *travis_yml['addons']['apt']['packages'])
+
+    def command_dependencies_override(self):
+        self.script.command_install()
+
+    def command_dependencies_post(self):
+        pass
+
+    def command_database_pre(self):
+        pass
+
+    def command_database_override(self):
+        pass
+
+    def command_database_post(self):
+        pass
+
+    def command_test_pre(self):
+        self.script.command_install()
+        self.script.command_before_build()
+
+    def command_test_override(self):
+        # CircleCI runs all the test subsets. So in order to avoid
+        # running the after_success we do it here as the build step
+        # will halt accordingly.
+        self.script.command_build()
+        self.script.command_before_cache()
+        self.script.command_after_success()
+
+    def command_test_post(self):
         pass
 
 
