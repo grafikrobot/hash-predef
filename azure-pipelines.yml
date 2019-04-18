@@ -64,7 +64,75 @@ jobs:
       Clang 3.4:
         TOOLSET: clang-3.4
   steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+      architecture: 'x64'
   - bash: python tools/ci/library_test.py install
+    env:
+      AZP: 1
+      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_BRANCH: $(Build.SourceBranch)
+      AZP_COMMIT: $(Build.SourceVersion)
+      AZP_REPO: $(Build.Repository.Name)
+      AZP_PULL_REQUEST: $(Build.SourceBranch)
+    displayName: Install
+  - bash: python tools/ci/library_test.py script
+    env:
+      AZP: 1
+      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_BRANCH: $(Build.SourceBranch)
+      AZP_COMMIT: $(Build.SourceVersion)
+      AZP_REPO: $(Build.Repository.Name)
+      AZP_PULL_REQUEST: $(Build.SourceBranch)
+    displayName: Test
+
+- job: 'macOS'
+  pool:
+    vmImage: 'macOS-10.14'
+  strategy:
+    matrix:
+      Xcode 10.1:
+        TOOLSET: xcode-10.1
+        XCODE_APP: /Applications/Xcode_10.1.app
+      Xcode 10.0:
+        TOOLSET: xcode-10.0
+        XCODE_APP: /Applications/Xcode_10.app
+      Xcode 9.4.1:
+        TOOLSET: xcode-9.4.1
+        XCODE_APP: /Applications/Xcode_9.4.1.app
+      Xcode 9.4:
+        TOOLSET: xcode-9.4
+        XCODE_APP: /Applications/Xcode_9.4.app
+      Xcode 9.3.1:
+        TOOLSET: xcode-9.3.1
+        XCODE_APP: /Applications/Xcode_9.3.1.app
+      Xcode 9.3:
+        TOOLSET: xcode-9.3
+        XCODE_APP: /Applications/Xcode_9.3.app
+      Xcode 9.2:
+        TOOLSET: xcode-9.2
+        XCODE_APP: /Applications/Xcode_9.2.app
+      Xcode 9.1:
+        TOOLSET: xcode-9.1
+        XCODE_APP: /Applications/Xcode_9.1.app
+      Xcode 9.0.1:
+        TOOLSET: xcode-9.0.1
+        XCODE_APP: /Applications/Xcode_9.0.1.app
+      Xcode 9.0:
+        TOOLSET: xcode-9.0
+        XCODE_APP: /Applications/Xcode_9.app
+      Xcode 8.3.3:
+        TOOLSET: xcode-8.3
+        XCODE_APP: /Applications/Xcode_8.3.3.app
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+      architecture: 'x64'
+  - bash: |
+      python tools/ci/library_test.py install
+      sudo xcode-select -switch ${XCODE_APP}
     env:
       AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
@@ -139,6 +207,10 @@ jobs:
   pool:
     vmImage: $(VM_IMAGE)
   steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+      architecture: 'x64'
   - powershell: python tools/ci/library_test.py install
     env:
       AZP: 1
@@ -149,66 +221,6 @@ jobs:
       AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Install
   - powershell: python tools/ci/library_test.py script
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
-    displayName: Test
-
-- job: 'macOS'
-  pool:
-    vmImage: 'macOS-10.13'
-  strategy:
-    matrix:
-      Xcode 10.1:
-        TOOLSET: xcode-10.0
-        XCODE_APP: /Applications/Xcode_10.1.app
-      Xcode 10.0:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_10.app
-      Xcode 9.4.1:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.4.1.app
-      Xcode 9.4:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.4.app
-      Xcode 9.3.1:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.3.1.app
-      Xcode 9.3:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.3.app
-      Xcode 9.2:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.2.app
-      Xcode 9.1:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.1.app
-      Xcode 9.0.1:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.0.1.app
-      Xcode 9.0:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_9.app
-      Xcode 8.3.3:
-        TOOLSET: clang
-        XCODE_APP: /Applications/Xcode_8.3.3.app
-  steps:
-  - bash: |
-      python tools/ci/library_test.py install
-      sudo xcode-select -switch ${XCODE_APP}
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
-    displayName: Install
-  - bash: python tools/ci/library_test.py script
     env:
       AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)

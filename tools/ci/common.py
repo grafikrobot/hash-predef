@@ -257,6 +257,11 @@ toolset_info = {
         'toolset': 'clang',
         'version': ''
     },
+    'xcode-9.0.1': {
+        'command': 'clang++',
+        'toolset': 'clang',
+        'version': ''
+    },
     'xcode-9.1': {
         'command': 'clang++',
         'toolset': 'clang',
@@ -272,7 +277,17 @@ toolset_info = {
         'toolset': 'clang',
         'version': ''
     },
+    'xcode-9.3.1': {
+        'command': 'clang++',
+        'toolset': 'clang',
+        'version': ''
+    },
     'xcode-9.4': {
+        'command': 'clang++',
+        'toolset': 'clang',
+        'version': ''
+    },
+    'xcode-9.4.1': {
         'command': 'clang++',
         'toolset': 'clang',
         'version': ''
