@@ -920,70 +920,24 @@ class ci_azp(object):
         self.script = script
 
     def init(self, opt, kargs):
-        set_arg(kargs, 'repo_dir', os.path.join(
-            os.getenv("HOME"), os.getenv("CIRCLE_PROJECT_REPONAME")))
-        set_arg(kargs, 'branch', os.getenv("CIRCLE_BRANCH"))
-        set_arg(kargs, 'commit', os.getenv("CIRCLE_SHA1"))
-        set_arg(kargs, 'repo', os.getenv(
-            "CIRCLE_PROJECT_REPONAME").split("/")[1])
-        set_arg(kargs, 'pull_request', os.getenv('CIRCLE_PR_NUMBER'))
+        set_arg(kargs, 'repo_dir', os.getenv("AZP_REPO_DIR"))
+        set_arg(kargs, 'branch', os.getenv("AZP_BRANCH"))
+        set_arg(kargs, 'commit', os.getenv("AZP_COMMIT"))
+        set_arg(kargs, 'repo', os.getenv("AZP_REPO"))
+        set_arg(kargs, 'pull_request', os.getenv('AZP_PULL_REQUEST'))
         return kargs
 
     def finish(self, result):
         exit(result)
 
-    def command_machine_post(self):
-        # Apt update for the pckages installs we'll do later.
-        utils.check_call('sudo', 'apt-get', '-qq', 'update')
-        # Need PyYAML to read Travis yaml in a later step.
-        utils.check_call("pip", "install", "--user", "PyYAML")
-
-    def command_checkout_post(self):
-        os.chdir(self.script.repo_dir)
-        utils.check_call("git", "submodule", "update",
-                         "--quiet", "--init", "--recursive")
-
-    def command_dependencies_pre(self):
-        # Read in .travis.yml for list of packages to install
-        # as CircleCI doesn't have a convenient apt install method.
-        import yaml
-        utils.check_call('sudo', '-E', 'apt-get', '-yqq', 'update')
-        utils.check_call('sudo', 'apt-get', '-yqq', 'purge', 'texlive*')
-        with open(os.path.join(self.script.repo_dir, '.travis.yml')) as yml:
-            travis_yml = yaml.load(yml)
-            utils.check_call('sudo', 'apt-get', '-yqq',
-                             '--no-install-suggests', '--no-install-recommends', '--force-yes', 'install',
-                             *travis_yml['addons']['apt']['packages'])
-
-    def command_dependencies_override(self):
-        self.script.command_install()
-
-    def command_dependencies_post(self):
-        pass
-
-    def command_database_pre(self):
-        pass
-
-    def command_database_override(self):
-        pass
-
-    def command_database_post(self):
-        pass
-
-    def command_test_pre(self):
+    def command_install(self):
         self.script.command_install()
         self.script.command_before_build()
 
-    def command_test_override(self):
-        # CircleCI runs all the test subsets. So in order to avoid
-        # running the after_success we do it here as the build step
-        # will halt accordingly.
+    def command_script(self):
         self.script.command_build()
         self.script.command_before_cache()
         self.script.command_after_success()
-
-    def command_test_post(self):
-        pass
 
 
 def main(script_klass):
