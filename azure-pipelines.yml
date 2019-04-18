@@ -66,6 +66,7 @@ jobs:
   steps:
   - bash: python tools/ci/library_test.py install
     env:
+      AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
@@ -74,6 +75,7 @@ jobs:
     displayName: Install
   - bash: python tools/ci/library_test.py script
     env:
+      AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
@@ -139,6 +141,7 @@ jobs:
   steps:
   - powershell: python tools/ci/library_test.py install
     env:
+      AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
@@ -147,6 +150,7 @@ jobs:
     displayName: Install
   - powershell: python tools/ci/library_test.py script
     env:
+      AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
@@ -197,6 +201,7 @@ jobs:
       python tools/ci/library_test.py install
       sudo xcode-select -switch ${XCODE_APP}
     env:
+      AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
@@ -205,6 +210,7 @@ jobs:
     displayName: Install
   - bash: python tools/ci/library_test.py script
     env:
+      AZP: 1
       AZP_REPO_DIR: $(Agent.BuildDirectory)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)

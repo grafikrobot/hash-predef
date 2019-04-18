@@ -993,5 +993,7 @@ def main(script_klass):
         script_klass(ci_circleci)
     elif os.getenv('APPVEYOR', False):
         script_klass(ci_appveyor)
+    elif os.getenv('AZP', False):
+        script_klass(ci_azp)
     else:
         script_klass(ci_cli)
