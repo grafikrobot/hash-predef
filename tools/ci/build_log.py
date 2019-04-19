@@ -12,7 +12,7 @@ import xml.dom.pulldom
 from xml.sax.saxutils import unescape, escape
 import os.path
 from pprint import pprint
-from __builtin__ import exit
+from sys import exit
 
 
 class BuildOutputXMLParsing(object):
