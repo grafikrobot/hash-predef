@@ -117,7 +117,7 @@ class BuildOutputProcessor(BuildOutputXMLParsing):
                     suffix = '_'+c.nodeName.replace('-', '_').replace('#', '_')
                     node = c
                 names.append('x')
-                names = map(lambda x: x+suffix, names)
+                names = [x+suffix for x in names]
         if node:
             for name in names:
                 if hasattr(self, name):
