@@ -585,7 +585,7 @@ class script_common(object):
         set_arg(kargs, 'pull_request', None)
 
         #~ Defaults
-        for (k, v) in kargs.iteritems():
+        for (k, v) in kargs.items():
             setattr(self, k, v)
         (_opt_, self.actions) = opt.parse_args(None, self)
         if not self.actions or self.actions == []:
