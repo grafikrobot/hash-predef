@@ -71,7 +71,7 @@ jobs:
   - bash: python tools/ci/library_test.py install
     env:
       AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_REPO_DIR: $(Build.Repository.LocalPath)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
@@ -80,7 +80,7 @@ jobs:
   - bash: python tools/ci/library_test.py script
     env:
       AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_REPO_DIR: $(Build.Repository.LocalPath)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
@@ -135,7 +135,7 @@ jobs:
       sudo xcode-select -switch ${XCODE_APP}
     env:
       AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_REPO_DIR: $(Build.Repository.LocalPath)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
@@ -144,7 +144,7 @@ jobs:
   - bash: python tools/ci/library_test.py script
     env:
       AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_REPO_DIR: $(Build.Repository.LocalPath)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
@@ -214,7 +214,7 @@ jobs:
   - powershell: python tools/ci/library_test.py install
     env:
       AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_REPO_DIR: $(Build.Repository.LocalPath)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
@@ -223,7 +223,7 @@ jobs:
   - powershell: python tools/ci/library_test.py script
     env:
       AZP: 1
-      AZP_REPO_DIR: $(Agent.BuildDirectory)
+      AZP_REPO_DIR: $(Build.Repository.LocalPath)
       AZP_BRANCH: $(Build.SourceBranch)
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
