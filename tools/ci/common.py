@@ -889,6 +889,35 @@ class ci_appveyor(object):
     def finish(self, result):
         exit(result)
 
+    def install_toolset(self, toolset):
+        '''
+        Installs specific toolset on CI system.
+        '''
+        info = toolset_info[toolset]
+        if sys.platform.startswith('linux'):
+            os.chdir(self.script.build_dir)
+            if 'ppa' in info:
+                for ppa in info['ppa']:
+                    utils.check_call(
+                        'sudo', 'add-apt-repository', '--yes', ppa)
+            if 'deb' in info:
+                utils.check_call(
+                    'sudo', '-E', 'apt-add-repository',
+                    'deb %s' % (' '.join(info['deb'])))
+            if 'apt-key' in info:
+                for key in info['apt-key']:
+                    utils.check_call('wget', key, '-O', 'apt.key')
+                    utils.check_call('sudo', '-E', 'apt-key', 'add', 'apt.key')
+            utils.check_call(
+                'sudo', '-E', 'apt-get', 'update')
+            utils.check_call(
+                'sudo', '-E', 'apt-get', '-yq', '--no-install-suggests',
+                '--no-install-recommends', 'install', info['package'])
+            if 'debugpackage' in info and info['debugpackage']:
+                utils.check_call(
+                    'sudo', 'apt-get', '-yq', '--no-install-suggests',
+                    '--no-install-recommends', 'install', info['debugpackage'])
+
     # Appveyor commands in the order they are executed. We need
     # these to forward to our common commands, if they are different.
 
