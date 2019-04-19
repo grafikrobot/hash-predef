@@ -383,7 +383,7 @@ class utils:
         for attempts in range(max_attempts, -1, -1):
             try:
                 return f()
-            except Exception, msg:
+            except Exception as msg:
                 utils.log('%s failed with message "%s"' % (f.__name__, msg))
                 if attempts == 0:
                     utils.log('Giving up.')
