@@ -456,14 +456,14 @@ class utils:
 
     @staticmethod
     def make_file(filename, *text):
-        text = string.join(text, '\n')
+        text = '\n'.join(text)
         with codecs.open(filename, 'w', 'utf-8') as f:
             f.write(text)
 
     @staticmethod
     def append_file(filename, *text):
         with codecs.open(filename, 'a', 'utf-8') as f:
-            f.write(string.join(text, '\n'))
+            f.write('\n'.join(text))
 
     @staticmethod
     def mem_info():
