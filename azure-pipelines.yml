@@ -61,8 +61,6 @@ jobs:
         TOOLSET: clang-3.6
       Clang 3.5:
         TOOLSET: clang-3.5
-      Clang 3.4:
-        TOOLSET: clang-3.4
   steps:
   - task: UsePythonVersion@0
     inputs:
@@ -88,43 +86,54 @@ jobs:
     displayName: Test
 
 - job: 'macOS'
-  pool:
-    vmImage: 'macOS-10.14'
   strategy:
     matrix:
       Xcode 10.1:
         TOOLSET: xcode-10.1
         XCODE_APP: /Applications/Xcode_10.1.app
+        VM_IMAGE: 'macOS-10.14'
       Xcode 10.0:
         TOOLSET: xcode-10.0
         XCODE_APP: /Applications/Xcode_10.app
+        VM_IMAGE: 'macOS-10.14'
       Xcode 9.4.1:
         TOOLSET: xcode-9.4.1
         XCODE_APP: /Applications/Xcode_9.4.1.app
+        VM_IMAGE: 'macOS-10.14'
       Xcode 9.4:
         TOOLSET: xcode-9.4
         XCODE_APP: /Applications/Xcode_9.4.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.3.1:
         TOOLSET: xcode-9.3.1
         XCODE_APP: /Applications/Xcode_9.3.1.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.3:
         TOOLSET: xcode-9.3
         XCODE_APP: /Applications/Xcode_9.3.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.2:
         TOOLSET: xcode-9.2
         XCODE_APP: /Applications/Xcode_9.2.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.1:
         TOOLSET: xcode-9.1
         XCODE_APP: /Applications/Xcode_9.1.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.0.1:
         TOOLSET: xcode-9.0.1
         XCODE_APP: /Applications/Xcode_9.0.1.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.0:
         TOOLSET: xcode-9.0
         XCODE_APP: /Applications/Xcode_9.app
+        VM_IMAGE: 'macOS-10.13'
       Xcode 8.3.3:
         TOOLSET: xcode-8.3
         XCODE_APP: /Applications/Xcode_8.3.3.app
+        VM_IMAGE: 'macOS-10.13'
+  pool:
+    vmImage: $(VM_IMAGE)
   steps:
   - task: UsePythonVersion@0
     inputs:
