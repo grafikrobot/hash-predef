@@ -275,7 +275,7 @@ class BuildOutputProcessor(BuildOutputXMLParsing):
             test = self.test[lib]
         else:
             target_name_ = self.target[target]['name']
-            if self.target_to_test.has_key(target_name_):
+            if target_name_ in self.target_to_test:
                 test = self.test[self.target_to_test[target_name_]]
             else:
                 test = None

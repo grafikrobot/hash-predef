@@ -357,7 +357,7 @@ class utils:
         frames = inspect.stack()
         level = 0
         for i in frames[3:]:
-            if i[0].f_locals.has_key('__log__'):
+            if '__log__' in i[0].f_locals:
                 level = level + i[0].f_locals['__log__']
         return level
 
