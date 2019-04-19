@@ -63,9 +63,6 @@ jobs:
         TOOLSET: clang-3.5
   steps:
   - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.6'
-      architecture: 'x64'
   - bash: python tools/ci/library_test.py install
     env:
       AZP: 1
@@ -99,7 +96,7 @@ jobs:
       Xcode 9.4.1:
         TOOLSET: xcode-9.4.1
         XCODE_APP: /Applications/Xcode_9.4.1.app
-        VM_IMAGE: 'macOS-10.14'
+        VM_IMAGE: 'macOS-10.13'
       Xcode 9.4:
         TOOLSET: xcode-9.4
         XCODE_APP: /Applications/Xcode_9.4.app
@@ -136,9 +133,6 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
   - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.6'
-      architecture: 'x64'
   - bash: |
       python tools/ci/library_test.py install
       sudo xcode-select -switch ${XCODE_APP}
@@ -217,9 +211,6 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
   - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.6'
-      architecture: 'x64'
   - powershell: python tools/ci/library_test.py install
     env:
       AZP: 1
