@@ -41,6 +41,7 @@ class script(script_common):
         set_arg(kargs, 'variant', os.getenv("VARIANT", "debug"))
         set_arg(kargs, 'cxxstd', os.getenv("CXXSTD", None))
         set_arg(kargs, 'cxxdialect', os.getenv("CXXDIALECT", None))
+        set_arg(kargs, 'cxxdefs', os.getenv("cxxdefs", None))
         return kargs
 
     def start(self):
@@ -104,6 +105,9 @@ using %(toolset)s : %(version)s : %(command)s ;
                 toolset_to_test = toolset_info[self.toolset]['toolset']
             else:
                 toolset_to_test = self.toolset
+        cxxdefs = []
+        if self.cxxdefs:
+            cxxdefs = ['define=%s' % (d) for d in self.cxxdefs.split(',')]
         self.b2(
             '-d1',
             '-p0',
@@ -120,7 +124,8 @@ using %(toolset)s : %(version)s : %(command)s ;
                 self.cxxstd),
             '' if not self.cxxdialect else 'cxxstd-dialect=%s' % (
                 self.cxxdialect),
-            self.target
+            self.target,
+            *cxxdefs
         )
 
         # Generate a readable test report.
