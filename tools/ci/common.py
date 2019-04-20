@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Copyright Rene Rivera 2016
 #
 # Distributed under the Boost Software License, Version 1.0.
