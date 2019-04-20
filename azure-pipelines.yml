@@ -218,8 +218,8 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
   - powershell: |
-      python.exe --version
-      python.exe tools/ci/library_test.py install 2>&1
+      python --version
+      cmd.exe /c "python tools/ci/library_test.py install"
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
@@ -229,8 +229,8 @@ jobs:
       AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Install
   - powershell: |
-      python.exe --version
-      python.exe tools/ci/library_test.py script 2>&1
+      python --version
+      cmd /c "python tools/ci/library_test.py script"
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
