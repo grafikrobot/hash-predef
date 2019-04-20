@@ -211,6 +211,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
   - task: UsePythonVersion@0
+    condition: ne(variables['vmImage'], 'vs2015-win2012r2')
   - powershell: python tools/ci/library_test.py install
     env:
       AZP: 1
