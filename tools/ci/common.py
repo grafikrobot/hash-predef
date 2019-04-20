@@ -607,9 +607,11 @@ class script_common(object):
             self.command_info()
             self.main()
             utils.print_call_stats()
-        except:
+        except Exception as e:
             utils.print_call_stats()
-            raise
+            # raise
+            utils.log(str(e))
+            exit(1)
 
     def init(self, opt, kargs):
         return kargs
