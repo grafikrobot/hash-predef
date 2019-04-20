@@ -1,4 +1,4 @@
-# Copyright Rene Rivera 2016
+# Copyright Rene Rivera 2016-2019
 #
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at
@@ -189,6 +189,11 @@ toolset_info = {
         'toolset': 'msvc',
         'command': '',
         'version': '14.1'
+    },
+    'vs-2019': {
+        'toolset': 'msvc',
+        'command': '',
+        'version': '14.2'
     },
     'xcode-6.1': {
         'command': 'clang++',

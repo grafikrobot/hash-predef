@@ -219,7 +219,7 @@ jobs:
   steps:
   - powershell: |
       python --version
-      cmd.exe /c "python tools/ci/library_test.py install"
+      python tools/ci/library_test.py install
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
@@ -230,7 +230,7 @@ jobs:
     displayName: Install
   - powershell: |
       python --version
-      cmd /c "python tools/ci/library_test.py script"
+      python tools/ci/library_test.py script
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
