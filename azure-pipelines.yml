@@ -63,7 +63,7 @@ jobs:
         TOOLSET: clang-3.5
   steps:
   - task: UsePythonVersion@0
-  - bash: |
+  - script: |
       python --version
       python tools/ci/library_test.py install
     env:
@@ -74,7 +74,7 @@ jobs:
       AZP_REPO: $(Build.Repository.Name)
       AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Install
-  - bash: |
+  - script: |
       python --version
       python tools/ci/library_test.py script
     env:
@@ -137,7 +137,7 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
   - task: UsePythonVersion@0
-  - bash: |
+  - script: |
       python --version
       python tools/ci/library_test.py install
       sudo xcode-select -switch ${XCODE_APP}
@@ -149,7 +149,7 @@ jobs:
       AZP_REPO: $(Build.Repository.Name)
       AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Install
-  - bash: |
+  - script: |
       python --version
       python tools/ci/library_test.py script
     env:
@@ -217,8 +217,7 @@ jobs:
   pool:
     vmImage: $(VM_IMAGE)
   steps:
-  - powershell: |
-      $ErrorActionPreference = "Continue"
+  - script: |
       python --version
       python tools/ci/library_test.py install
     env:
@@ -229,8 +228,7 @@ jobs:
       AZP_REPO: $(Build.Repository.Name)
       AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Install
-  - powershell: |
-      $ErrorActionPreference = "Continue"
+  - script: |
       python --version
       python tools/ci/library_test.py script
     env:
