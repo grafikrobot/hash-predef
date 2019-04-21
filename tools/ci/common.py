@@ -367,9 +367,8 @@ class utils:
     @staticmethod
     def log(message):
         sys.stdout.flush()
-        sys.stderr.flush()
-        sys.stderr.write('# ' + '    ' * utils.log_level() + message + '\n')
-        sys.stderr.flush()
+        sys.stdout.write('# ' + '    ' * utils.log_level() + message + '\n')
+        sys.stdout.flush()
 
     @staticmethod
     def rmtree(path):
