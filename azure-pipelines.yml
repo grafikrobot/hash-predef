@@ -73,10 +73,12 @@ jobs:
       AZP_COMMIT: $(Build.SourceVersion)
       AZP_REPO: $(Build.Repository.Name)
       AZP_PULL_REQUEST: $(Build.SourceBranch)
+    failOnStderr: false
     displayName: Install
   - script: |
       python --version
       python tools/ci/library_test.py script
+    failOnStderr: false
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
@@ -141,6 +143,7 @@ jobs:
       python --version
       python tools/ci/library_test.py install
       sudo xcode-select -switch ${XCODE_APP}
+    failOnStderr: false
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
@@ -152,6 +155,7 @@ jobs:
   - script: |
       python --version
       python tools/ci/library_test.py script
+    failOnStderr: false
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
@@ -220,6 +224,7 @@ jobs:
   - script: |
       python --version
       python tools/ci/library_test.py install
+    failOnStderr: false
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
@@ -231,6 +236,7 @@ jobs:
   - script: |
       python --version
       python tools/ci/library_test.py script
+    failOnStderr: false
     env:
       AZP: 1
       AZP_REPO_DIR: $(Build.Repository.LocalPath)
