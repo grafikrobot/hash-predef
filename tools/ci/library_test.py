@@ -42,7 +42,7 @@ class script(script_common):
         set_arg(kargs, 'variant', os.getenv("VARIANT", "debug"))
         set_arg(kargs, 'cxxstd', os.getenv("CXXSTD", None))
         set_arg(kargs, 'cxxdialect', os.getenv("CXXDIALECT", None))
-        set_arg(kargs, 'cxxdefs', os.getenv("cxxdefs", None))
+        set_arg(kargs, 'cxxdefs', os.getenv("CXXDEFS", None))
         return kargs
 
     def start(self):
