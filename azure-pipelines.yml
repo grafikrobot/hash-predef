@@ -15,6 +15,14 @@ pr:
     include:
     - develop
 
+variables:
+  AZP: 1
+  AZP_REPO_DIR: $(Build.Repository.LocalPath)
+  AZP_BRANCH: $(Build.SourceBranch)
+  AZP_COMMIT: $(Build.SourceVersion)
+  AZP_REPO: $(Build.Repository.Name)
+  AZP_PULL_REQUEST: $(System.PullRequest.PullRequestNumber)
+
 jobs:
 
 - job: 'Linux'
@@ -63,29 +71,11 @@ jobs:
         TOOLSET: clang-3.5
   steps:
   - task: UsePythonVersion@0
-  - script: |
-      python --version
-      python tools/ci/library_test.py install
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Build.Repository.LocalPath)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
+  - script: python tools/ci/library_test.py install
     failOnStderr: false
     displayName: Install
-  - script: |
-      python --version
-      python tools/ci/library_test.py script
+  - script: python tools/ci/library_test.py script
     failOnStderr: false
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Build.Repository.LocalPath)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Test
 
 - job: 'macOS'
@@ -139,30 +129,14 @@ jobs:
     vmImage: $(VM_IMAGE)
   steps:
   - task: UsePythonVersion@0
-  - script: |
-      python --version
-      python tools/ci/library_test.py install
-      sudo xcode-select -switch ${XCODE_APP}
+  - script: sudo xcode-select -switch ${XCODE_APP}
     failOnStderr: false
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Build.Repository.LocalPath)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
+    displayName: Xcode Select
+  - script: python tools/ci/library_test.py install
+    failOnStderr: false
     displayName: Install
-  - script: |
-      python --version
-      python tools/ci/library_test.py script
+  - script: python tools/ci/library_test.py script
     failOnStderr: false
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Build.Repository.LocalPath)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Test
 
 - job: 'Windows'
@@ -221,27 +195,9 @@ jobs:
   pool:
     vmImage: $(VM_IMAGE)
   steps:
-  - script: |
-      python --version
-      python tools/ci/library_test.py install
+  - script: python tools/ci/library_test.py install
     failOnStderr: false
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Build.Repository.LocalPath)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Install
-  - script: |
-      python --version
-      python tools/ci/library_test.py script
+  - script: python tools/ci/library_test.py script
     failOnStderr: false
-    env:
-      AZP: 1
-      AZP_REPO_DIR: $(Build.Repository.LocalPath)
-      AZP_BRANCH: $(Build.SourceBranch)
-      AZP_COMMIT: $(Build.SourceVersion)
-      AZP_REPO: $(Build.Repository.Name)
-      AZP_PULL_REQUEST: $(Build.SourceBranch)
     displayName: Test
