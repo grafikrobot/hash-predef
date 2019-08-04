@@ -127,7 +127,8 @@ information and acquired knowledge:
         defined(__AARCH64EL__) || \
         defined(_MIPSEL) || \
         defined(__MIPSEL) || \
-        defined(__MIPSEL__)
+        defined(__MIPSEL__) || \
+        defined(__riscv)
 #       undef HASH_PREDEF_ENDIAN_LITTLE_BYTE
 #       define HASH_PREDEF_ENDIAN_LITTLE_BYTE HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #   endif

@@ -21,6 +21,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/architecture/ppc.h>
 #include <predef/architecture/ptx.h>
 #include <predef/architecture/pyramid.h>
+#include <predef/architecture/riscv.h>
 #include <predef/architecture/rs6k.h>
 #include <predef/architecture/sparc.h>
 #include <predef/architecture/superh.h>
