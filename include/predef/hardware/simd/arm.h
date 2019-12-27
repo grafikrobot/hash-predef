@@ -13,30 +13,30 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/hardware/simd/arm/versions.h>
 
 /*`
- [heading `HASH_PREDEF_HW_SIMD_ARM`]
+[heading `HASH_PREDEF_HW_SIMD_ARM`]
 
- The SIMD extension for ARM (*if detected*).
- Version number depends on the most recent detected extension.
+The SIMD extension for ARM (*if detected*).
+Version number depends on the most recent detected extension.
 
- [table
-     [[__predef_symbol__] [__predef_version__]]
+[table
+    [[__predef_symbol__] [__predef_version__]]
 
-     [[`__ARM_NEON__`] [__predef_detection__]]
-     [[`__aarch64__`] [__predef_detection__]]
-     [[`_M_ARM`] [__predef_detection__]]
-     [[`_M_ARM64`] [__predef_detection__]]
-     ]
+    [[`__ARM_NEON__`] [__predef_detection__]]
+    [[`__aarch64__`] [__predef_detection__]]
+    [[`_M_ARM`] [__predef_detection__]]
+    [[`_M_ARM64`] [__predef_detection__]]
+    ]
 
- [table
-     [[__predef_symbol__] [__predef_version__]]
+[table
+    [[__predef_symbol__] [__predef_version__]]
 
-     [[`__ARM_NEON__`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
-     [[`__aarch64__`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
-     [[`_M_ARM`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
-     [[`_M_ARM64`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
-     ]
+    [[`__ARM_NEON__`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
+    [[`__aarch64__`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
+    [[`_M_ARM`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
+    [[`_M_ARM64`] [HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION]]
+    ]
 
- */
+*/
 
 #define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

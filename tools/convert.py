@@ -13,6 +13,8 @@ import os.path
 import shutil
 import re
 import os
+import pprint
+import glob
 
 
 class convert():
@@ -24,7 +26,7 @@ class convert():
         args = argparse.ArgumentParser()
         self.kind = None
         args.add_argument('--kind', default='hash2boost',
-                          choices=['hash2boost', 'boost2hash'])
+                          choices=['hash2boost', 'boost2hash', 'qbk2adoc'])
         self.source_dir = None
         args.add_argument('source_dir')
         self.target_dir = None
@@ -187,6 +189,222 @@ class convert():
                     with open(entry_info['name_target'], 'wb') as f:
                         f.write(entry_info['content'])
                 # print(entry_info['content'])
+
+    def qbk2adoc(self):
+        print('### qbk2adoc')
+        self.do_conversion([
+            [r'^doc/(.*)[.]qbk', [
+                [self.do_qbk2adoc_conversion]]],
+            [r'^include/predef(.*)[.]h', [
+                [self.do_qbk2adoc_code_conversion]]]
+        ])
+
+    def do_qbk2adoc_conversion(self, entry):
+        entry['name'] = os.path.splitext(entry['name'])[0] + '.adoc'
+        adoc_info = {}
+        adoc = []
+        qbk = None
+        qbk_i = 0
+        colophon = []
+        if hasattr(entry['content'], 'decode'):
+            qbk = entry['content'].decode('utf-8').splitlines()
+        else:
+            qbk = entry['content'].splitlines()
+        if qbk[0].startswith('[article '):
+            adoc_info['title'] = re.fullmatch(r'\[article (.*)', qbk[0]).group(1)
+            adoc_info['copyright'] = []
+            adoc_info['author'] = []
+            qbk_i += 1
+            while qbk[qbk_i] != "]":
+                line = qbk[qbk_i]
+                copyright = re.fullmatch(r'\s+\[copyright\s+([^]]+)\]', line)
+                if copyright:
+                    adoc_info['copyright'].append('Copyright '+copyright.group(1))
+                    qbk_i += 1
+                    continue
+                purpose = re.fullmatch(r'[^[]+.purpose\s+([^]]+)', line)
+                if purpose:
+                    adoc_info['purpose'].append(purpose.group(1))
+                    qbk_i += 1
+                    continue
+                authors = re.fullmatch(r'[^[]+.authors\s+\[([^]]+)\]\]', line)
+                if authors:
+                    author = authors.group(1).split(',')
+                    adoc_info['author'].append(author[1].strip()+' '+author[0].strip())
+                    qbk_i += 1
+                    continue
+                qbk_i += 1
+            qbk_i += 1
+            adoc.append('= {title}'.format(**adoc_info))
+            for author in adoc_info['author']:
+                adoc.append(':author: '+author)
+            adoc.extend([
+                ':toc: left',
+                ':toclevels: 3',
+                ':sectanchors:',
+                ':sectnums:',
+                ':nofooter:',
+                ':source-highlighter: pygments',
+                ':source-language: cpp',
+                ':caution-caption: ⚑',
+                ':important-caption: ‼',
+                ':note-caption: ℹ',
+                ':tip-caption: ☀',
+                ':warning-caption: ⚠',
+                ':CPP: C++',
+                ':predef_symbol: Symbol',
+                ':predef_version: Version',
+                ':predef_detection: pass:q[*detection*]',
+                '',
+                'ifdef::backend-html5[]',
+                '++++',
+                '<style>',
+                'include::predef.css[]',
+                '</style>',
+                '++++',
+                'endif::[]'
+                ])
+            colophon.extend([
+                '[colophon]',
+                '== Colophon',
+                '',
+                'Distributed under the Boost Software License, Version 1.0.',
+                '(See accompanying file LICENSE_1_0.txt or copy at',
+                'https://www.boost.org/LICENSE_1_0.txt)',
+                '',
+                ])
+            if 'copyright' in adoc_info and len(adoc_info['copyright']) > 0:
+                colophon.append('; '.join(adoc_info['copyright']))
+        adoc.extend(self.qbk_to_adoc_(qbk[qbk_i:-1], entry['name_source']))
+        adoc.extend(colophon)
+        entry['content'] = '\n'.join(adoc)
+        return entry
+
+    def do_qbk2adoc_code_conversion(self, entry):
+        content = None
+        if hasattr(entry['content'], 'decode'):
+            content = entry['content'].decode('utf-8')
+        else:
+            content = entry['content']
+        doc_comments = re.findall(r'\/\*\`\n.+?\ ?\*\/\n', content, re.S)
+        for doc_comment in doc_comments:
+            doc = doc_comment.splitlines()[1:-1]
+            doc = self.qbk_to_adoc_(doc, entry['name_source'], section_level=1)
+            doc = '/* tag::reference[]\n'+'\n'.join(doc)+'\n*/ // end::reference[]\n'
+            content = content.replace(doc_comment, doc)
+        entry['content'] = content
+        return entry
+
+    def qbk_to_adoc_(self, lines, name_source, section_level=2):
+        line_i = 0
+        result = []
+        while line_i < len(lines):
+            line = lines[line_i]
+            # line_i += 1
+            line = re.sub(r'C\+\+', '{CPP}', line)
+            line = re.sub(r'__predef_symbol__', '{predef_symbol}', line)
+            line = re.sub(r'__predef_version__', '{predef_version}', line)
+            line = re.sub(r'__predef_detection__', '{predef_detection}', line)
+            line = re.sub(r'\[\^([^]]+)\]', r'`\1`', line)
+            line = re.sub(r'\[\~([^]]+)\]', r'_\1_', line)
+            line = re.sub(r'\[\@([^ ]+) ([^]]+)\]', r'\1[\2]', line)
+            line = re.sub(r'\[\@([^ ]+)\]', r'\1', line)
+            line = re.sub(r'\s*\[\/[^\]]+\]', '', line)
+            line = re.sub(r'(__\S+?__)', r'+\1+', line)
+            line = re.sub(r'\`(_\S+?)\`', r'`+\1+`', line)
+            line = re.sub(r' \/(\S+?)\/ ', r'`_\1_`', line)
+            line = re.sub(r'\\([\[\]])', r'\1', line)
+            if re.match(r'\s*\[section\s+', line):
+                match = re.fullmatch(r'\s*\[section\s+(.*)\]', line)
+                result.append(''.ljust(section_level, '=')+' '+match.group(1))
+                section_level += 1
+            elif re.match(r'\s*\[endsect\]', line):
+                section_level -= 1
+            elif re.match(r'\s*\[heading\s+', line):
+                match = re.fullmatch(r'\s*\[heading\s+(.*)\]', line)
+                result.append(''.ljust(section_level, '=')+' '+match.group(1))
+            elif line.startswith('# '):
+                result.append('. '+line[2:])
+            elif re.match(r'\s*\[note\s+', line):
+                note = []
+                line = re.sub(r'\s*\[note\s+', 'NOTE: ', line)
+                while not line.endswith(']'):
+                    note.append(line)
+                    line_i += 1
+                    line = lines[line_i]
+                note.append(line[0:-1])
+                result.extend(note)
+            elif re.match(r'\s*\[warning\s+', line):
+                note = []
+                line = re.sub(r'\s*\[warning\s+', 'WARNING: ', line)
+                while not line.endswith(']'):
+                    note.append(line)
+                    line_i += 1
+                    line = lines[line_i]
+                note.append(line[0:-1])
+                result.extend(note)
+            elif line == '[/':
+                result.append('////')
+                line_i += 1
+                line = lines[line_i]
+                while line != ']':
+                    result.append(line)
+                    line_i += 1
+                    line = lines[line_i]
+                result.append('////')
+            elif line == "``":
+                result.extend(['[source]', '----'])
+                dedent = None
+                line_i += 1
+                while lines[line_i] != "``":
+                    if dedent == None:
+                        dedent = lines[line_i].startswith('  ')
+                    if dedent:
+                        result.append(lines[line_i][2:])
+                    else:
+                        result.append(lines[line_i])
+                    line_i += 1
+                result.append('----')
+            elif re.match(r'\s*\[include\s+', line):
+                match = re.fullmatch(r'\s*\[include\s+(.*)\]', line)
+                if match.group(1).endswith('.qbk'):
+                    result.append('include::%s[]'%(match.group(1).replace('.qbk','.adoc')))
+                elif '*' in match.group(1):
+                    name_dir = os.path.dirname(name_source)
+                    files = list(glob.glob(os.path.join(name_dir, match.group(1))))
+                    for f in sorted(files):
+                        result.append('include::%s[leveloffset=%s,tag=reference]'%(f.replace(name_dir+os.sep, ''), section_level-1))
+                else:
+                    result.append('include::%s[leveloffset=%s,tag=reference]'%(match.group(1), section_level-1))
+            elif line.startswith('[def '):
+                pass
+            elif line == '[teletype]':
+                pass
+            elif line == '[c++]':
+                pass
+            elif re.match(r'\s*\[table', line):
+                match = re.match(r'\s*\[table\s+(.*)', line)
+                if match:
+                    result.append('.'+match.group(1))
+                result.extend(['[options="header"]', '|==='])
+                rows = []
+                line_i += 1
+                while lines[line_i].strip() != "]":
+                    rows.append(lines[line_i])
+                    line_i += 1
+                rows = self.qbk_to_adoc_(rows, name_source)
+                for row in rows:
+                    sub_row = re.match(r'^\[(.+)\]$', row.strip())
+                    if sub_row:
+                        cols = re.findall(r'\[([^\]]*)\]', sub_row.group(1))
+                        result.append('| '+' | '.join(cols))
+                    else:
+                        result.append(row)
+                result.append('|===')
+            else:
+                result.append(line)
+            line_i += 1
+        return result
 
     def scandir_(self, dir):
         result = []

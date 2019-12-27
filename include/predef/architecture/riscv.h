@@ -14,7 +14,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 /*`
 [heading `HASH_PREDEF_ARCH_RISCV`]
 
-[@http://en.wikipedia.org/wiki/RISC-V] architecture.
+[@http://en.wikipedia.org/wiki/RISC-V RISC-V] architecture.
 
 [table
     [[__predef_symbol__] [__predef_version__]]

@@ -17,52 +17,98 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 
 /*`
- [section Using the `HASH_PREDEF_HW_SIMD_*` predefs]
- [include ../doc/hardware_simd.qbk]
- [endsect]
+[section Using the `HASH_PREDEF_HW_SIMD_*` predefs]
 
- [/ --------------------------- ]
+SIMD predefs depend on compiler options. For example, you will have to add the
+option `-msse3` to clang or gcc to enable SSE3. SIMD predefs are also inclusive.
+This means that if SSE3 is enabled, then every other extensions with a lower
+version number will implicitly be enabled and detected. However, some extensions
+are CPU specific, they may not be detected nor enabled when an upper version is
+enabled.
 
- [section `HASH_PREDEF_HW_SIMD_*`]
+[note SSE(1) and SSE2 are automatically enabled by default when using x86-64
+architecture.]
 
- [heading `HASH_PREDEF_HW_SIMD`]
+To check if any SIMD extension has been enabled, you can use:
 
- The SIMD extension detected for a specific architectures.
- Version number depends on the detected extension.
+``
+#include <predef/hardware/simd.h>
+#include <iostream>
 
- [table
-     [[__predef_symbol__] [__predef_version__]]
+int main()
+{
+#if defined(HASH_PREDEF_HW_SIMD_AVAILABLE)
+    std::cout << "SIMD detected!" << std::endl;
+#endif
+    return 0;
+}
+``
 
-     [[`HASH_PREDEF_HW_SIMD_X86_AVAILABLE`] [__predef_detection__]]
-     [[`HASH_PREDEF_HW_SIMD_X86_AMD_AVAILABLE`] [__predef_detection__]]
-     [[`HASH_PREDEF_HW_SIMD_ARM_AVAILABLE`] [__predef_detection__]]
-     [[`HASH_PREDEF_HW_SIMD_PPC_AVAILABLE`] [__predef_detection__]]
-     ]
+When writing SIMD specific code, you may want to check if a particular extension
+has been detected. To do so you have to use the right architecture predef and
+compare it. Those predef are of the form `HASH_PREDEF_HW_SIMD_"ARCH"` (where `"ARCH"`
+is either `ARM`, `PPC`, or `X86`). For example, if you compile code for x86
+architecture, you will have to use `HASH_PREDEF_HW_SIMD_X86`. Its value will be the
+version number of the most recent SIMD extension detected for the architecture.
 
- [include ../include/boost/predef/hardware/simd/x86.h]
- [include ../include/boost/predef/hardware/simd/x86_amd.h]
- [include ../include/boost/predef/hardware/simd/arm.h]
- [include ../include/boost/predef/hardware/simd/ppc.h]
+To check if an extension has been enabled:
 
- [endsect]
+``
+#include <predef/hardware/simd.h>
+#include <iostream>
 
- [/ --------------------------- ]
+int main()
+{
+#if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION
+    std::cout << "This is SSE3!" << std::endl;
+#endif
+    return 0;
+}
+``
 
- [section `HASH_PREDEF_HW_SIMD_X86_*_VERSION`]
- [include ../include/boost/predef/hardware/simd/x86/versions.h]
- [endsect]
+[note The *_VERSION* defines that map version number to actual real
+identifiers. This way it is easier to write comparisons without messing up with
+version numbers.]
 
- [section `HASH_PREDEF_HW_SIMD_X86_AMD_*_VERSION`]
- [include ../include/boost/predef/hardware/simd/x86_amd/versions.h]
- [endsect]
+To *"strictly"* check the most recent detected extension:
 
- [section `HASH_PREDEF_HW_SIMD_ARM_*_VERSION`]
- [include ../include/boost/predef/hardware/simd/arm/versions.h]
- [endsect]
+``
+#include <predef/hardware/simd.h>
+#include <iostream>
 
- [section `HASH_PREDEF_HW_SIMD_PPC_*_VERSION`]
- [include ../include/boost/predef/hardware/simd/ppc/versions.h]
- [endsect]
+int main()
+{
+#if HASH_PREDEF_HW_SIMD_X86 == HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION
+    std::cout << "This is SSE3 and this is the most recent enabled extension!"
+        << std::endl;
+#endif
+    return 0;
+}
+``
+
+Because of the version systems of predefs and of the inclusive property of SIMD
+extensions macros, you can easily check for ranges of supported extensions:
+
+``
+#include <predef/hardware/simd.h>
+#include <iostream>
+
+int main()
+{
+#if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION &&\
+    HASH_PREDEF_HW_SIMD_X86 <= HASH_PREDEF_HW_SIMD_X86_SSSE3_VERSION
+    std::cout << "This is SSE2, SSE3 and SSSE3!" << std::endl;
+#endif
+    return 0;
+}
+``
+
+[note Unlike gcc and clang, Visual Studio does not allow you to specify precisely
+the SSE variants you want to use, the only detections that will take place are
+SSE, SSE2, AVX and AVX2. For more informations,
+    see [@https://msdn.microsoft.com/en-us/library/b0084kay.aspx here].]
+
+[endsect]
 
  */
 

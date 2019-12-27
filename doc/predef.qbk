@@ -59,7 +59,7 @@ languages, libraries, operating systems, and endianness. The key benefits are:
   with `#ifdef`.
 * Guard macros that can be used for `#ifdef` checks.
 * All possible definitions are included with the single `#include <predef.h>`
-  so that it's friendly to precompiled header usage.
+  so that it's friendly to pre-compiled header usage.
 * Specific definitions can be included, ex. `#include <predef/os/windows.h>`
   for single checks.
 * Predefs can be directly used in both preprocessor and compiler expressions
@@ -136,7 +136,7 @@ the particular item is not detected, and to a /positive/ value if it
 is detected. The predef macros fall onto five categories each with
 macros of a particular prefix:
 
-* `HASH_PREDEF_ARCH_`for system/CPU architecture one is compiling for.
+* `HASH_PREDEF_ARCH_` for system/CPU architecture one is compiling for.
 * `HASH_PREDEF_COMP_` for the compiler one is using.
 * `HASH_PREDEF_LANG_` for language standards one is compiling against.
 * `HASH_PREDEF_LIB_C_` and `HASH_PREDEF_LIB_STD_` for the C and C++ standard library
@@ -551,7 +551,17 @@ and "Y", "M", "D" for dates.
 [endsect]
 
 [section `HASH_PREDEF_HW` hardware macros]
-[include ../include/predef/hardware/*.h]
+
+[include ../include/predef/hardware/simd.h]
+[include ../include/predef/hardware/simd/arm.h]
+[include ../include/predef/hardware/simd/arm/versions.h]
+[include ../include/predef/hardware/simd/ppc.h]
+[include ../include/predef/hardware/simd/ppc/versions.h]
+[include ../include/predef/hardware/simd/x86.h]
+[include ../include/predef/hardware/simd/x86/versions.h]
+[include ../include/predef/hardware/simd/x86_amd.h]
+[include ../include/predef/hardware/simd/x86_amd/versions.h]
+
 [endsect]
 
 [section Other macros]
@@ -600,7 +610,7 @@ If it's a partial version triple it is completed with zeros. That
 is [^x.y] is equivalent to [^x.y.0] and [^x] is equivalent to
 [^x.0.0].
 
-The [~relations-operator] and [~version-number] can be ommited. In
+The [~relations-operator] and [~version-number] can be omitted. In
 which case it is equivalent to:
 
 [teletype]
@@ -629,7 +639,7 @@ exe my_windows_program : windows_source.cpp
 
 That simple use case will skip building the [^my_windows_program]
 unless one is building for Windows. Like the direct [^predef_check]
-you can pass mutiple expressions using relational comparisons.
+you can pass multiple expressions using relational comparisons.
 For example:
 
 [teletype]
@@ -681,7 +691,7 @@ rule check ( expressions + : language ? : true-properties * : false-properties *
 ``
 [c++]
 
-When invoked as a reuirement of a Boost Build target this rule
+When invoked as a requirement of a Boost Build target this rule
 will add the [^true-properties] to the target if all the [^expressions]
 evaluate to true. Otherwise the [^false-properties] get added as
 requirements. For example you could use it to enable or disable
@@ -710,7 +720,7 @@ expressions. It defaults to "c++", but can be any of: "c", "cpp",
 [include history.qbk]
 [include todo.qbk]
 
-[section Acknoledgements]
+[section Acknowledgements]
 
 The comprehensiveness of this library would not be
 possible without the existence of the indispensable

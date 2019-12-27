@@ -12,40 +12,45 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 
 /*`
- Those defines represent x86 (AMD specific) SIMD extensions versions.
+[section `HASH_PREDEF_HW_SIMD_X86_AMD_*_VERSION`]
 
- [note You *MUST* compare them with the predef `HASH_PREDEF_HW_SIMD_X86_AMD`.]
- */
+Those defines represent x86 (AMD specific) SIMD extensions versions.
+
+[note You *MUST* compare them with the predef `HASH_PREDEF_HW_SIMD_X86_AMD`.]
+*/
 
 
 // ---------------------------------
 
 /*`
- [heading `HASH_PREDEF_HW_SIMD_X86_AMD_SSE4A_VERSION`]
+[heading `HASH_PREDEF_HW_SIMD_X86_AMD_SSE4A_VERSION`]
 
- [@https://en.wikipedia.org/wiki/SSE4##SSE4A SSE4A] x86 extension (AMD specific).
+[@https://en.wikipedia.org/wiki/SSE4##SSE4A SSE4A] x86 extension (AMD specific).
 
- Version number is: *4.0.0*.
- */
+Version number is: *4.0.0*.
+*/
 #define HASH_PREDEF_HW_SIMD_X86_AMD_SSE4A_VERSION HASH_PREDEF_VERSION_NUMBER(4, 0, 0)
 
 /*`
- [heading `HASH_PREDEF_HW_SIMD_X86_AMD_FMA4_VERSION`]
+[heading `HASH_PREDEF_HW_SIMD_X86_AMD_FMA4_VERSION`]
 
- [@https://en.wikipedia.org/wiki/FMA_instruction_set#FMA4_instruction_set FMA4] x86 extension (AMD specific).
+[@https://en.wikipedia.org/wiki/FMA_instruction_set#FMA4_instruction_set FMA4] x86 extension (AMD specific).
 
- Version number is: *5.1.0*.
- */
+Version number is: *5.1.0*.
+*/
 #define HASH_PREDEF_HW_SIMD_X86_AMD_FMA4_VERSION HASH_PREDEF_VERSION_NUMBER(5, 1, 0)
 
 /*`
- [heading `HASH_PREDEF_HW_SIMD_X86_AMD_XOP_VERSION`]
+[heading `HASH_PREDEF_HW_SIMD_X86_AMD_XOP_VERSION`]
 
- [@https://en.wikipedia.org/wiki/XOP_instruction_set XOP] x86 extension (AMD specific).
+[@https://en.wikipedia.org/wiki/XOP_instruction_set XOP] x86 extension (AMD specific).
 
- Version number is: *5.1.1*.
- */
+Version number is: *5.1.1*.
+*/
 #define HASH_PREDEF_HW_SIMD_X86_AMD_XOP_VERSION HASH_PREDEF_VERSION_NUMBER(5, 1, 1)
 
+/*`
+[endsect]
+*/
 
 #endif

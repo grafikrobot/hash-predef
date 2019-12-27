@@ -13,64 +13,64 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/hardware/simd/x86/versions.h>
 
 /*`
- [heading `HASH_PREDEF_HW_SIMD_X86`]
+[heading `HASH_PREDEF_HW_SIMD_X86`]
 
- The SIMD extension for x86 (*if detected*).
- Version number depends on the most recent detected extension.
+The SIMD extension for x86 (*if detected*).
+Version number depends on the most recent detected extension.
 
- [table
-     [[__predef_symbol__] [__predef_version__]]
+[table
+    [[__predef_symbol__] [__predef_version__]]
 
-     [[`__SSE__`] [__predef_detection__]]
-     [[`_M_X64`] [__predef_detection__]]
-     [[`_M_IX86_FP >= 1`] [__predef_detection__]]
+    [[`__SSE__`] [__predef_detection__]]
+    [[`_M_X64`] [__predef_detection__]]
+    [[`_M_IX86_FP >= 1`] [__predef_detection__]]
 
-     [[`__SSE2__`] [__predef_detection__]]
-     [[`_M_X64`] [__predef_detection__]]
-     [[`_M_IX86_FP >= 2`] [__predef_detection__]]
+    [[`__SSE2__`] [__predef_detection__]]
+    [[`_M_X64`] [__predef_detection__]]
+    [[`_M_IX86_FP >= 2`] [__predef_detection__]]
 
-     [[`__SSE3__`] [__predef_detection__]]
+    [[`__SSE3__`] [__predef_detection__]]
 
-     [[`__SSSE3__`] [__predef_detection__]]
+    [[`__SSSE3__`] [__predef_detection__]]
 
-     [[`__SSE4_1__`] [__predef_detection__]]
+    [[`__SSE4_1__`] [__predef_detection__]]
 
-     [[`__SSE4_2__`] [__predef_detection__]]
+    [[`__SSE4_2__`] [__predef_detection__]]
 
-     [[`__AVX__`] [__predef_detection__]]
+    [[`__AVX__`] [__predef_detection__]]
 
-     [[`__FMA__`] [__predef_detection__]]
+    [[`__FMA__`] [__predef_detection__]]
 
-     [[`__AVX2__`] [__predef_detection__]]
-     ]
+    [[`__AVX2__`] [__predef_detection__]]
+    ]
 
- [table
-     [[__predef_symbol__] [__predef_version__]]
+[table
+    [[__predef_symbol__] [__predef_version__]]
 
-     [[`__SSE__`] [HASH_PREDEF_HW_SIMD_X86_SSE_VERSION]]
-     [[`_M_X64`] [HASH_PREDEF_HW_SIMD_X86_SSE_VERSION]]
-     [[`_M_IX86_FP >= 1`] [HASH_PREDEF_HW_SIMD_X86_SSE_VERSION]]
+    [[`__SSE__`] [HASH_PREDEF_HW_SIMD_X86_SSE_VERSION]]
+    [[`_M_X64`] [HASH_PREDEF_HW_SIMD_X86_SSE_VERSION]]
+    [[`_M_IX86_FP >= 1`] [HASH_PREDEF_HW_SIMD_X86_SSE_VERSION]]
 
-     [[`__SSE2__`] [HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION]]
-     [[`_M_X64`] [HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION]]
-     [[`_M_IX86_FP >= 2`] [HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION]]
+    [[`__SSE2__`] [HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION]]
+    [[`_M_X64`] [HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION]]
+    [[`_M_IX86_FP >= 2`] [HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION]]
 
-     [[`__SSE3__`] [HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION]]
+    [[`__SSE3__`] [HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION]]
 
-     [[`__SSSE3__`] [HASH_PREDEF_HW_SIMD_X86_SSSE3_VERSION]]
+    [[`__SSSE3__`] [HASH_PREDEF_HW_SIMD_X86_SSSE3_VERSION]]
 
-     [[`__SSE4_1__`] [HASH_PREDEF_HW_SIMD_X86_SSE4_1_VERSION]]
+    [[`__SSE4_1__`] [HASH_PREDEF_HW_SIMD_X86_SSE4_1_VERSION]]
 
-     [[`__SSE4_2__`] [HASH_PREDEF_HW_SIMD_X86_SSE4_2_VERSION]]
+    [[`__SSE4_2__`] [HASH_PREDEF_HW_SIMD_X86_SSE4_2_VERSION]]
 
-     [[`__AVX__`] [HASH_PREDEF_HW_SIMD_X86_AVX_VERSION]]
+    [[`__AVX__`] [HASH_PREDEF_HW_SIMD_X86_AVX_VERSION]]
 
-     [[`__FMA__`] [HASH_PREDEF_HW_SIMD_X86_FMA3_VERSION]]
+    [[`__FMA__`] [HASH_PREDEF_HW_SIMD_X86_FMA3_VERSION]]
 
-     [[`__AVX2__`] [HASH_PREDEF_HW_SIMD_X86_AVX2_VERSION]]
-     ]
+    [[`__AVX2__`] [HASH_PREDEF_HW_SIMD_X86_AVX2_VERSION]]
+    ]
 
- */
+*/
 
 #define HASH_PREDEF_HW_SIMD_X86 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
