@@ -1,5 +1,6 @@
 # Copyright Mike Dev 2018
 # Copyright Rene Rivera 2018
+# Copyright Peter Dimov 2019
 # Distributed under the Boost Software License, Version 1.0.
 # See accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt
@@ -18,14 +19,10 @@
 #
 # target_link_libraries( <my-exe/lib> PUBLIC Hash::predef )
 
-# Only need the basic minimum of project, add_library, and
-# target_include_directories commands.
-cmake_minimum_required( VERSION 3.0 )
+# We support 3.5, but prefer 3.16 policies and behavior
+cmake_minimum_required( VERSION 3.5...3.16 )
 
-# Don't set VERSION, as that's a pita to keep up to date with the version
-# header. And don't set LANGUAGES as we are multi-language and header
-# only, so it's irrelevant.
-project( HashPredef )
+project( HashPredef VERSION "1.11.0" LANGUAGES CXX )
 
 # Simple INTERFACE, and header only, library target.
 add_library( hash_predef INTERFACE )
@@ -36,3 +33,12 @@ target_include_directories( hash_predef INTERFACE include )
 # Add an alias to be compatible with consumers that may have used the
 # FindBoost script.
 add_library( Hash::predef ALIAS hash_predef )
+
+if( PROJECT_VERSION )
+
+  list( APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" )
+
+  include( HashInstall )
+  hash_install( TARGETS hash_predef HEADER_DIRECTORY include/ )
+
+endif()
