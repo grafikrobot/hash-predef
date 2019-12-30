@@ -11,18 +11,19 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_ARCH_SYS390`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_SYS390`
 
-[@http://en.wikipedia.org/wiki/System/390 System/390] architecture.
+http://en.wikipedia.org/wiki/System/390[System/390] architecture.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__s390__`] [__predef_detection__]]
-    [[`__s390x__`] [__predef_detection__]]
-    ]
- */
+| `+__s390__+` | {predef_detection}
+| `+__s390x__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_SYS390 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

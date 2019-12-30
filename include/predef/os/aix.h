@@ -11,24 +11,25 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_AIX`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_AIX`
 
-[@http://en.wikipedia.org/wiki/AIX_operating_system IBM AIX] operating system.
+http://en.wikipedia.org/wiki/AIX_operating_system[IBM AIX] operating system.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`_AIX`] [__predef_detection__]]
-    [[`__TOS_AIX__`] [__predef_detection__]]
+| `+_AIX+` | {predef_detection}
+| `+__TOS_AIX__+` | {predef_detection}
 
-    [[`_AIX43`] [4.3.0]]
-    [[`_AIX41`] [4.1.0]]
-    [[`_AIX32`] [3.2.0]]
-    [[`_AIX3`] [3.0.0]]
-    ]
- */
+| `+_AIX43+` | 4.3.0
+| `+_AIX41+` | 4.1.0
+| `+_AIX32+` | 3.2.0
+| `+_AIX3+` | 3.0.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_CLANG`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_CLANG`
 
-[@http://en.wikipedia.org/wiki/Clang Clang] compiler.
+http://en.wikipedia.org/wiki/Clang[Clang] compiler.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__clang__`] [__predef_detection__]]
+| `+__clang__+` | {predef_detection}
 
-    [[`__clang_major__`, `__clang_minor__`, `__clang_patchlevel__`] [V.R.P]]
-    ]
- */
+| `+__clang_major__+`, `+__clang_minor__+`, `+__clang_patchlevel__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_CLANG HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

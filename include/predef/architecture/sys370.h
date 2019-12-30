@@ -11,18 +11,19 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_ARCH_SYS370`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_SYS370`
 
-[@http://en.wikipedia.org/wiki/System/370 System/370] architecture.
+http://en.wikipedia.org/wiki/System/370[System/370] architecture.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__370__`] [__predef_detection__]]
-    [[`__THW_370__`] [__predef_detection__]]
-    ]
- */
+| `+__370__+` | {predef_detection}
+| `+__THW_370__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_SYS370 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

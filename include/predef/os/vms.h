@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_VMS`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_VMS`
 
-[@http://en.wikipedia.org/wiki/Vms VMS] operating system.
+http://en.wikipedia.org/wiki/Vms[VMS] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`VMS`] [__predef_detection__]]
-    [[`__VMS`] [__predef_detection__]]
+| `VMS` | {predef_detection}
+| `+__VMS+` | {predef_detection}
 
-    [[`__VMS_VER`] [V.R.P]]
-    ]
- */
+| `+__VMS_VER+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_VMS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

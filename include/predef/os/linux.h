@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_LINUX`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_LINUX`
 
-[@http://en.wikipedia.org/wiki/Linux Linux] operating system.
+http://en.wikipedia.org/wiki/Linux[Linux] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`linux`] [__predef_detection__]]
-    [[`__linux`] [__predef_detection__]]
-    [[`__linux__`] [__predef_detection__]]
-    [[`__gnu_linux__`] [__predef_detection__]]
-    ]
- */
+| `linux` | {predef_detection}
+| `+__linux+` | {predef_detection}
+| `+__linux__+` | {predef_detection}
+| `+__gnu_linux__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_LINUX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

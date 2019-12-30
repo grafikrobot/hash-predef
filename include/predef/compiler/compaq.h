@@ -11,22 +11,23 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_DEC`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_DEC`
 
-[@http://www.openvms.compaq.com/openvms/brochures/deccplus/ Compaq C/C++] compiler.
+http://www.openvms.compaq.com/openvms/brochures/deccplus/[Compaq C/{CPP}] compiler.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__DECCXX`] [__predef_detection__]]
-    [[`__DECC`] [__predef_detection__]]
+| `+__DECCXX+` | {predef_detection}
+| `+__DECC+` | {predef_detection}
 
-    [[`__DECCXX_VER`] [V.R.P]]
-    [[`__DECC_VER`] [V.R.P]]
-    ]
- */
+| `+__DECCXX_VER+` | V.R.P
+| `+__DECC_VER+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_DEC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

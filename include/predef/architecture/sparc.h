@@ -11,21 +11,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_ARCH_SPARC`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_SPARC`
 
-[@http://en.wikipedia.org/wiki/SPARC SPARC] architecture.
+http://en.wikipedia.org/wiki/SPARC[SPARC] architecture.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__sparc__`] [__predef_detection__]]
-    [[`__sparc`] [__predef_detection__]]
+| `+__sparc__+` | {predef_detection}
+| `+__sparc+` | {predef_detection}
 
-    [[`__sparcv9`] [9.0.0]]
-    [[`__sparcv8`] [8.0.0]]
-    ]
- */
+| `+__sparcv9+` | 9.0.0
+| `+__sparcv8+` | 8.0.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_SPARC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

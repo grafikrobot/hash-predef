@@ -12,17 +12,18 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/os/ios.h> // HASH_PREDEF_OS_IOS
 #include <predef/version_number.h> // HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-/*`
-[heading `HASH_PREDEF_PLAT_IOS_DEVICE`]
-[heading `HASH_PREDEF_PLAT_IOS_SIMULATOR`]
+/* tag::reference[]
+= `HASH_PREDEF_PLAT_IOS_DEVICE`
+= `HASH_PREDEF_PLAT_IOS_SIMULATOR`
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`TARGET_IPHONE_SIMULATOR`] [__predef_detection__]]
-    [[`TARGET_OS_SIMULATOR`] [__predef_detection__]]
-    ]
- */
+| `TARGET_IPHONE_SIMULATOR` | {predef_detection}
+| `TARGET_OS_SIMULATOR` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_PLAT_IOS_DEVICE HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 #define HASH_PREDEF_PLAT_IOS_SIMULATOR HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE

@@ -11,17 +11,18 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_ARCH_RISCV`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_RISCV`
 
-[@http://en.wikipedia.org/wiki/RISC-V RISC-V] architecture.
+http://en.wikipedia.org/wiki/RISC-V[RISC-V] architecture.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__riscv`] [__predef_detection__]]
-    ]
- */
+| `+__riscv+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_RISCV HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

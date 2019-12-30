@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_PATH`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_PATH`
 
-[@http://en.wikipedia.org/wiki/PathScale EKOpath] compiler.
+http://en.wikipedia.org/wiki/PathScale[EKOpath] compiler.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__PATHCC__`] [__predef_detection__]]
+| `+__PATHCC__+` | {predef_detection}
 
-    [[`__PATHCC__`, `__PATHCC_MINOR__`, `__PATHCC_PATCHLEVEL__`] [V.R.P]]
-    ]
- */
+| `+__PATHCC__+`, `+__PATHCC_MINOR__+`, `+__PATHCC_PATCHLEVEL__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_PATH HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

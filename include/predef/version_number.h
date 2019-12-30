@@ -8,21 +8,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #ifndef HASH_PREDEF_VERSION_NUMBER_H
 #define HASH_PREDEF_VERSION_NUMBER_H
 
-/*`
-[heading `HASH_PREDEF_VERSION_NUMBER`]
+/* tag::reference[]
+= `HASH_PREDEF_VERSION_NUMBER`
 
-``
+[source]
+----
 HASH_PREDEF_VERSION_NUMBER(major,minor,patch)
-``
+----
 
 Defines standard version numbers, with these properties:
 
-* Decimal base whole numbers in the range \[0,1000000000).
+* Decimal base whole numbers in the range [0,1000000000).
   The number range is designed to allow for a (2,2,5) triplet.
   Which fits within a 32 bit value.
-* The `major` number can be in the \[0,99\] range.
-* The `minor` number can be in the \[0,99\] range.
-* The `patch` number can be in the \[0,99999\] range.
+* The `major` number can be in the [0,99] range.
+* The `minor` number can be in the [0,99] range.
+* The `patch` number can be in the [0,99999] range.
 * Values can be specified in any base. As the defined value
   is an constant expression.
 * Value can be directly used in both preprocessor and compiler
@@ -31,7 +32,7 @@ Defines standard version numbers, with these properties:
   major, minor, and patch numbers. And values over the ranges
   are truncated (modulo).
 
-*/
+*/ // end::reference[]
 #define HASH_PREDEF_VERSION_NUMBER(major,minor,patch) \
     ( (((major)%100)*10000000) + (((minor)%100)*100000) + ((patch)%100000) )
 
@@ -50,16 +51,17 @@ Defines standard version numbers, with these properties:
 #define HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE \
     HASH_PREDEF_VERSION_NUMBER_ZERO
 
-/*`
-``
+/* tag::reference[]
+[source]
+----
 HASH_PREDEF_VERSION_NUMBER_MAJOR(N), HASH_PREDEF_VERSION_NUMBER_MINOR(N), HASH_PREDEF_VERSION_NUMBER_PATCH(N)
-``
+----
 
 The macros extract the major, minor, and patch portion from a well formed
 version number resulting in a preprocessor expression in the range of
-\[0,99\] or \[0,99999\] for the major and minor, or patch numbers
+[0,99] or [0,99999] for the major and minor, or patch numbers
 respectively.
-*/
+*/ // end::reference[]
 #define HASH_PREDEF_VERSION_NUMBER_MAJOR(N) \
     ( ((N)/10000000)%100 )
 

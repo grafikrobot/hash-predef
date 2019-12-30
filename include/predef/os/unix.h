@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_UNIX`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_UNIX`
 
-[@http://en.wikipedia.org/wiki/Unix Unix Environment] operating system.
+http://en.wikipedia.org/wiki/Unix[Unix Environment] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`unix`] [__predef_detection__]]
-    [[`__unix`] [__predef_detection__]]
-    [[`_XOPEN_SOURCE`] [__predef_detection__]]
-    [[`_POSIX_SOURCE`] [__predef_detection__]]
-    ]
- */
+| `unix` | {predef_detection}
+| `+__unix+` | {predef_detection}
+| `+_XOPEN_SOURCE+` | {predef_detection}
+| `+_POSIX_SOURCE+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_UNIX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
@@ -40,20 +41,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define HASH_PREDEF_OS_UNIX_NAME "Unix Environment"
 
-/*`
-[heading `HASH_PREDEF_OS_SVR4`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_SVR4`
 
-[@http://en.wikipedia.org/wiki/UNIX_System_V SVR4 Environment] operating system.
+http://en.wikipedia.org/wiki/UNIX_System_V[SVR4 Environment] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__sysv__`] [__predef_detection__]]
-    [[`__SVR4`] [__predef_detection__]]
-    [[`__svr4__`] [__predef_detection__]]
-    [[`_SYSTYPE_SVR4`] [__predef_detection__]]
-    ]
- */
+| `+__sysv__+` | {predef_detection}
+| `+__SVR4+` | {predef_detection}
+| `+__svr4__+` | {predef_detection}
+| `+_SYSTYPE_SVR4+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_SVR4 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

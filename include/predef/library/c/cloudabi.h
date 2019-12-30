@@ -18,20 +18,21 @@
 #include <stddef.h>
 #endif
 
-/*`
-[heading `HASH_PREDEF_LIB_C_CLOUDABI`]
+/* tag::reference[]
+= `HASH_PREDEF_LIB_C_CLOUDABI`
 
-[@https://github.com/NuxiNL/cloudlibc cloudlibc] - CloudABI's standard C library.
+https://github.com/NuxiNL/cloudlibc[cloudlibc] - CloudABI's standard C library.
 Version number available as major, and minor.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__cloudlibc__`] [__predef_detection__]]
+| `+__cloudlibc__+` | {predef_detection}
 
-    [[`__cloudlibc_major__`, `__cloudlibc_minor__`] [V.R.0]]
-    ]
- */
+| `+__cloudlibc_major__+`, `+__cloudlibc_minor__+` | V.R.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_LIB_C_CLOUDABI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

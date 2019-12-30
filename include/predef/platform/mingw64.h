@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_PLAT_MINGW64`]
+/* tag::reference[]
+= `HASH_PREDEF_PLAT_MINGW64`
 
-[@https://mingw-w64.org/ MinGW-w64] platform.
+https://mingw-w64.org/[MinGW-w64] platform.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__MINGW64__`] [__predef_detection__]]
+| `+__MINGW64__+` | {predef_detection}
 
-    [[`__MINGW64_VERSION_MAJOR`, `__MINGW64_VERSION_MINOR`] [V.R.0]]
-    ]
- */
+| `+__MINGW64_VERSION_MAJOR+`, `+__MINGW64_VERSION_MINOR+` | V.R.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_PLAT_MINGW64 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

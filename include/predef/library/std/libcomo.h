@@ -13,20 +13,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_LIB_STD_COMO`]
+/* tag::reference[]
+= `HASH_PREDEF_LIB_STD_COMO`
 
-[@http://www.comeaucomputing.com/libcomo/ Comeau Computing] Standard C++ Library.
+http://www.comeaucomputing.com/libcomo/[Comeau Computing] Standard {CPP} Library.
 Version number available as major.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__LIBCOMO__`] [__predef_detection__]]
+| `+__LIBCOMO__+` | {predef_detection}
 
-    [[`__LIBCOMO_VERSION__`] [V.0.0]]
-    ]
- */
+| `+__LIBCOMO_VERSION__+` | V.0.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_LIB_STD_COMO HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_IAR`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_IAR`
 
-IAR C/C++ compiler.
+IAR C/{CPP} compiler.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__IAR_SYSTEMS_ICC__`] [__predef_detection__]]
+| `+__IAR_SYSTEMS_ICC__+` | {predef_detection}
 
-    [[`__VER__`] [V.R.P]]
-    ]
- */
+| `+__VER__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_IAR HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

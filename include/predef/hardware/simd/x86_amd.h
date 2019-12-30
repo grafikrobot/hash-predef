@@ -12,42 +12,44 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/hardware/simd/x86_amd/versions.h>
 
-/*`
-[heading `HASH_PREDEF_HW_SIMD_X86_AMD`]
+/* tag::reference[]
+= `HASH_PREDEF_HW_SIMD_X86_AMD`
 
 The SIMD extension for x86 (AMD) (*if detected*).
 Version number depends on the most recent detected extension.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__SSE4A__`] [__predef_detection__]]
+| `+__SSE4A__+` | {predef_detection}
 
-    [[`__FMA4__`] [__predef_detection__]]
+| `+__FMA4__+` | {predef_detection}
 
-    [[`__XOP__`] [__predef_detection__]]
+| `+__XOP__+` | {predef_detection}
 
-    [[`HASH_PREDEF_HW_SIMD_X86`] [__predef_detection__]]
-    ]
+| `HASH_PREDEF_HW_SIMD_X86` | {predef_detection}
+|===
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__SSE4A__`] [HASH_PREDEF_HW_SIMD_X86_SSE4A_VERSION]]
+| `+__SSE4A__+` | HASH_PREDEF_HW_SIMD_X86_SSE4A_VERSION
 
-    [[`__FMA4__`] [HASH_PREDEF_HW_SIMD_X86_FMA4_VERSION]]
+| `+__FMA4__+` | HASH_PREDEF_HW_SIMD_X86_FMA4_VERSION
 
-    [[`__XOP__`] [HASH_PREDEF_HW_SIMD_X86_XOP_VERSION]]
+| `+__XOP__+` | HASH_PREDEF_HW_SIMD_X86_XOP_VERSION
 
-    [[`HASH_PREDEF_HW_SIMD_X86`] [HASH_PREDEF_HW_SIMD_X86]]
-    ]
+| `HASH_PREDEF_HW_SIMD_X86` | HASH_PREDEF_HW_SIMD_X86
+|===
 
-[note This predef includes every other x86 SIMD extensions and also has other
+NOTE: This predef includes every other x86 SIMD extensions and also has other
 more specific extensions (FMA4, XOP, SSE4a). You should use this predef
 instead of `HASH_PREDEF_HW_SIMD_X86` to test if those specific extensions have
-been detected.]
+been detected.
 
-*/
+*/ // end::reference[]
 
 #define HASH_PREDEF_HW_SIMD_X86_AMD HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

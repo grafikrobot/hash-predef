@@ -11,19 +11,20 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_ARCH_PTX`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_PTX`
 
-[@https://en.wikipedia.org/wiki/Parallel_Thread_Execution PTX] architecture.
+https://en.wikipedia.org/wiki/Parallel_Thread_Execution[PTX] architecture.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__CUDA_ARCH__`] [__predef_detection__]]
+| `+__CUDA_ARCH__+` | {predef_detection}
 
-    [[`__CUDA_ARCH__`] [V.R.0]]
-    ]
- */
+| `+__CUDA_ARCH__+` | V.R.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_PTX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

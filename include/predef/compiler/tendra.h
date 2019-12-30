@@ -11,17 +11,18 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_TENDRA`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_TENDRA`
 
-[@http://en.wikipedia.org/wiki/TenDRA_Compiler TenDRA C/C++] compiler.
+http://en.wikipedia.org/wiki/TenDRA_Compiler[TenDRA C/{CPP}] compiler.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__TenDRA__`] [__predef_detection__]]
-    ]
- */
+| `+__TenDRA__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_TENDRA HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

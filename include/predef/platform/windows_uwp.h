@@ -12,20 +12,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/os/windows.h>
 #include <predef/version_number.h>
 
-/*`
-[heading `HASH_PREDEF_PLAT_WINDOWS_UWP`]
+/* tag::reference[]
+= `HASH_PREDEF_PLAT_WINDOWS_UWP`
 
-[@http://docs.microsoft.com/windows/uwp/ Universal Windows Platform]
+http://docs.microsoft.com/windows/uwp/[Universal Windows Platform]
 is available if the current development environment is capable of targeting 
 UWP development.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__MINGW64_VERSION_MAJOR` from `_mingw.h`] [`>= 3`]]
-    [[`VER_PRODUCTBUILD` from `ntverp.h`] [`>= 9200`]]
-]
-*/
+| `+__MINGW64_VERSION_MAJOR+` from `+_mingw.h+` | `>= 3`
+| `VER_PRODUCTBUILD` from `ntverp.h` | `>= 9200`
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_PLAT_WINDOWS_UWP HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 #define HASH_PREDEF_PLAT_WINDOWS_SDK_VERSION HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE

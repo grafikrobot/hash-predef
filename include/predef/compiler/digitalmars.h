@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_DMC`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_DMC`
 
-[@http://en.wikipedia.org/wiki/Digital_Mars Digital Mars] compiler.
+http://en.wikipedia.org/wiki/Digital_Mars[Digital Mars] compiler.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__DMC__`] [__predef_detection__]]
+| `+__DMC__+` | {predef_detection}
 
-    [[`__DMC__`] [V.R.P]]
-    ]
- */
+| `+__DMC__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_DMC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

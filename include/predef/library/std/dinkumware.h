@@ -13,21 +13,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_LIB_STD_DINKUMWARE`]
+/* tag::reference[]
+= `HASH_PREDEF_LIB_STD_DINKUMWARE`
 
-[@http://en.wikipedia.org/wiki/Dinkumware Dinkumware] Standard C++ Library.
+http://en.wikipedia.org/wiki/Dinkumware[Dinkumware] Standard {CPP} Library.
 If available version number as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`_YVALS`, `__IBMCPP__`] [__predef_detection__]]
-    [[`_CPPLIB_VER`] [__predef_detection__]]
+| `+_YVALS+`, `+__IBMCPP__+` | {predef_detection}
+| `+_CPPLIB_VER+` | {predef_detection}
 
-    [[`_CPPLIB_VER`] [V.R.0]]
-    ]
- */
+| `+_CPPLIB_VER+` | V.R.0
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_LIB_STD_DINKUMWARE HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

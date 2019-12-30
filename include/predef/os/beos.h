@@ -11,17 +11,18 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_BEOS`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_BEOS`
 
-[@http://en.wikipedia.org/wiki/BeOS BeOS] operating system.
+http://en.wikipedia.org/wiki/BeOS[BeOS] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__BEOS__`] [__predef_detection__]]
-    ]
- */
+| `+__BEOS__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_BEOS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

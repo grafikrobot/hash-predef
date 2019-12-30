@@ -13,18 +13,19 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/platform/windows_uwp.h>
 #include <predef/version_number.h>
 
-/*`
-[heading `HASH_PREDEF_PLAT_WINDOWS_SYSTEM`]
+/* tag::reference[]
+= `HASH_PREDEF_PLAT_WINDOWS_SYSTEM`
 
-[@https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide UWP]
+https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide[UWP]
 for Windows System development.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`WINAPI_FAMILY == WINAPI_FAMILY_SYSTEM`] [__predef_detection__]]
-    ]
- */
+| `WINAPI_FAMILY == WINAPI_FAMILY_SYSTEM` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_PLAT_WINDOWS_SYSTEM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_ANDROID`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_ANDROID`
 
 NOTE: `HASH_PREDEF_OS_ANDROID` is deprecated, and will be removed in a following release.
 Please use `HASH_PREDEF_PLAT_ANDROID` instead.
 
-[@http://en.wikipedia.org/wiki/Android_%28operating_system%29 Android] operating system.
+http://en.wikipedia.org/wiki/Android_%28operating_system%29[Android] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__ANDROID__`] [__predef_detection__]]
-    ]
- */
+| `+__ANDROID__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_ANDROID HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

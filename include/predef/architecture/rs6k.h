@@ -11,21 +11,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_ARCH_RS6000`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_RS6000`
 
-[@http://en.wikipedia.org/wiki/RS/6000 RS/6000] architecture.
+http://en.wikipedia.org/wiki/RS/6000[RS/6000] architecture.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__THW_RS6000`] [__predef_detection__]]
-    [[`_IBMR2`] [__predef_detection__]]
-    [[`_POWER`] [__predef_detection__]]
-    [[`_ARCH_PWR`] [__predef_detection__]]
-    [[`_ARCH_PWR2`] [__predef_detection__]]
-    ]
- */
+| `+__THW_RS6000+` | {predef_detection}
+| `+_IBMR2+` | {predef_detection}
+| `+_POWER+` | {predef_detection}
+| `+_ARCH_PWR+` | {predef_detection}
+| `+_ARCH_PWR2+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_RS6000 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

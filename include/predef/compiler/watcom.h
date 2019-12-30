@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_WATCOM`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_WATCOM`
 
-[@http://en.wikipedia.org/wiki/Watcom Watcom C++] compiler.
+http://en.wikipedia.org/wiki/Watcom[Watcom {CPP}] compiler.
 Version number available as major, and minor.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__WATCOMC__`] [__predef_detection__]]
+| `+__WATCOMC__+` | {predef_detection}
 
-    [[`__WATCOMC__`] [V.R.P]]
-    ]
- */
+| `+__WATCOMC__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_WATCOM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

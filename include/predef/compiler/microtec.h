@@ -11,17 +11,18 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_COMP_MRI`]
+/* tag::reference[]
+= `HASH_PREDEF_COMP_MRI`
 
-[@http://www.mentor.com/microtec/ Microtec C/C++] compiler.
+http://www.mentor.com/microtec/[Microtec C/{CPP}] compiler.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`_MRI`] [__predef_detection__]]
-    ]
- */
+| `+_MRI+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_COMP_MRI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

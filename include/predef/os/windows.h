@@ -11,21 +11,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_WINDOWS`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_WINDOWS`
 
-[@http://en.wikipedia.org/wiki/Category:Microsoft_Windows Microsoft Windows] operating system.
+http://en.wikipedia.org/wiki/Category:Microsoft_Windows[Microsoft Windows] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`_WIN32`] [__predef_detection__]]
-    [[`_WIN64`] [__predef_detection__]]
-    [[`__WIN32__`] [__predef_detection__]]
-    [[`__TOS_WIN__`] [__predef_detection__]]
-    [[`__WINDOWS__`] [__predef_detection__]]
-    ]
- */
+| `+_WIN32+` | {predef_detection}
+| `+_WIN64+` | {predef_detection}
+| `+__WIN32__+` | {predef_detection}
+| `+__TOS_WIN__+` | {predef_detection}
+| `+__WINDOWS__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_WINDOWS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

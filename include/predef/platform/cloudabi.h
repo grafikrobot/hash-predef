@@ -11,17 +11,18 @@
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_PLAT_CLOUDABI`]
+/* tag::reference[]
+= `HASH_PREDEF_PLAT_CLOUDABI`
 
-[@https://github.com/NuxiNL/cloudabi CloudABI] platform.
+https://github.com/NuxiNL/cloudabi[CloudABI] platform.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__CloudABI__`] [__predef_detection__]]
-    ]
- */
+| `+__CloudABI__+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_PLAT_CLOUDABI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

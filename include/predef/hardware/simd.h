@@ -16,8 +16,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #include <predef/version_number.h>
 
-/*`
-[section Using the `HASH_PREDEF_HW_SIMD_*` predefs]
+/* tag::reference[]
+= Using the `HASH_PREDEF_HW_SIMD_*` predefs
 
 SIMD predefs depend on compiler options. For example, you will have to add the
 option `-msse3` to clang or gcc to enable SSE3. SIMD predefs are also inclusive.
@@ -26,12 +26,13 @@ version number will implicitly be enabled and detected. However, some extensions
 are CPU specific, they may not be detected nor enabled when an upper version is
 enabled.
 
-[note SSE(1) and SSE2 are automatically enabled by default when using x86-64
-architecture.]
+NOTE: SSE(1) and SSE2 are automatically enabled by default when using x86-64
+architecture.
 
 To check if any SIMD extension has been enabled, you can use:
 
-``
+[source]
+----
 #include <predef/hardware/simd.h>
 #include <iostream>
 
@@ -42,7 +43,7 @@ int main()
 #endif
     return 0;
 }
-``
+----
 
 When writing SIMD specific code, you may want to check if a particular extension
 has been detected. To do so you have to use the right architecture predef and
@@ -53,7 +54,8 @@ version number of the most recent SIMD extension detected for the architecture.
 
 To check if an extension has been enabled:
 
-``
+[source]
+----
 #include <predef/hardware/simd.h>
 #include <iostream>
 
@@ -64,15 +66,16 @@ int main()
 #endif
     return 0;
 }
-``
+----
 
-[note The *_VERSION* defines that map version number to actual real
+NOTE: The *_VERSION* defines that map version number to actual real
 identifiers. This way it is easier to write comparisons without messing up with
-version numbers.]
+version numbers.
 
 To *"strictly"* check the most recent detected extension:
 
-``
+[source]
+----
 #include <predef/hardware/simd.h>
 #include <iostream>
 
@@ -84,12 +87,13 @@ int main()
 #endif
     return 0;
 }
-``
+----
 
 Because of the version systems of predefs and of the inclusive property of SIMD
 extensions macros, you can easily check for ranges of supported extensions:
 
-``
+[source]
+----
 #include <predef/hardware/simd.h>
 #include <iostream>
 
@@ -101,16 +105,15 @@ int main()
 #endif
     return 0;
 }
-``
+----
 
-[note Unlike gcc and clang, Visual Studio does not allow you to specify precisely
+NOTE: Unlike gcc and clang, Visual Studio does not allow you to specify precisely
 the SSE variants you want to use, the only detections that will take place are
 SSE, SSE2, AVX and AVX2. For more informations,
-    see [@https://msdn.microsoft.com/en-us/library/b0084kay.aspx here].]
+    see [@https://msdn.microsoft.com/en-us/library/b0084kay.aspx here].
 
-[endsect]
 
- */
+*/ // end::reference[]
 
 // We check if SIMD extension of multiples architectures have been detected,
 // if yes, then this is an error!

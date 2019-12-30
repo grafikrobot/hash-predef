@@ -11,18 +11,19 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_SOLARIS`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_SOLARIS`
 
-[@http://en.wikipedia.org/wiki/Solaris_Operating_Environment Solaris] operating system.
+http://en.wikipedia.org/wiki/Solaris_Operating_Environment[Solaris] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`sun`] [__predef_detection__]]
-    [[`__sun`] [__predef_detection__]]
-    ]
- */
+| `sun` | {predef_detection}
+| `+__sun+` | {predef_detection}
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_SOLARIS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

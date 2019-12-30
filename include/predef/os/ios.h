@@ -12,21 +12,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_OS_IOS`]
+/* tag::reference[]
+= `HASH_PREDEF_OS_IOS`
 
-[@http://en.wikipedia.org/wiki/iOS iOS] operating system.
+http://en.wikipedia.org/wiki/iOS[iOS] operating system.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__APPLE__`] [__predef_detection__]]
-    [[`__MACH__`] [__predef_detection__]]
-    [[`__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__`] [__predef_detection__]]
+| `+__APPLE__+` | {predef_detection}
+| `+__MACH__+` | {predef_detection}
+| `+__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__+` | {predef_detection}
 
-    [[`__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__`] [__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__*1000]]
-    ]
- */
+| `+__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__+` | +__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__+*1000
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_OS_IOS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

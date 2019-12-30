@@ -13,19 +13,20 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_LIB_C_UC`]
+/* tag::reference[]
+= `HASH_PREDEF_LIB_C_UC`
 
-[@http://en.wikipedia.org/wiki/Uclibc uClibc] Standard C library.
+http://en.wikipedia.org/wiki/Uclibc[uClibc] Standard C library.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__UCLIBC__`] [__predef_detection__]]
+| `+__UCLIBC__+` | {predef_detection}
 
-    [[`__UCLIBC_MAJOR__`, `__UCLIBC_MINOR__`, `__UCLIBC_SUBLEVEL__`] [V.R.P]]
-    ]
- */
+| `+__UCLIBC_MAJOR__+`, `+__UCLIBC_MINOR__+`, `+__UCLIBC_SUBLEVEL__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_LIB_C_UC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

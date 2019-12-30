@@ -1,33 +1,41 @@
-[article Hash Predef
-    [quickbook 1.7]
-    [version 1.10]
-    [authors [Rivera, Rene]]
-    [copyright 2005-2019 Rene Rivera]
-    [copyright 2015 Charly Chevalier]
-    [copyright 2015 Joel Falcou]
-    [purpose Identification and specification of predefined macros.]
-    [license
-        Distributed under the Boost Software License, Version 1.0.
-        (See accompanying file LICENSE_1_0.txt or copy at
-        [@http://www.boost.org/LICENSE_1_0.txt])
-    ]
-    [source-mode c++]
-    [category miscellaneous]
-    [id predef]
-    [dirname predef]
-]
+= Hash Predef
+:author: Rene Rivera
+:toc: left
+:toclevels: 3
+:sectanchors:
+:sectnums:
+:nofooter:
+:source-highlighter: pygments
+:source-language: cpp
+:caution-caption: ⚑
+:important-caption: ‼
+:note-caption: ℹ
+:tip-caption: ☀
+:warning-caption: ⚠
+:CPP: C++
+:predef_symbol: Symbol
+:predef_version: Version
+:predef_detection: pass:q[*detection*]
 
-[section Introduction]
+ifdef::backend-html5[]
+++++
+<style>
+include::predef.css[]
+</style>
+++++
+endif::[]
+
+== Introduction
 
 This library defines a set of compiler, architecture, operating system,
 library, and other version numbers from the information it can gather of
-C, C++, Objective C, and Objective C++ predefined macros or those defined
+C, {CPP}, Objective C, and Objective {CPP} predefined macros or those defined
 in generally available headers. The idea for this library grew out of a
 proposal to extend the Boost Config library to provide more, and consistent,
 information than the feature definitions it supports. What follows is
 an edited version of that brief proposal.
 
-[heading Proposal]
+=== Proposal
 
 The idea is to define a set of macros to identify compilers and
 consistently represent their version. This includes:
@@ -49,7 +57,7 @@ consistently represent their version. This includes:
   infrastructure using a "prefix" header (to be introduced) or
   boost/config/suffix.hpp is a better solution.
 
-[heading Current Library]
+=== Current Library
 
 The current Predef library is now, both an independent library, and expanded
 in scope. It includes detection and definition of architectures, compilers,
@@ -65,40 +73,40 @@ languages, libraries, operating systems, and endianness. The key benefits are:
 * Predefs can be directly used in both preprocessor and compiler expressions
   for comparison to other similarly defined values.
 * The headers are usable from multiple languages, that support the C preprocessor.
-  In particular C++, C, Objective C, and Objective C++.
+  In particular {CPP}, C, Objective C, and Objective {CPP}.
 
-[heading Design choices]
+=== Design choices
 
 An important design choice concerns how to represent compiler versions by means
 of a single integer number suitable for use in preprocessing directives. Let's
 do some calculation. The "basic" signed type for preprocessing
-constant-expressions is long in C90 (and C++, as of 2006) and intmax_t in C99.
-The type long shall at least be able to represent the number [^+2 147 483 647].
+constant-expressions is long in C90 (and {CPP}, as of 2006) and intmax_t in C99.
+The type long shall at least be able to represent the number `+2 147 483 647`.
 This means the most significant digit can only be 0, 1 or 2; and if we want all
 decimal digits to be able to vary between 0 and 9, the largest range we can
-consider is [^\[0, 999 999 999\]]. Distributing evenly, this means 3 decimal
+consider is `[0, 999 999 999\`]. Distributing evenly, this means 3 decimal
 digits for each version number part.
 
 So we can:
 
-# use an uneven distribution or
-# use more bits (a larger type) or
-# use 3/3/3 and have the particular compiler/platform/stdlib deal with setting
+. use an uneven distribution or
+. use more bits (a larger type) or
+. use 3/3/3 and have the particular compiler/platform/stdlib deal with setting
   the numbers within the 3-digit range.
 
 It appears relatively safe to go for the first option and set it at 2/2/5. That
 covers CodeWarrior and others, which are up to and past 10 for the major number.
 Some compilers use the build number in lieu of the patch one; five digits
-(which is already reached by VC++ 8) seems a reasonable limit even in this case.
+(which is already reached by V{CPP} 8) seems a reasonable limit even in this case.
 
-[note A 2/2/6 scheme would allow for bigger patch/build numbers at the cost,
+NOTE: A 2/2/6 scheme would allow for bigger patch/build numbers at the cost,
 for instance, of limiting the major version number to 20 (or, with further
-constraints, to 21).]
+constraints, to 21).
 
 It might reassure the reader that this decision is actually encoded in one place
 in the code; the definition of `HASH_PREDEF_VERSION_NUMBER`.
 
-[heading Future work]
+=== Future work
 
 Even though the basics of this library are done, there is much work that can be
 done:
@@ -119,27 +127,27 @@ done:
 * And there's the continuing work of adding definitions for present and
   future compilers, platforms, architectures, languages, and libraries.
 
-[endsect] [/Introduction]
 
-[section Using the predefs]
+== Using the predefs
 
 To use the automatically defined predefs one needs to only include the
 single top-level header:
 
-``
-  #include <predef.h>
-``
+[source]
+----
+#include <predef.h>
+----
 
 This defines [*all] the version macros known to the library. For each
-macro it will be defined to either a /zero/ valued expression for when
-the particular item is not detected, and to a /positive/ value if it
+macro it will be defined to either a`_zero_`valued expression for when
+the particular item is not detected, and to a`_positive_`value if it
 is detected. The predef macros fall onto five categories each with
 macros of a particular prefix:
 
 * `HASH_PREDEF_ARCH_` for system/CPU architecture one is compiling for.
 * `HASH_PREDEF_COMP_` for the compiler one is using.
 * `HASH_PREDEF_LANG_` for language standards one is compiling against.
-* `HASH_PREDEF_LIB_C_` and `HASH_PREDEF_LIB_STD_` for the C and C++ standard library
+* `HASH_PREDEF_LIB_C_` and `HASH_PREDEF_LIB_STD_` for the C and {CPP} standard library
   in use.
 * `HASH_PREDEF_OS_` for the operating system we are compiling to.
 * `HASH_PREDEF_PLAT_` for platforms on top of operating system or compilers.
@@ -147,27 +155,28 @@ macros of a particular prefix:
 * `HASH_PREDEF_HW_` for hardware specific features.
 * `HASH_PREDEF_HW_SIMD` for SIMD (Single Instruction Multiple Data) detection.
 
-[note The detected definitions are for the configuration one is targeting
+NOTE: The detected definitions are for the configuration one is targeting
 during the compile. In particular in a cross-compile this means the target
-system, and not the host system.]
+system, and not the host system.
 
 One uses the individual definitions to compare against specific versions
 by comparing against the `HASH_PREDEF_VERSION_NUMBER` macro. For example, to make
-a choice based on the version of the GCC C++ compiler one would:
+a choice based on the version of the GCC {CPP} compiler one would:
 
-``
-  #include <predef.h>
-  #include <iostream>
+[source]
+----
+#include <predef.h>
+#include <iostream>
 
-  int main()
-  {
-    if (HASH_PREDEF_COMP_GNUC >= HASH_PREDEF_VERSION_NUMBER(4,0,0))
-      std::cout << "GCC compiler is at least version 4.0.0" << std::endl;
-    else
-      std::cout << "GCC compiler is at older than version 4.0.0, or not a GCC compiler" << std::endl;
-    return 0;
-  }
-``
+int main()
+{
+  if (HASH_PREDEF_COMP_GNUC >= HASH_PREDEF_VERSION_NUMBER(4,0,0))
+    std::cout << "GCC compiler is at least version 4.0.0" << std::endl;
+  else
+    std::cout << "GCC compiler is at older than version 4.0.0, or not a GCC compiler" << std::endl;
+  return 0;
+}
+----
 
 As you might notice above the `else` clause also covers the case where
 the particular compiler is not detected. But one can make the test
@@ -175,58 +184,61 @@ also test for the detection. All predef definitions are defined
 as a zero (0) expression when not detected. Hence one could use the
 detection with a natural single condition. For example:
 
-``
-  #include <predef.h>
-  #include <iostream>
+[source]
+----
+#include <predef.h>
+#include <iostream>
 
-  int main()
-  {
-    if (HASH_PREDEF_COMP_GNUC)
-      std::cout << "This is GNU GCC!" << std::endl;
-    else
-      std::cout << "Not GNU GCC." << std::endl;
-    return 0;
-  }
-``
+int main()
+{
+  if (HASH_PREDEF_COMP_GNUC)
+    std::cout << "This is GNU GCC!" << std::endl;
+  else
+    std::cout << "Not GNU GCC." << std::endl;
+  return 0;
+}
+----
 
 And since the predef's are preprocessor definitions the same is possible
 from the preprocessor:
 
-``
-  #include <predef.h>
-  #include <iostream>
+[source]
+----
+#include <predef.h>
+#include <iostream>
 
-  #if HASH_PREDEF_COMP_GNUC
-    #if HASH_PREDEF_COMP_GNUC >= HASH_PREDEF_VERSION_NUMBER(4,0,0)
-      const char * the_compiler = "GNU GCC, of at least version 4."
-    #else
-      const char * the_compiler = "GNU GCC, less than version 4."
-    #endif
+#if HASH_PREDEF_COMP_GNUC
+  #if HASH_PREDEF_COMP_GNUC >= HASH_PREDEF_VERSION_NUMBER(4,0,0)
+    const char * the_compiler = "GNU GCC, of at least version 4."
   #else
-    const char * the_compiler = "Not GNU GCC."
+    const char * the_compiler = "GNU GCC, less than version 4."
   #endif
-  
-  int main()
-  {
-    std::cout << the_compiler << std::endl;
-    return 0;
-  }
-``
+#else
+  const char * the_compiler = "Not GNU GCC."
+#endif
+
+int main()
+{
+  std::cout << the_compiler << std::endl;
+  return 0;
+}
+----
 
 In addition, for each version macro defined there is an
 `*_AVAILABLE` macro defined only when the particular aspect is
 detected. I.e. a definition equivalent to:
 
-``
-  #if HASH_PREDEF_ABC
-    #define HASH_PREDEF_ABC_AVAILABLE
-  #endif
-``
+[source]
+----
+#if HASH_PREDEF_ABC
+  #define HASH_PREDEF_ABC_AVAILABLE
+#endif
+----
 
 Also for each aspect there is a macro defined with a descriptive
 name of what the detection is.
 
-[heading The `*_EMULATED` macros]
+=== The `*_EMULATED` macros
 
 Predef definitions are guaranteed to be uniquely detected within one category.
 But there are contexts under which multiple underlying detections are possible.
@@ -237,20 +249,21 @@ when this situation is detected. The emulated predefs will be set to the
 version number of the detection instead of the regular predef macro for that
 detection. For example MSVC will set `HASH_PREDEF_COMP_MSVC_EMULATED` but not set `HASH_PREDEF_COMP_MSVC`, and it will also set `HASH_PREDEF_COMP_MSVC_AVAILABLE`.
 
-[heading Using the `HASH_PREDEF_VERSION_NUMBER` macro]
+=== Using the `HASH_PREDEF_VERSION_NUMBER` macro
 
 All the predefs are defined to be a use of the `HASH_PREDEF_VERSION_NUMBER` macro.
 The macro takes individual major, minor, and patch value expressions:
 
-``
-  #define HASH_PREDEF_VERSION_NUMBER( major, minor, patch ) ...
-``
+[source]
+----
+#define HASH_PREDEF_VERSION_NUMBER( major, minor, patch ) ...
+----
 
 The arguments are:
 
-# Major version number, as a constant value expression in the range [0,99].
-# Minor version number, as a constant value expression in the range [0,99].
-# Patch-level version number, as a constant value expression in the
+. Major version number, as a constant value expression in the range [0,99].
+. Minor version number, as a constant value expression in the range [0,99].
+. Patch-level version number, as a constant value expression in the
   range [0,99999].
 
 The ranges for each are "enforced" by the use of a modulo ("%"), i.e. truncation,
@@ -265,19 +278,20 @@ Only constant value arithmetic is used in the definition of the `HASH_PREDEF_VER
 macro and in any of the other predef macros. This means that any allowed base is
 possible, i.e. binary, octal, decimal, and hexadecimal. For example:
 
-``
-  #define MY_APPLICATION_VERSION_NUMBER HASH_PREDEF_VERSION_NUMBER(2,0xA,015)
-``
+[source]
+----
+#define MY_APPLICATION_VERSION_NUMBER HASH_PREDEF_VERSION_NUMBER(2,0xA,015)
+----
 
 Is equivalent to:
 
-``
-  #define MY_APPLICATION_VERSION_NUMBER HASH_PREDEF_VERSION_NUMBER(2,10,13)
-``
+[source]
+----
+#define MY_APPLICATION_VERSION_NUMBER HASH_PREDEF_VERSION_NUMBER(2,10,13)
+----
 
-[endsect]
 
-[section Adding new predefs]
+== Adding new predefs
 
 We know that a library like this one will be an eternal work-in-progress. And
 as such we expect, and look forward to, others contributing corrections and
@@ -285,7 +299,7 @@ additions to the predefs. With that in mind we need to keep a consistent way
 of defining the new predefs. Hence all current, and future, predefs follow
 the same structure and requirements.
 
-[heading Requirements of the header]
+=== Requirements of the header
 
 All predefs need to follow a set of requirements:
 
@@ -317,13 +331,14 @@ And there are some extra guidelines that predef headers should follow:
   include the one with the minimal set of definitions and other
   dependencies.
 
-[heading Structure of the header]
+=== Structure of the header
 
 For general consistency it's suggested that new predef headers follow the
 structure below, as current predef headers do. First we have the copyright
 and license statement, followed by the include guard:
 
-``
+[source]
+----
 /*
 Copyright Jane Doe YYYY
 Distributed under the Boost Software License, Version 1.0.
@@ -333,24 +348,26 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #ifndef HASH_PREDEF_category_tag_H
 #define HASH_PREDEF_category_tag_H
-``
+----
 
 If the detection depends on the detection of another predef you should
 include those headers here.
 
-``
+[source]
+----
 #include <predef/CATEGORY_TAG/DEPENDENCY.h>
-``
+----
 
 Depending on how you are defining the predef you will at minimum have
 to include the `version_number.h` header. But you might also want to
 include the `make.h` header for the version number decomposing utility
 macros:
 
-``
+[source]
+----
 #include <predef/version_number.h>
 #include <predef/make.h>
-``
+----
 
 The Predef library uses Quickbook for documentation and for the
 individual predefs to appear in the reference section we add in-code
@@ -360,7 +377,8 @@ documentation and default definition because some development
 environments automatically interpret this and provide in-line help
 for the macro. In particular this works for the popular Eclipse IDE:
 
-``
+[source]
+----
 /*`
 [heading `HASH_PREDEF_category_tag`]
 
@@ -368,7 +386,7 @@ Documentation about what is detected.
 */
 
 #define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
-``
+----
 
 Next is the detection and definition of the particular predef. The
 structure for this is to do a single overall check (`condition_a`) and
@@ -379,7 +397,8 @@ for defining the version. But at minimum it must
 "`#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE`" as the fallback
 to minimally indicate that the predef was detected:
 
-``
+[source]
+----
 #if (condition_a)
 #   undef HASH_PREDEF_category_tag
 #   if (condition_b)
@@ -388,21 +407,23 @@ to minimally indicate that the predef was detected:
 #        define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #    endif
 #endif
-``
+----
 
 We also need to provide the `*_AVAILABLE` versions of the predef.
 
-``
+[source]
+----
 #if HASH_PREDEF_category_tag
 #   define HASH_PREDEF_category_tag_AVAILABLE
 #endif
-``
+----
 
 And for convenience we also want to provide a `*_NAME` macro:
 
-``
+[source]
+----
 #define HASH_PREDEF_category_tag_NAME "Name"
-``
+----
 
 The testing of the predef macros is automated to generate checks for all
 the defined predefs, whether detected or not. To do this we need to
@@ -410,18 +431,20 @@ declare the predef to the test system. This declaration is empty for
 regular use. And during the test programs they expand out specially
 to create informational output:
 
-``
+[source]
+----
 #include <predef/detail/test.h>
 HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_category_tag,HASH_PREDEF_category_tag_NAME)
-``
+----
 
 And, of course, we last need to close out the include guard:
 
-``
+[source]
+----
 #endif
-``
+----
 
-[heading Adding exclusive predefs]
+=== Adding exclusive predefs
 
 For headers of predefs that need to be mutually exclusive in the detection
 we need to add checks and definitions to detect when the predef is
@@ -434,7 +457,8 @@ detected. This is used to guard against multiple definition of the detection
 in later included headers. In those cases the detection would instead be
 written as:
 
-``
+[source]
+----
 #if !HASH_PREDEF_DETAIL_category_DETECTED && (condition_a)
 #   undef HASH_PREDEF_category_tag
 #   if (condition_b)
@@ -443,21 +467,22 @@ written as:
 #        define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER(0,0,1)
 #    endif
 #endif
-``
+----
 
 And we also include a header that defines the `*_DETECTED` macro when we have
 the detection:
 
-``
+[source]
+----
 #if HASH_PREDEF_category_tag
 #   define HASH_PREDEF_category_tag_AVAILABLE
 #   include <predef/detail/CATEGORY_detected.h>
 #endif
-``
+----
 
 Everything else about the header is the same as the basic detection header.
 
-[heading Adding an exclusive but emulated predef]
+=== Adding an exclusive but emulated predef
 
 Because compilers are frequently emulated by other compilers we both want
 to have exclusive detection of the compiler and also provide information
@@ -468,7 +493,8 @@ define either the base compiler predef `HASH_PREDEF_COMP_compiler` or the altern
 
 The initial detection would look like:
 
-``
+[source]
+----
 #if (condition_a)
 #   if (condition_b)
 #        define HASH_PREDEF_COMP_tag_DETECTION HASH_PREDEF_VERSION_NUMBER(major,minor,patch)
@@ -476,11 +502,12 @@ The initial detection would look like:
 #        define HASH_PREDEF_COMP_tag_DETECTION HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #    endif
 #endif
-``
+----
 
 And then we can conditionally define the base or emulated predefs:
 
-``
+[source]
+----
 #ifdef HASH_PREDEF_COMP_tag_DETECTION
 #   if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
 #       define HASH_PREDEF_COMP_tag_EMULATED HASH_PREDEF_COMP_tag_DETECTION
@@ -491,214 +518,295 @@ And then we can conditionally define the base or emulated predefs:
 #   define HASH_PREDEF_category_tag_AVAILABLE
 #   include <predef/detail/comp_detected.h>
 #endif
-``
+----
 
-[heading Using utility pattern macros]
+=== Using utility pattern macros
 
 By including:
 
-``
+[source]
+----
 #include <predef/make.h>
-``
+----
 
 One will get a set of utility macros to decompose common version
 macros as defined by compilers. For example the EDG compiler
 uses a simple 3-digit version macro (M,N,P). It can be decomposed
 and defined as:
 
-``
+[source]
+----
 #define HASH_PREDEF_COMP_EDG HASH_PREDEF_MAKE_N_N_N(__EDG_VERSION__)
-``
+----
 
 The decomposition macros are split into three types: decimal
 decomposition, hexadecimal decomposition, and date decomposition.
 They follow the format of using "N" for decimal, "F" for hexadecimal,
 and "Y", "M", "D" for dates.
 
-[endsect]
 
-[def __predef_symbol__ Symbol]
-[def __predef_version__ Version]
-[def __predef_detection__ *detection*]
 
-[section Reference]
+== Reference
 
-[section `HASH_PREDEF_ARCH` architecture macros]
-[include ../include/predef/architecture/*.h]
-[include ../include/predef/architecture/x86/*.h]
-[endsect]
+=== `HASH_PREDEF_ARCH` architecture macros
+include::../include/predef/architecture/alpha.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/arm.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/blackfin.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/convex.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/ia64.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/m68k.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/mips.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/parisc.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/ppc.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/ptx.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/pyramid.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/riscv.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/rs6k.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/sparc.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/superh.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/sys370.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/sys390.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/x86.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/z.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/x86/32.h[leveloffset=3,tag=reference]
+include::../include/predef/architecture/x86/64.h[leveloffset=3,tag=reference]
 
-[section `HASH_PREDEF_COMP` compiler macros]
-[include ../include/predef/compiler/*.h]
-[endsect]
+=== `HASH_PREDEF_COMP` compiler macros
+include::../include/predef/compiler/borland.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/clang.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/comeau.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/compaq.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/diab.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/digitalmars.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/dignus.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/edg.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/ekopath.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/gcc.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/gcc_xml.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/greenhills.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/hp_acc.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/iar.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/ibm.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/intel.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/kai.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/llvm.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/metaware.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/metrowerks.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/microtec.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/mpw.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/nvcc.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/palm.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/pgi.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/sgi_mipspro.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/sunpro.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/tendra.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/visualc.h[leveloffset=3,tag=reference]
+include::../include/predef/compiler/watcom.h[leveloffset=3,tag=reference]
 
-[section `HASH_PREDEF_LANG` language standards macros]
-[include ../include/predef/language/*.h]
-[endsect]
+=== `HASH_PREDEF_LANG` language standards macros
+include::../include/predef/language/cuda.h[leveloffset=3,tag=reference]
+include::../include/predef/language/objc.h[leveloffset=3,tag=reference]
+include::../include/predef/language/stdc.h[leveloffset=3,tag=reference]
+include::../include/predef/language/stdcpp.h[leveloffset=3,tag=reference]
 
-[section `HASH_PREDEF_LIB` library macros]
-[include ../include/predef/library/c/*.h]
-[include ../include/predef/library/std/*.h]
-[endsect]
+=== `HASH_PREDEF_LIB` library macros
+include::../include/predef/library/c/_prefix.h[leveloffset=3,tag=reference]
+include::../include/predef/library/c/cloudabi.h[leveloffset=3,tag=reference]
+include::../include/predef/library/c/gnu.h[leveloffset=3,tag=reference]
+include::../include/predef/library/c/uc.h[leveloffset=3,tag=reference]
+include::../include/predef/library/c/vms.h[leveloffset=3,tag=reference]
+include::../include/predef/library/c/zos.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/_prefix.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/cxx.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/dinkumware.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/libcomo.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/modena.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/msl.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/roguewave.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/sgi.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/stdcpp3.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/stlport.h[leveloffset=3,tag=reference]
+include::../include/predef/library/std/vacpp.h[leveloffset=3,tag=reference]
 
-[section `HASH_PREDEF_OS` operating system macros]
-[include ../include/predef/os/*.h]
-[include ../include/predef/os/bsd/*.h]
-[endsect]
+=== `HASH_PREDEF_OS` operating system macros
+include::../include/predef/os/aix.h[leveloffset=3,tag=reference]
+include::../include/predef/os/amigaos.h[leveloffset=3,tag=reference]
+include::../include/predef/os/android.h[leveloffset=3,tag=reference]
+include::../include/predef/os/beos.h[leveloffset=3,tag=reference]
+include::../include/predef/os/bsd.h[leveloffset=3,tag=reference]
+include::../include/predef/os/cygwin.h[leveloffset=3,tag=reference]
+include::../include/predef/os/haiku.h[leveloffset=3,tag=reference]
+include::../include/predef/os/hpux.h[leveloffset=3,tag=reference]
+include::../include/predef/os/ios.h[leveloffset=3,tag=reference]
+include::../include/predef/os/irix.h[leveloffset=3,tag=reference]
+include::../include/predef/os/linux.h[leveloffset=3,tag=reference]
+include::../include/predef/os/macos.h[leveloffset=3,tag=reference]
+include::../include/predef/os/os400.h[leveloffset=3,tag=reference]
+include::../include/predef/os/qnxnto.h[leveloffset=3,tag=reference]
+include::../include/predef/os/solaris.h[leveloffset=3,tag=reference]
+include::../include/predef/os/unix.h[leveloffset=3,tag=reference]
+include::../include/predef/os/vms.h[leveloffset=3,tag=reference]
+include::../include/predef/os/windows.h[leveloffset=3,tag=reference]
+include::../include/predef/os/bsd/bsdi.h[leveloffset=3,tag=reference]
+include::../include/predef/os/bsd/dragonfly.h[leveloffset=3,tag=reference]
+include::../include/predef/os/bsd/free.h[leveloffset=3,tag=reference]
+include::../include/predef/os/bsd/net.h[leveloffset=3,tag=reference]
+include::../include/predef/os/bsd/open.h[leveloffset=3,tag=reference]
 
-[section `HASH_PREDEF_PLAT` platform macros]
-[include ../include/predef/platform/*.h]
-[endsect]
+=== `HASH_PREDEF_PLAT` platform macros
+include::../include/predef/platform/android.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/cloudabi.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/ios.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/mingw.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/mingw32.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/mingw64.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_desktop.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_phone.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_runtime.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_server.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_store.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_system.h[leveloffset=3,tag=reference]
+include::../include/predef/platform/windows_uwp.h[leveloffset=3,tag=reference]
 
-[section `HASH_PREDEF_HW` hardware macros]
+=== `HASH_PREDEF_HW` hardware macros
 
-[include ../include/predef/hardware/simd.h]
-[include ../include/predef/hardware/simd/arm.h]
-[include ../include/predef/hardware/simd/arm/versions.h]
-[include ../include/predef/hardware/simd/ppc.h]
-[include ../include/predef/hardware/simd/ppc/versions.h]
-[include ../include/predef/hardware/simd/x86.h]
-[include ../include/predef/hardware/simd/x86/versions.h]
-[include ../include/predef/hardware/simd/x86_amd.h]
-[include ../include/predef/hardware/simd/x86_amd/versions.h]
+include::../include/predef/hardware/simd.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/arm.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/arm/versions.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/ppc.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/ppc/versions.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/x86.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/x86/versions.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/x86_amd.h[leveloffset=3,tag=reference]
+include::../include/predef/hardware/simd/x86_amd/versions.h[leveloffset=3,tag=reference]
 
-[endsect]
 
-[section Other macros]
-[include ../include/predef/other/*.h]
-[endsect]
+=== Other macros
+include::../include/predef/other/endian.h[leveloffset=3,tag=reference]
+include::../include/predef/other/workaround.h[leveloffset=3,tag=reference]
 
-[section Version definition macros]
-[include ../include/predef/version_number.h]
-[include ../include/predef/make.h]
-[endsect]
+=== Version definition macros
+include::../include/predef/version_number.h[leveloffset=3,tag=reference]
+include::../include/predef/make.h[leveloffset=3,tag=reference]
 
-[endsect]
 
-[section Check Utilities]
+== Check Utilities
 
 The `predef_check` utility provides a facility for building a
 program that will check a given set of expressions against
 the definitions it detected when it was built.
 
-[heading [^predef_check] programs]
+=== `predef_check` programs
 
 Even though there is only one `predef_check` program, there
 are variations for each of the languages that are detected
 by Predef to match the convention for sources files. For all
 of them one invokes with a list of expression arguments. The
 expressions are evaluated within the context of the particular
-[^predef_check] program and if they all are true zero (0) is returned.
+`predef_check` program and if they all are true zero (0) is returned.
 Otherwise the index of the first false expression is returned.
 
 The expression syntax is simple:
 
-[teletype]
-``
+[source]
+----
 predef-definition [ relational-operator version-value ]
-``
-[c++]
+----
 
-[~predef-definition] can be any of the Predef definitions. For
+_predef-definition_ can be any of the Predef definitions. For
 example `HASH_PREDEF_COMP_GCC`.
 
-[~relational-operator] can be any of: [^>], [^<], [^>=], [^<=],
-[^==] and [^!=].
+_relational-operator_ can be any of: `>`, `<`, `>=`, `<=`,
+`==` and `!=`.
 
-[~version-number] can be a full or partial version triplet value.
+_version-number_ can be a full or partial version triplet value.
 If it's a partial version triple it is completed with zeros. That
-is [^x.y] is equivalent to [^x.y.0] and [^x] is equivalent to
-[^x.0.0].
+is `x.y` is equivalent to `x.y.0` and `x` is equivalent to
+`x.0.0`.
 
-The [~relations-operator] and [~version-number] can be omitted. In
+The _relations-operator_ and _version-number_ can be omitted. In
 which case it is equivalent to:
 
-[teletype]
-``
+[source]
+----
 predef-definition > 0.0.0
-``
-[c++]
+----
 
-[heading Using with Boost.Build]
+=== Using with Boost.Build
 
-You can use the [^predef_check] programs directly from Boost Build
+You can use the `predef_check` programs directly from Boost Build
 to configure target requirements. This is useful for controlling
 what gets built as part of your project based on the detailed
 version information available in Predef. The basic use is simple:
 
-[teletype]
-``
+[source]
+----
 import path-to-predef-src/tools/check/predef
     : check require
     : predef-check predef-require ;
 
 exe my_windows_program : windows_source.cpp
     : [ predef-require "HASH_PREDEF_OS_WINDOWS" ] ;
-``
-[c++]
+----
 
-That simple use case will skip building the [^my_windows_program]
-unless one is building for Windows. Like the direct [^predef_check]
+That simple use case will skip building the `my_windows_program`
+unless one is building for Windows. Like the direct `predef_check`
 you can pass multiple expressions using relational comparisons.
 For example:
 
-[teletype]
-``
+[source]
+----
 import path-to-predef-src/tools/check/predef
     : check require
     : predef-check predef-require ;
 
 lib my_special_lib : source.cpp
     : [ predef-require "HASH_PREDEF_OS_WINDOWS != 0" "HASH_PREDEF_OS_VMS != 0"] ;
-``
-[c++]
+----
 
-And in that case the [^my_special_lib] is built only when the OS is
-not Windows or VMS. The [^requires] rule is a special case of the
-[^check] rule. And is defined in terms of it:
+And in that case the `my_special_lib` is built only when the OS is
+not Windows or VMS. The `requires` rule is a special case of the
+`check` rule. And is defined in terms of it:
 
-[teletype]
-``
+[source]
+----
 rule require ( expressions + : language ? )
 {
     return [ check $(expressions) : $(language) : : <build>no ] ;
 }
-``
-[c++]
+----
 
 The expression can also use explicit "and", "or" logical operators
 to for more complex checks:
 
 
-[teletype]
-``
+[source]
+----
 import path-to-predef-src/tools/check/predef
     : check require
     : predef-check predef-require ;
 
 lib my_special_lib : source.cpp
     : [ predef-require "HASH_PREDEF_OS_WINDOWS" or "HASH_PREDEF_OS_VMS"] ;
-``
-[c++]
+----
 
-You can use the [^check] rule for more control and to implement
+You can use the `check` rule for more control and to implement
 something other than control of what gets built. The definition
-for the [^check] rule is:
+for the `check` rule is:
 
-[teletype]
-``
+[source]
+----
 rule check ( expressions + : language ? : true-properties * : false-properties * )
-``
-[c++]
+----
 
 When invoked as a requirement of a Boost Build target this rule
-will add the [^true-properties] to the target if all the [^expressions]
-evaluate to true. Otherwise the [^false-properties] get added as
+will add the `true-properties` to the target if all the `expressions`
+evaluate to true. Otherwise the `false-properties` get added as
 requirements. For example you could use it to enable or disable
 features in your programs:
 
-[teletype]
-``
+[source]
+----
 import path-to-predef-src/tools/check/predef
     : check require
     : predef-check predef-require ;
@@ -707,25 +815,23 @@ exe my_special_exe : source.cpp
     : [ predef-check "HASH_PREDEF_OS_WINDOWS == 0"
         : : <define>ENABLE_WMF=0
         : <define>ENABLE_WMF=1 ] ;
-``
-[c++]
+----
 
-For both [^check] and [^require] the [^language] argument controls
-which variant of the [^predef_check] program is used to check the
+For both `check` and `require` the `language` argument controls
+which variant of the `predef_check` program is used to check the
 expressions. It defaults to "c++", but can be any of: "c", "cpp",
 "objc", and "objcpp".
 
-[endsect]
 
-[include history.qbk]
-[include todo.qbk]
+include::history.adoc[]
+include::todo.adoc[]
 
-[section Acknowledgements]
+== Acknowledgements
 
 The comprehensiveness of this library would not be
 possible without the existence of the indispensable
 resource that is the
-[@http://sourceforge.net/p/predef/ Pre-defined C/C++ Compiler Macros]
+http://sourceforge.net/p/predef/[Pre-defined C/{CPP} Compiler Macros]
 Project. It was, and continues to be, the primary source
 of the definitions that make up this library. Thanks
 to Bjorn Reese and all the volunteers that make that
@@ -741,4 +847,11 @@ Edward Diener, Dave Abrahams, Iain Denniston, Dan Price,
 Ioannis Papadopoulos, and Robert Ramey. And thanks to
 Joel Falcou for managing the review of this library.
 
-[endsect]
+[colophon]
+== Colophon
+
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENSE_1_0.txt or copy at
+https://www.boost.org/LICENSE_1_0.txt)
+
+Copyright 2005-2019 Rene Rivera; Copyright 2015 Charly Chevalier; Copyright 2015 Joel Falcou

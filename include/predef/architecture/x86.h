@@ -11,13 +11,13 @@ http://www.boost.org/LICENSE_1_0.txt)
 #ifndef HASH_PREDEF_ARCHITECTURE_X86_H
 #define HASH_PREDEF_ARCHITECTURE_X86_H
 
-/*`
-[heading `HASH_PREDEF_ARCH_X86`]
+/* tag::reference[]
+= `HASH_PREDEF_ARCH_X86`
 
-[@http://en.wikipedia.org/wiki/X86 Intel x86] architecture. This is
+http://en.wikipedia.org/wiki/X86[Intel x86] architecture. This is
 a category to indicate that either `HASH_PREDEF_ARCH_X86_32` or
 `HASH_PREDEF_ARCH_X86_64` is detected.
- */
+*/ // end::reference[]
 
 #define HASH_PREDEF_ARCH_X86 HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 

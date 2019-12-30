@@ -13,21 +13,22 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/version_number.h>
 #include <predef/make.h>
 
-/*`
-[heading `HASH_PREDEF_LIB_C_ZOS`]
+/* tag::reference[]
+= `HASH_PREDEF_LIB_C_ZOS`
 
 z/OS libc Standard C library.
 Version number available as major, minor, and patch.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__LIBREL__`] [__predef_detection__]]
+| `+__LIBREL__+` | {predef_detection}
 
-    [[`__LIBREL__`] [V.R.P]]
-    [[`__TARGET_LIB__`] [V.R.P]]
-    ]
- */
+| `+__LIBREL__+` | V.R.P
+| `+__TARGET_LIB__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
