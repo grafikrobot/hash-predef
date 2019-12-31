@@ -622,12 +622,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#_hash_predef_endian">4.8.1. <code>HASH_PREDEF_ENDIAN_*</code></a></li>
 <li><a href="#_hash_predef_workaround">4.8.2. <code>HASH_PREDEF_WORKAROUND</code></a></li>
+<li><a href="#_hash_predef_tested_at">4.8.3. <code>HASH_PREDEF_TESTED_AT</code></a></li>
 </ul>
 </li>
 <li><a href="#_version_definition_macros">4.9. Version definition macros</a>
 <ul class="sectlevel3">
 <li><a href="#_hash_predef_version_number">4.9.1. <code>HASH_PREDEF_VERSION_NUMBER</code></a></li>
 <li><a href="#_hash_predef_make_macros">4.9.2. <code>HASH_PREDEF_MAKE_..</code> macros</a></li>
+<li><a href="#_hash_predef_make_date_macros">4.9.3. <code>HASH_PREDEF_MAKE_*..</code> date macros</a></li>
 </ul>
 </li>
 </ul>
@@ -6360,9 +6362,11 @@ of <code>HASH_PREDEF_STRICT_CONFIG</code>. When <code>HASH_PREDEF_STRICT_CONFIG<
 to a value convertible to <code>false</code>. Which has the effect of disabling all code
 conditionally guarded by <code>HASH_PREDEF_WORKAROUND</code>. When <code>HASH_PREDEF_STRICT_CONFIG</code>
 is undefine this expand to test the given <code>symbol</code> version value with the
-<code>comp</code> comparison against <code>HASH_PREDEF_VERSION_NUMBER(major,minor,patch)</code>.
-= <code>HASH_PREDEF_TESTED_AT</code></p>
+<code>comp</code> comparison against <code>HASH_PREDEF_VERSION_NUMBER(major,minor,patch)</code>.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_hash_predef_tested_at"><a class="anchor" href="#_hash_predef_tested_at"></a>4.8.3. <code>HASH_PREDEF_TESTED_AT</code></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">HASH_PREDEF_TESTED_AT</span><span class="tok-p">(</span><span class="tok-n">symbol</span><span class="tok-p">,</span><span class="tok-n">major</span><span class="tok-p">,</span><span class="tok-n">minor</span><span class="tok-p">,</span><span class="tok-n">patch</span><span class="tok-p">)</span></code></pre>
@@ -6482,42 +6486,110 @@ indicates an ignored digit.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Macros are:
-<code>HASH_PREDEF_MAKE_0X_VRP(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VVRP(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VRPP(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VVRR(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VRRPPPP(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VVRRP(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VRRPP000(V)</code>
-<code>HASH_PREDEF_MAKE_0X_VVRRPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VPPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VR0(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRP000(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRPPPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRR(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRRPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VRR000(V)</code>
-<code>HASH_PREDEF_MAKE_10_VV00(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRR(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRRP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRRPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRRPPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRR0PP00(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRR0PPPP(V)</code>
-<code>HASH_PREDEF_MAKE_10_VVRR00PP00(V)</code>
-= <code>HASH_PREDEF_MAKE_*..</code> date macros</p>
+<p>Macros are:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VRP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VVRP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VRPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VVRR(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VRRPPPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VVRRP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VRRPP000(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_0X_VVRRPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VPPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VR0(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRP000(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRPPPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRR(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRRPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VRR000(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VV00(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRR(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRRP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRRPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRRPPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRR0PP00(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRR0PPPP(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_10_VVRR00PP00(V)</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hash_predef_make_date_macros"><a class="anchor" href="#_hash_predef_make_date_macros"></a>4.9.3. <code>HASH_PREDEF_MAKE_*..</code> date macros</h4>
 <div class="paragraph">
 <p>Date decomposition macros return a date in the relative to the 1970
 Epoch date. If the month is not available, January 1st is used as the month and day.
-If the day is not available, but the month is, the 1st of the month is used as the day.
-<code>HASH_PREDEF_MAKE_DATE(Y,M,D)</code>
-<code>HASH_PREDEF_MAKE_YYYYMMDD(V)</code>
-<code>HASH_PREDEF_MAKE_YYYY(V)</code>
-<code>HASH_PREDEF_MAKE_YYYYMM(V)</code></p>
+If the day is not available, but the month is, the 1st of the month is used as the day.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>HASH_PREDEF_MAKE_DATE(Y,M,D)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_YYYYMMDD(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_YYYY(V)</code></p>
+</li>
+<li>
+<p><code>HASH_PREDEF_MAKE_YYYYMM(V)</code></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -6547,7 +6619,7 @@ Otherwise the index of the first false expression is returned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">definition</span> <span class="tok-p">[</span> <span class="tok-n">relational</span><span class="tok-o">-</span><span class="tok-k">operator</span> <span class="tok-n">version</span><span class="tok-o">-</span><span class="tok-n">value</span> <span class="tok-p">]</span></code></pre>
+<pre class="pygments highlight"><code data-lang="jam"><span></span>predef-definition<span class="tok-w"> </span>[<span class="tok-w"> </span>relational-operator<span class="tok-w"> </span>version-value<span class="tok-w"> </span>]<span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6570,7 +6642,7 @@ which case it is equivalent to:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">definition</span> <span class="tok-o">&gt;</span> <span class="tok-mf">0.0.0</span></code></pre>
+<pre class="pygments highlight"><code data-lang="jam"><span></span>predef-definition<span class="tok-w"> </span>&gt;<span class="tok-w"> </span>0.0.0<span class="tok-w"></span></code></pre>
 </div>
 </div>
 </div>
@@ -6584,12 +6656,12 @@ version information available in Predef. The basic use is simple:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">import</span> <span class="tok-n">path</span><span class="tok-o">-</span><span class="tok-n">to</span><span class="tok-o">-</span><span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">src</span><span class="tok-o">/</span><span class="tok-n">tools</span><span class="tok-o">/</span><span class="tok-n">check</span><span class="tok-o">/</span><span class="tok-nl">predef</span>
-    <span class="tok-p">:</span> <span class="tok-n">check</span> <span class="tok-nl">require</span>
-    <span class="tok-p">:</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">check</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-p">;</span>
+<pre class="pygments highlight"><code data-lang="jam"><span></span><span class="tok-nb">import</span><span class="tok-w"> </span>path-to-predef-src/tools/check/predef<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>check<span class="tok-w"> </span>require<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>predef-check<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>;<span class="tok-w"></span>
 
-<span class="tok-n">exe</span> <span class="tok-nl">my_windows_program</span> <span class="tok-p">:</span> <span class="tok-n">windows_source</span><span class="tok-p">.</span><span class="tok-nl">cpp</span>
-    <span class="tok-p">:</span> <span class="tok-p">[</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-s">&quot;HASH_PREDEF_OS_WINDOWS&quot;</span> <span class="tok-p">]</span> <span class="tok-p">;</span></code></pre>
+<span class="tok-nb">exe</span><span class="tok-w"> </span>my_windows_program<span class="tok-w"> </span>:<span class="tok-w"> </span>windows_source.cpp<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>[<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>&quot;HASH_PREDEF_OS_WINDOWS&quot;<span class="tok-w"> </span>]<span class="tok-w"> </span>;<span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6600,12 +6672,12 @@ For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">import</span> <span class="tok-n">path</span><span class="tok-o">-</span><span class="tok-n">to</span><span class="tok-o">-</span><span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">src</span><span class="tok-o">/</span><span class="tok-n">tools</span><span class="tok-o">/</span><span class="tok-n">check</span><span class="tok-o">/</span><span class="tok-nl">predef</span>
-    <span class="tok-p">:</span> <span class="tok-n">check</span> <span class="tok-nl">require</span>
-    <span class="tok-p">:</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">check</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-p">;</span>
+<pre class="pygments highlight"><code data-lang="jam"><span></span><span class="tok-nb">import</span><span class="tok-w"> </span>path-to-predef-src/tools/check/predef<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>check<span class="tok-w"> </span>require<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>predef-check<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>;<span class="tok-w"></span>
 
-<span class="tok-n">lib</span> <span class="tok-nl">my_special_lib</span> <span class="tok-p">:</span> <span class="tok-n">source</span><span class="tok-p">.</span><span class="tok-nl">cpp</span>
-    <span class="tok-p">:</span> <span class="tok-p">[</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-s">&quot;HASH_PREDEF_OS_WINDOWS != 0&quot;</span> <span class="tok-s">&quot;HASH_PREDEF_OS_VMS != 0&quot;</span><span class="tok-p">]</span> <span class="tok-p">;</span></code></pre>
+<span class="tok-nb">lib</span><span class="tok-w"> </span>my_special_lib<span class="tok-w"> </span>:<span class="tok-w"> </span>source.cpp<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>[<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>&quot;HASH_PREDEF_OS_WINDOWS<span class="tok-w"> </span>!=<span class="tok-w"> </span>0&quot;<span class="tok-w"> </span>&quot;HASH_PREDEF_OS_VMS<span class="tok-w"> </span>!=<span class="tok-w"> </span>0&quot;]<span class="tok-w"> </span>;<span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6615,10 +6687,10 @@ not Windows or VMS. The <code>requires</code> rule is a special case of the
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">rule</span> <span class="tok-nf">require</span> <span class="tok-p">(</span> <span class="tok-n">expressions</span> <span class="tok-o">+</span> <span class="tok-o">:</span> <span class="tok-n">language</span> <span class="tok-o">?</span> <span class="tok-p">)</span>
-<span class="tok-p">{</span>
-    <span class="tok-k">return</span> <span class="tok-p">[</span> <span class="tok-n">check</span> <span class="tok-err">$</span><span class="tok-p">(</span><span class="tok-n">expressions</span><span class="tok-p">)</span> <span class="tok-o">:</span> <span class="tok-err">$</span><span class="tok-p">(</span><span class="tok-n">language</span><span class="tok-p">)</span> <span class="tok-o">:</span> <span class="tok-o">:</span> <span class="tok-o">&lt;</span><span class="tok-n">build</span><span class="tok-o">&gt;</span><span class="tok-n">no</span> <span class="tok-p">]</span> <span class="tok-p">;</span>
-<span class="tok-p">}</span></code></pre>
+<pre class="pygments highlight"><code data-lang="jam"><span></span><span class="tok-k">rule</span><span class="tok-w"> </span><span class="tok-nf">require</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-w"> </span><span class="tok-nv">expressions</span><span class="tok-w"> </span><span class="tok-p">+</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">language</span><span class="tok-w"> </span><span class="tok-p">?</span><span class="tok-w"> </span><span class="tok-p">)</span><span class="tok-w"></span>
+{<span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-k">return</span><span class="tok-w"> </span>[<span class="tok-w"> </span>check<span class="tok-w"> </span><span class="tok-si">$(expressions)</span><span class="tok-w"> </span>:<span class="tok-w"> </span><span class="tok-si">$(language)</span><span class="tok-w"> </span>:<span class="tok-w"> </span>:<span class="tok-w"> </span><span class="tok-na">&lt;build&gt;</span>no<span class="tok-w"> </span>]<span class="tok-w"> </span>;<span class="tok-w"></span>
+}<span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6627,12 +6699,12 @@ to for more complex checks:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">import</span> <span class="tok-n">path</span><span class="tok-o">-</span><span class="tok-n">to</span><span class="tok-o">-</span><span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">src</span><span class="tok-o">/</span><span class="tok-n">tools</span><span class="tok-o">/</span><span class="tok-n">check</span><span class="tok-o">/</span><span class="tok-nl">predef</span>
-    <span class="tok-p">:</span> <span class="tok-n">check</span> <span class="tok-nl">require</span>
-    <span class="tok-p">:</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">check</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-p">;</span>
+<pre class="pygments highlight"><code data-lang="jam"><span></span><span class="tok-nb">import</span><span class="tok-w"> </span>path-to-predef-src/tools/check/predef<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>check<span class="tok-w"> </span>require<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>predef-check<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>;<span class="tok-w"></span>
 
-<span class="tok-n">lib</span> <span class="tok-nl">my_special_lib</span> <span class="tok-p">:</span> <span class="tok-n">source</span><span class="tok-p">.</span><span class="tok-nl">cpp</span>
-    <span class="tok-p">:</span> <span class="tok-p">[</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-s">&quot;HASH_PREDEF_OS_WINDOWS&quot;</span> <span class="tok-n">or</span> <span class="tok-s">&quot;HASH_PREDEF_OS_VMS&quot;</span><span class="tok-p">]</span> <span class="tok-p">;</span></code></pre>
+<span class="tok-nb">lib</span><span class="tok-w"> </span>my_special_lib<span class="tok-w"> </span>:<span class="tok-w"> </span>source.cpp<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>[<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>&quot;HASH_PREDEF_OS_WINDOWS&quot;<span class="tok-w"> </span>or<span class="tok-w"> </span>&quot;HASH_PREDEF_OS_VMS&quot;]<span class="tok-w"> </span>;<span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6642,7 +6714,7 @@ for the <code>check</code> rule is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">rule</span> <span class="tok-n">check</span> <span class="tok-p">(</span> <span class="tok-n">expressions</span> <span class="tok-o">+</span> <span class="tok-o">:</span> <span class="tok-n">language</span> <span class="tok-o">?</span> <span class="tok-o">:</span> <span class="tok-nb">true</span><span class="tok-o">-</span><span class="tok-n">properties</span> <span class="tok-o">*</span> <span class="tok-o">:</span> <span class="tok-nb">false</span><span class="tok-o">-</span><span class="tok-n">properties</span> <span class="tok-o">*</span> <span class="tok-p">)</span></code></pre>
+<pre class="pygments highlight"><code data-lang="jam"><span></span><span class="tok-k">rule</span><span class="tok-w"> </span><span class="tok-nf">check</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-w"> </span><span class="tok-nv">expressions</span><span class="tok-w"> </span><span class="tok-p">+</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">language</span><span class="tok-w"> </span><span class="tok-p">?</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">true-properties</span><span class="tok-w"> </span><span class="tok-p">*</span><span class="tok-w"> </span><span class="tok-p">:</span><span class="tok-w"> </span><span class="tok-nv">false-properties</span><span class="tok-w"> </span><span class="tok-p">*</span><span class="tok-w"> </span><span class="tok-p">)</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6654,14 +6726,14 @@ features in your programs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">import</span> <span class="tok-n">path</span><span class="tok-o">-</span><span class="tok-n">to</span><span class="tok-o">-</span><span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">src</span><span class="tok-o">/</span><span class="tok-n">tools</span><span class="tok-o">/</span><span class="tok-n">check</span><span class="tok-o">/</span><span class="tok-nl">predef</span>
-    <span class="tok-p">:</span> <span class="tok-n">check</span> <span class="tok-nl">require</span>
-    <span class="tok-p">:</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">check</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">require</span> <span class="tok-p">;</span>
+<pre class="pygments highlight"><code data-lang="jam"><span></span><span class="tok-nb">import</span><span class="tok-w"> </span>path-to-predef-src/tools/check/predef<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>check<span class="tok-w"> </span>require<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>predef-check<span class="tok-w"> </span>predef-require<span class="tok-w"> </span>;<span class="tok-w"></span>
 
-<span class="tok-n">exe</span> <span class="tok-nl">my_special_exe</span> <span class="tok-p">:</span> <span class="tok-n">source</span><span class="tok-p">.</span><span class="tok-nl">cpp</span>
-    <span class="tok-p">:</span> <span class="tok-p">[</span> <span class="tok-n">predef</span><span class="tok-o">-</span><span class="tok-n">check</span> <span class="tok-s">&quot;HASH_PREDEF_OS_WINDOWS == 0&quot;</span>
-        <span class="tok-o">:</span> <span class="tok-o">:</span> <span class="tok-o">&lt;</span><span class="tok-n">define</span><span class="tok-o">&gt;</span><span class="tok-n">ENABLE_WMF</span><span class="tok-o">=</span><span class="tok-mi">0</span>
-        <span class="tok-o">:</span> <span class="tok-o">&lt;</span><span class="tok-n">define</span><span class="tok-o">&gt;</span><span class="tok-n">ENABLE_WMF</span><span class="tok-o">=</span><span class="tok-mi">1</span> <span class="tok-p">]</span> <span class="tok-p">;</span></code></pre>
+<span class="tok-nb">exe</span><span class="tok-w"> </span>my_special_exe<span class="tok-w"> </span>:<span class="tok-w"> </span>source.cpp<span class="tok-w"></span>
+<span class="tok-w">    </span>:<span class="tok-w"> </span>[<span class="tok-w"> </span>predef-check<span class="tok-w"> </span>&quot;HASH_PREDEF_OS_WINDOWS<span class="tok-w"> </span>==<span class="tok-w"> </span>0&quot;<span class="tok-w"></span>
+<span class="tok-w">        </span>:<span class="tok-w"> </span>:<span class="tok-w"> </span><span class="tok-na">&lt;define&gt;</span>ENABLE_WMF=0<span class="tok-w"></span>
+<span class="tok-w">        </span>:<span class="tok-w"> </span><span class="tok-na">&lt;define&gt;</span>ENABLE_WMF=1<span class="tok-w"> </span>]<span class="tok-w"> </span>;<span class="tok-w"></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6685,6 +6757,9 @@ expressions. It defaults to "c++", but can be any of: "c", "cpp",
 </li>
 <li>
 <p>Add RISC-V endian detection. (from Thomas Petazzoni)</p>
+</li>
+<li>
+<p>Convert documentation to AsciiDoctor format.</p>
 </li>
 </ul>
 </div>

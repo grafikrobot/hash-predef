@@ -27,128 +27,132 @@ The naming convention indicates:
   indicates an ignored digit.
 
 Macros are:
+
 */ // end::reference[]
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VRP(V)`
+* `HASH_PREDEF_MAKE_0X_VRP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VRP(V) HASH_PREDEF_VERSION_NUMBER((V&0xF00)>>8,(V&0xF0)>>4,(V&0xF))
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VVRP(V)`
+* `HASH_PREDEF_MAKE_0X_VVRP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VVRP(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF00)>>8,(V&0xF0)>>4,(V&0xF))
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VRPP(V)`
+* `HASH_PREDEF_MAKE_0X_VRPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VRPP(V) HASH_PREDEF_VERSION_NUMBER((V&0xF000)>>12,(V&0xF00)>>8,(V&0xFF))
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VVRR(V)`
+* `HASH_PREDEF_MAKE_0X_VVRR(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VVRR(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF00)>>8,(V&0xFF),0)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VRRPPPP(V)`
+* `HASH_PREDEF_MAKE_0X_VRRPPPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VRRPPPP(V) HASH_PREDEF_VERSION_NUMBER((V&0xF000000)>>24,(V&0xFF0000)>>16,(V&0xFFFF))
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VVRRP(V)`
+* `HASH_PREDEF_MAKE_0X_VVRRP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VVRRP(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF000)>>12,(V&0xFF0)>>4,(V&0xF))
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VRRPP000(V)`
+* `HASH_PREDEF_MAKE_0X_VRRPP000(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VRRPP000(V) HASH_PREDEF_VERSION_NUMBER((V&0xF0000000)>>28,(V&0xFF00000)>>20,(V&0xFF000)>>12)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_0X_VVRRPP(V)`
+* `HASH_PREDEF_MAKE_0X_VVRRPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_0X_VVRRPP(V) HASH_PREDEF_VERSION_NUMBER((V&0xFF0000)>>16,(V&0xFF00)>>8,(V&0xFF))
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VPPP(V)`
+* `HASH_PREDEF_MAKE_10_VPPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/1000)%10,0,(V)%1000)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VR0(V)`
+* `HASH_PREDEF_MAKE_10_VR0(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VR0(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%10,((V)/10)%10,0)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRP(V)`
+* `HASH_PREDEF_MAKE_10_VRP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRP(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%10,((V)/10)%10,(V)%10)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRP000(V)`
+* `HASH_PREDEF_MAKE_10_VRP000(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRP000(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%10,((V)/10000)%10,((V)/1000)%10)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRPPPP(V)`
+* `HASH_PREDEF_MAKE_10_VRPPPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRPPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%10,((V)/10000)%10,(V)%10000)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRPP(V)`
+* `HASH_PREDEF_MAKE_10_VRPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/1000)%10,((V)/100)%10,(V)%100)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRR(V)`
+* `HASH_PREDEF_MAKE_10_VRR(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRR(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%10,(V)%100,0)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRRPP(V)`
+* `HASH_PREDEF_MAKE_10_VRRPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRRPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000)%10,((V)/100)%100,(V)%100)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VRR000(V)`
+* `HASH_PREDEF_MAKE_10_VRR000(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VRR000(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%10,((V)/1000)%100,0)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VV00(V)`
+* `HASH_PREDEF_MAKE_10_VV00(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VV00(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%100,0,0)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRR(V)`
+* `HASH_PREDEF_MAKE_10_VVRR(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRR(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%100,(V)%100,0)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRRP(V)`
+* `HASH_PREDEF_MAKE_10_VVRRP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRRP(V) HASH_PREDEF_VERSION_NUMBER(((V)/1000)%100,((V)/10)%100,(V)%10)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRRPP(V)`
+* `HASH_PREDEF_MAKE_10_VVRRPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRRPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000)%100,((V)/100)%100,(V)%100)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRRPPP(V)`
+* `HASH_PREDEF_MAKE_10_VVRRPPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRRPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000)%100,((V)/1000)%100,(V)%1000)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRR0PP00(V)`
+* `HASH_PREDEF_MAKE_10_VVRR0PP00(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRR0PP00(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000000)%100,((V)/100000)%100,((V)/100)%100)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRR0PPPP(V)`
+* `HASH_PREDEF_MAKE_10_VVRR0PPPP(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRR0PPPP(V) HASH_PREDEF_VERSION_NUMBER(((V)/10000000)%100,((V)/100000)%100,(V)%10000)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_10_VVRR00PP00(V)`
+* `HASH_PREDEF_MAKE_10_VVRR00PP00(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRR00PP00(V) HASH_PREDEF_VERSION_NUMBER(((V)/100000000)%100,((V)/1000000)%100,((V)/100)%100)
+
 /* tag::reference[]
+
 = `HASH_PREDEF_MAKE_*..` date macros
 
 Date decomposition macros return a date in the relative to the 1970
 Epoch date. If the month is not available, January 1st is used as the month and day.
 If the day is not available, but the month is, the 1st of the month is used as the day.
+
 */ // end::reference[]
 /* tag::reference[]
-`HASH_PREDEF_MAKE_DATE(Y,M,D)`
+* `HASH_PREDEF_MAKE_DATE(Y,M,D)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_DATE(Y,M,D) HASH_PREDEF_VERSION_NUMBER((Y)%10000-1970,(M)%100,(D)%100)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_YYYYMMDD(V)`
+* `HASH_PREDEF_MAKE_YYYYMMDD(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_YYYYMMDD(V) HASH_PREDEF_MAKE_DATE(((V)/10000)%10000,((V)/100)%100,(V)%100)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_YYYY(V)`
+* `HASH_PREDEF_MAKE_YYYY(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_YYYY(V) HASH_PREDEF_MAKE_DATE(V,1,1)
 /* tag::reference[]
-`HASH_PREDEF_MAKE_YYYYMM(V)`
+* `HASH_PREDEF_MAKE_YYYYMM(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_YYYYMM(V) HASH_PREDEF_MAKE_DATE((V)/100,(V)%100,1)
 

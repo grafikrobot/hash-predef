@@ -9,6 +9,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #define HASH_PREDEF_WORKAROUND_H
 
 /* tag::reference[]
+
 = `HASH_PREDEF_WORKAROUND`
 
 [source]
@@ -31,6 +32,7 @@ to a value convertible to `false`. Which has the effect of disabling all code
 conditionally guarded by `HASH_PREDEF_WORKAROUND`. When `HASH_PREDEF_STRICT_CONFIG`
 is undefine this expand to test the given `symbol` version value with the
 `comp` comparison against `HASH_PREDEF_VERSION_NUMBER(major,minor,patch)`.
+
 */ // end::reference[]
 #ifdef HASH_PREDEF_STRICT_CONFIG
 #   define HASH_PREDEF_WORKAROUND(symbol, comp, major, minor, patch) (0)
@@ -42,6 +44,7 @@ is undefine this expand to test the given `symbol` version value with the
 #endif
 
 /* tag::reference[]
+
 = `HASH_PREDEF_TESTED_AT`
 
 [source]
@@ -73,6 +76,7 @@ is undefined this expand to either:
 * A compile error when the expansion of
   `HASH_PREDEF_WORKAROUND(symbol, >, major, minor, patch)` is true and
   `HASH_PREDEF_DETECT_OUTDATED_WORKAROUNDS` is defined.
+
 */ // end::reference[]
 #ifdef HASH_PREDEF_STRICT_CONFIG
 #   define HASH_PREDEF_TESTED_AT(symbol, major, minor, patch) (0)

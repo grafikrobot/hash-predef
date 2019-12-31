@@ -549,146 +549,300 @@ and "Y", "M", "D" for dates.
 == Reference
 
 === `HASH_PREDEF_ARCH` architecture macros
-include::../include/predef/architecture/alpha.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/arm.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/blackfin.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/convex.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/ia64.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/m68k.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/mips.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/parisc.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/ppc.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/ptx.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/pyramid.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/riscv.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/rs6k.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/sparc.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/superh.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/sys370.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/sys390.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/x86.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/z.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/x86/32.h[leveloffset=3,tag=reference]
-include::../include/predef/architecture/x86/64.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/architecture/alpha.h[tag=reference]
+
+include::../include/predef/architecture/arm.h[tag=reference]
+
+include::../include/predef/architecture/blackfin.h[tag=reference]
+
+include::../include/predef/architecture/convex.h[tag=reference]
+
+include::../include/predef/architecture/ia64.h[tag=reference]
+
+include::../include/predef/architecture/m68k.h[tag=reference]
+
+include::../include/predef/architecture/mips.h[tag=reference]
+
+include::../include/predef/architecture/parisc.h[tag=reference]
+
+include::../include/predef/architecture/ppc.h[tag=reference]
+
+include::../include/predef/architecture/ptx.h[tag=reference]
+
+include::../include/predef/architecture/pyramid.h[tag=reference]
+
+include::../include/predef/architecture/riscv.h[tag=reference]
+
+include::../include/predef/architecture/rs6k.h[tag=reference]
+
+include::../include/predef/architecture/sparc.h[tag=reference]
+
+include::../include/predef/architecture/superh.h[tag=reference]
+
+include::../include/predef/architecture/sys370.h[tag=reference]
+
+include::../include/predef/architecture/sys390.h[tag=reference]
+
+include::../include/predef/architecture/x86.h[tag=reference]
+
+include::../include/predef/architecture/z.h[tag=reference]
+
+include::../include/predef/architecture/x86/32.h[tag=reference]
+
+include::../include/predef/architecture/x86/64.h[tag=reference]
+
+:leveloffset: -3
 
 === `HASH_PREDEF_COMP` compiler macros
-include::../include/predef/compiler/borland.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/clang.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/comeau.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/compaq.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/diab.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/digitalmars.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/dignus.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/edg.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/ekopath.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/gcc.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/gcc_xml.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/greenhills.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/hp_acc.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/iar.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/ibm.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/intel.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/kai.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/llvm.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/metaware.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/metrowerks.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/microtec.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/mpw.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/nvcc.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/palm.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/pgi.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/sgi_mipspro.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/sunpro.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/tendra.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/visualc.h[leveloffset=3,tag=reference]
-include::../include/predef/compiler/watcom.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/compiler/borland.h[tag=reference]
+
+include::../include/predef/compiler/clang.h[tag=reference]
+
+include::../include/predef/compiler/comeau.h[tag=reference]
+
+include::../include/predef/compiler/compaq.h[tag=reference]
+
+include::../include/predef/compiler/diab.h[tag=reference]
+
+include::../include/predef/compiler/digitalmars.h[tag=reference]
+
+include::../include/predef/compiler/dignus.h[tag=reference]
+
+include::../include/predef/compiler/edg.h[tag=reference]
+
+include::../include/predef/compiler/ekopath.h[tag=reference]
+
+include::../include/predef/compiler/gcc.h[tag=reference]
+
+include::../include/predef/compiler/gcc_xml.h[tag=reference]
+
+include::../include/predef/compiler/greenhills.h[tag=reference]
+
+include::../include/predef/compiler/hp_acc.h[tag=reference]
+
+include::../include/predef/compiler/iar.h[tag=reference]
+
+include::../include/predef/compiler/ibm.h[tag=reference]
+
+include::../include/predef/compiler/intel.h[tag=reference]
+
+include::../include/predef/compiler/kai.h[tag=reference]
+
+include::../include/predef/compiler/llvm.h[tag=reference]
+
+include::../include/predef/compiler/metaware.h[tag=reference]
+
+include::../include/predef/compiler/metrowerks.h[tag=reference]
+
+include::../include/predef/compiler/microtec.h[tag=reference]
+
+include::../include/predef/compiler/mpw.h[tag=reference]
+
+include::../include/predef/compiler/nvcc.h[tag=reference]
+
+include::../include/predef/compiler/palm.h[tag=reference]
+
+include::../include/predef/compiler/pgi.h[tag=reference]
+
+include::../include/predef/compiler/sgi_mipspro.h[tag=reference]
+
+include::../include/predef/compiler/sunpro.h[tag=reference]
+
+include::../include/predef/compiler/tendra.h[tag=reference]
+
+include::../include/predef/compiler/visualc.h[tag=reference]
+
+include::../include/predef/compiler/watcom.h[tag=reference]
+
+:leveloffset: -3
 
 === `HASH_PREDEF_LANG` language standards macros
-include::../include/predef/language/cuda.h[leveloffset=3,tag=reference]
-include::../include/predef/language/objc.h[leveloffset=3,tag=reference]
-include::../include/predef/language/stdc.h[leveloffset=3,tag=reference]
-include::../include/predef/language/stdcpp.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/language/cuda.h[tag=reference]
+
+include::../include/predef/language/objc.h[tag=reference]
+
+include::../include/predef/language/stdc.h[tag=reference]
+
+include::../include/predef/language/stdcpp.h[tag=reference]
+
+:leveloffset: -3
 
 === `HASH_PREDEF_LIB` library macros
-include::../include/predef/library/c/_prefix.h[leveloffset=3,tag=reference]
-include::../include/predef/library/c/cloudabi.h[leveloffset=3,tag=reference]
-include::../include/predef/library/c/gnu.h[leveloffset=3,tag=reference]
-include::../include/predef/library/c/uc.h[leveloffset=3,tag=reference]
-include::../include/predef/library/c/vms.h[leveloffset=3,tag=reference]
-include::../include/predef/library/c/zos.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/_prefix.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/cxx.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/dinkumware.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/libcomo.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/modena.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/msl.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/roguewave.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/sgi.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/stdcpp3.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/stlport.h[leveloffset=3,tag=reference]
-include::../include/predef/library/std/vacpp.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/library/c/_prefix.h[tag=reference]
+
+include::../include/predef/library/c/cloudabi.h[tag=reference]
+
+include::../include/predef/library/c/gnu.h[tag=reference]
+
+include::../include/predef/library/c/uc.h[tag=reference]
+
+include::../include/predef/library/c/vms.h[tag=reference]
+
+include::../include/predef/library/c/zos.h[tag=reference]
+
+include::../include/predef/library/std/_prefix.h[tag=reference]
+
+include::../include/predef/library/std/cxx.h[tag=reference]
+
+include::../include/predef/library/std/dinkumware.h[tag=reference]
+
+include::../include/predef/library/std/libcomo.h[tag=reference]
+
+include::../include/predef/library/std/modena.h[tag=reference]
+
+include::../include/predef/library/std/msl.h[tag=reference]
+
+include::../include/predef/library/std/roguewave.h[tag=reference]
+
+include::../include/predef/library/std/sgi.h[tag=reference]
+
+include::../include/predef/library/std/stdcpp3.h[tag=reference]
+
+include::../include/predef/library/std/stlport.h[tag=reference]
+
+include::../include/predef/library/std/vacpp.h[tag=reference]
+
+:leveloffset: -3
 
 === `HASH_PREDEF_OS` operating system macros
-include::../include/predef/os/aix.h[leveloffset=3,tag=reference]
-include::../include/predef/os/amigaos.h[leveloffset=3,tag=reference]
-include::../include/predef/os/android.h[leveloffset=3,tag=reference]
-include::../include/predef/os/beos.h[leveloffset=3,tag=reference]
-include::../include/predef/os/bsd.h[leveloffset=3,tag=reference]
-include::../include/predef/os/cygwin.h[leveloffset=3,tag=reference]
-include::../include/predef/os/haiku.h[leveloffset=3,tag=reference]
-include::../include/predef/os/hpux.h[leveloffset=3,tag=reference]
-include::../include/predef/os/ios.h[leveloffset=3,tag=reference]
-include::../include/predef/os/irix.h[leveloffset=3,tag=reference]
-include::../include/predef/os/linux.h[leveloffset=3,tag=reference]
-include::../include/predef/os/macos.h[leveloffset=3,tag=reference]
-include::../include/predef/os/os400.h[leveloffset=3,tag=reference]
-include::../include/predef/os/qnxnto.h[leveloffset=3,tag=reference]
-include::../include/predef/os/solaris.h[leveloffset=3,tag=reference]
-include::../include/predef/os/unix.h[leveloffset=3,tag=reference]
-include::../include/predef/os/vms.h[leveloffset=3,tag=reference]
-include::../include/predef/os/windows.h[leveloffset=3,tag=reference]
-include::../include/predef/os/bsd/bsdi.h[leveloffset=3,tag=reference]
-include::../include/predef/os/bsd/dragonfly.h[leveloffset=3,tag=reference]
-include::../include/predef/os/bsd/free.h[leveloffset=3,tag=reference]
-include::../include/predef/os/bsd/net.h[leveloffset=3,tag=reference]
-include::../include/predef/os/bsd/open.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/os/aix.h[tag=reference]
+
+include::../include/predef/os/amigaos.h[tag=reference]
+
+include::../include/predef/os/android.h[tag=reference]
+
+include::../include/predef/os/beos.h[tag=reference]
+
+include::../include/predef/os/bsd.h[tag=reference]
+
+include::../include/predef/os/cygwin.h[tag=reference]
+
+include::../include/predef/os/haiku.h[tag=reference]
+
+include::../include/predef/os/hpux.h[tag=reference]
+
+include::../include/predef/os/ios.h[tag=reference]
+
+include::../include/predef/os/irix.h[tag=reference]
+
+include::../include/predef/os/linux.h[tag=reference]
+
+include::../include/predef/os/macos.h[tag=reference]
+
+include::../include/predef/os/os400.h[tag=reference]
+
+include::../include/predef/os/qnxnto.h[tag=reference]
+
+include::../include/predef/os/solaris.h[tag=reference]
+
+include::../include/predef/os/unix.h[tag=reference]
+
+include::../include/predef/os/vms.h[tag=reference]
+
+include::../include/predef/os/windows.h[tag=reference]
+
+include::../include/predef/os/bsd/bsdi.h[tag=reference]
+
+include::../include/predef/os/bsd/dragonfly.h[tag=reference]
+
+include::../include/predef/os/bsd/free.h[tag=reference]
+
+include::../include/predef/os/bsd/net.h[tag=reference]
+
+include::../include/predef/os/bsd/open.h[tag=reference]
+
+:leveloffset: -3
 
 === `HASH_PREDEF_PLAT` platform macros
-include::../include/predef/platform/android.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/cloudabi.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/ios.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/mingw.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/mingw32.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/mingw64.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_desktop.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_phone.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_runtime.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_server.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_store.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_system.h[leveloffset=3,tag=reference]
-include::../include/predef/platform/windows_uwp.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/platform/android.h[tag=reference]
+
+include::../include/predef/platform/cloudabi.h[tag=reference]
+
+include::../include/predef/platform/ios.h[tag=reference]
+
+include::../include/predef/platform/mingw.h[tag=reference]
+
+include::../include/predef/platform/mingw32.h[tag=reference]
+
+include::../include/predef/platform/mingw64.h[tag=reference]
+
+include::../include/predef/platform/windows_desktop.h[tag=reference]
+
+include::../include/predef/platform/windows_phone.h[tag=reference]
+
+include::../include/predef/platform/windows_runtime.h[tag=reference]
+
+include::../include/predef/platform/windows_server.h[tag=reference]
+
+include::../include/predef/platform/windows_store.h[tag=reference]
+
+include::../include/predef/platform/windows_system.h[tag=reference]
+
+include::../include/predef/platform/windows_uwp.h[tag=reference]
+
+:leveloffset: -3
 
 === `HASH_PREDEF_HW` hardware macros
 
-include::../include/predef/hardware/simd.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/arm.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/arm/versions.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/ppc.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/ppc/versions.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/x86.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/x86/versions.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/x86_amd.h[leveloffset=3,tag=reference]
-include::../include/predef/hardware/simd/x86_amd/versions.h[leveloffset=3,tag=reference]
+:leveloffset: +3
 
+include::../include/predef/hardware/simd.h[tag=reference]
+
+include::../include/predef/hardware/simd/arm.h[tag=reference]
+
+include::../include/predef/hardware/simd/arm/versions.h[tag=reference]
+
+include::../include/predef/hardware/simd/ppc.h[tag=reference]
+
+include::../include/predef/hardware/simd/ppc/versions.h[tag=reference]
+
+include::../include/predef/hardware/simd/x86.h[tag=reference]
+
+include::../include/predef/hardware/simd/x86/versions.h[tag=reference]
+
+include::../include/predef/hardware/simd/x86_amd.h[tag=reference]
+
+include::../include/predef/hardware/simd/x86_amd/versions.h[tag=reference]
+
+:leveloffset: -3
 
 === Other macros
-include::../include/predef/other/endian.h[leveloffset=3,tag=reference]
-include::../include/predef/other/workaround.h[leveloffset=3,tag=reference]
+
+:leveloffset: +3
+
+include::../include/predef/other/endian.h[tag=reference]
+
+include::../include/predef/other/workaround.h[tag=reference]
+
+:leveloffset: -3
 
 === Version definition macros
-include::../include/predef/version_number.h[leveloffset=3,tag=reference]
-include::../include/predef/make.h[leveloffset=3,tag=reference]
 
+:leveloffset: +3
+
+include::../include/predef/version_number.h[tag=reference]
+
+include::../include/predef/make.h[tag=reference]
+
+:leveloffset: -3
 
 == Check Utilities
 
@@ -708,7 +862,7 @@ Otherwise the index of the first false expression is returned.
 
 The expression syntax is simple:
 
-[source]
+[source,jam]
 ----
 predef-definition [ relational-operator version-value ]
 ----
@@ -727,7 +881,7 @@ is `x.y` is equivalent to `x.y.0` and `x` is equivalent to
 The _relations-operator_ and _version-number_ can be omitted. In
 which case it is equivalent to:
 
-[source]
+[source,jam]
 ----
 predef-definition > 0.0.0
 ----
@@ -739,7 +893,7 @@ to configure target requirements. This is useful for controlling
 what gets built as part of your project based on the detailed
 version information available in Predef. The basic use is simple:
 
-[source]
+[source,jam]
 ----
 import path-to-predef-src/tools/check/predef
     : check require
@@ -754,7 +908,7 @@ unless one is building for Windows. Like the direct `predef_check`
 you can pass multiple expressions using relational comparisons.
 For example:
 
-[source]
+[source,jam]
 ----
 import path-to-predef-src/tools/check/predef
     : check require
@@ -768,7 +922,7 @@ And in that case the `my_special_lib` is built only when the OS is
 not Windows or VMS. The `requires` rule is a special case of the
 `check` rule. And is defined in terms of it:
 
-[source]
+[source,jam]
 ----
 rule require ( expressions + : language ? )
 {
@@ -780,7 +934,7 @@ The expression can also use explicit "and", "or" logical operators
 to for more complex checks:
 
 
-[source]
+[source,jam]
 ----
 import path-to-predef-src/tools/check/predef
     : check require
@@ -794,7 +948,7 @@ You can use the `check` rule for more control and to implement
 something other than control of what gets built. The definition
 for the `check` rule is:
 
-[source]
+[source,jam]
 ----
 rule check ( expressions + : language ? : true-properties * : false-properties * )
 ----
@@ -805,7 +959,7 @@ evaluate to true. Otherwise the `false-properties` get added as
 requirements. For example you could use it to enable or disable
 features in your programs:
 
-[source]
+[source,jam]
 ----
 import path-to-predef-src/tools/check/predef
     : check require
@@ -823,8 +977,13 @@ expressions. It defaults to "c++", but can be any of: "c", "cpp",
 "objc", and "objcpp".
 
 
+:leveloffset: +1
+
 include::history.adoc[]
+
 include::todo.adoc[]
+
+:leveloffset: -1
 
 == Acknowledgements
 

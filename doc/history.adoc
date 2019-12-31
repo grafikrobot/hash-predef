@@ -5,14 +5,15 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 ////
 
-== History
+= History
 
-=== 1.11
+== 1.11
 
 * Add `HASH_PREDEF_ARCH_RISCV`. (from Andreas Schwab)
 * Add RISC-V endian detection. (from Thomas Petazzoni)
+* Convert documentation to AsciiDoctor format.
 
-=== 1.10
+== 1.10
 
 * Fix bad include of sub-BSD os headers from main BSD header.
 * Fix use of deprecated `TARGET_IPHONE_SIMULATOR` instead of newer
@@ -23,12 +24,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 * Add support for consuming Predef as a CMake project.
 * Add support for consuming Predef as a standalone B2 project.
 
-=== 1.9
+== 1.9
 
 * Fixes for `HASH_PREDEF_COMP_NVCC*` predefs. (from Benjamin Worpitz)
 * Add specific version information for Cygwin OS predef. (from James E. King III)
 
-=== 1.8
+== 1.8
 
 * Add support for __ARM_ARCH macro. (from Tim Blechmann)
 * Add detection for PTX architecture. (from Benjamin Worpitz)
@@ -36,13 +37,13 @@ http://www.boost.org/LICENSE_1_0.txt)
 * Add support for detecting CUDA. (from Benjamin Worpitz)
 * Remove reference to obsolete HASH_PREDEF_ARCH_AMD64. (from Peter Kolbus)
 
-=== 1.7
+== 1.7
 
 * Fix HASH_PREDEF_ARCH_PARISK/HASH_PREDEF_ARCH_PARISC typo.
 * Improved Windows Universal Platform detection. (from James E. King, III)
 * Add detection for CloudABI with cloudlibc. (from James E. King, III)
 
-=== 1.6
+== 1.6
 
 * Fix Intel C/{CPP} version 9999 detection to be 12.1.0.
 * Addition of `HASH_PREDEF_WORKAROUND` and `HASH_PREDEF_TESTED_AT` macros
@@ -52,7 +53,7 @@ http://www.boost.org/LICENSE_1_0.txt)
   Baratov)
 * Fix MinGW incorrect header guard. (from Ruslan Baratov)
 
-=== 1.5
+== 1.5
 
 * Fix Intel C/{CPP} compiler version specification.
 * Add `HASH_PREDEF_VERSION_NUMBER_MAJOR`, `HASH_PREDEF_VERSION_NUMBER_MINOR`,
@@ -61,12 +62,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 * Change VS version numbering. Version after VS2015 will use the compiler
   version instead of the varied product versions.
 
-=== 1.4.1
+== 1.4.1
 
 * Small fixes for some redefinition errors, and mispelled macros.
 * Slightly rearrangement of structure to comply with current library requirements.
 
-=== 1.4
+== 1.4
 
 * Add detection of SIMD hardware. With the addition of the `HASH_PREDEF_HW_*`
   category (from Charly Chevalier).
@@ -75,7 +76,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 * Fix test warnings.
 * Fix typos on `AVAILABLE` macros for Windows Platform. (from Vemund Handeland)
 
-=== 1.3
+== 1.3
 
 * Fix many problems with `predef_check` functionality.
 * Update SunPro detection to accommodate latest version of compiler from Oracle.
@@ -84,7 +85,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 * Fix `HASH_PREDEF_ARCH_PARISC` to correctly spelled name (from Graham Hanson).
 * Fix `MAKE_YYYYM` macros to correctly limit the month (from rick68).
 
-=== 1.2
+== 1.2
 
 * Account for skip in Visual Studio product version vs. compiler version.
   This supports version of VS 2015 an onward.
@@ -94,7 +95,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 * Add `predef_check` program and BBv2 integration for build configuration
   checks.
 
-=== 1.1
+== 1.1
 
 * Addition of `HASH_PREDEF_PLAT_*` platform definitions for MinGW and
   Windows platform variants.
