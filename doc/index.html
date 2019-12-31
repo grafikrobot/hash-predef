@@ -1226,9 +1226,9 @@ macros:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The Predef library uses Quickbook for documentation and for the
-individual predefs to appear in the reference section we add in-code
-documentation followed by the zero-value default definition of the
+<p>The Predef library uses <a href="https://asciidoctor.org/">Asciidoctor</a> for documentation
+and for the individual predefs to appear in the reference section we add
+in-code documentation followed by the zero-value default definition of the
 predef macro. We strongly recommend this particular placement of the
 documentation and default definition because some development
 environments automatically interpret this and provide in-line help
@@ -1236,10 +1236,12 @@ for the macro. In particular this works for the popular Eclipse IDE:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cm">/*`</span>
-<span class="tok-cm">[heading `HASH_PREDEF_category_tag`]</span>
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cm">/* tag::reference[]</span>
+
+<span class="tok-cm">= `HASH_PREDEF_category_tag`</span>
 
 <span class="tok-cm">Documentation about what is detected.</span>
+
 <span class="tok-cm">*/</span>
 
 <span class="tok-cp">#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE</span></code></pre>
@@ -1249,11 +1251,11 @@ for the macro. In particular this works for the popular Eclipse IDE:</p>
 <p>Next is the detection and definition of the particular predef. The
 structure for this is to do a single overall check (<code>condition_a</code>) and
 place further version detection inside this. The first action inside
-the overall check is to &#8220;#undef HASH_PREDEF_category_tag&#8221; which undefines
+the overall check is to &#8220;#undef HASH_PREDEF_category_tag&#8221; which removes
 the zero-value default. The rest is up to the you how to do the checks
 for defining the version. But at minimum it must
-&#8220;#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE&#8221; as the fallback
-to minimally indicate that the predef was detected:</p>
+&#8220;#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE&#8221; as
+the fallback to minimally indicate that the predef was detected:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1286,6 +1288,16 @@ to minimally indicate that the predef was detected:</p>
 </div>
 </div>
 <div class="paragraph">
+<p>We close out the include guard at this point. We do whis before the test
+declaration as the testing system includes the headers multiple times
+to generate the needed testing code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cp">#endif</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>The testing of the predef macros is automated to generate checks for all
 the defined predefs, whether detected or not. To do this we need to
 declare the predef to the test system. This declaration is empty for
@@ -1296,14 +1308,6 @@ to create informational output:</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;predef/detail/test.h&gt;</span><span class="tok-cp"></span>
 <span class="tok-n">HASH_PREDEF_DECLARE_TEST</span><span class="tok-p">(</span><span class="tok-n">HASH_PREDEF_category_tag</span><span class="tok-p">,</span><span class="tok-n">HASH_PREDEF_category_tag_NAME</span><span class="tok-p">)</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And, of course, we last need to close out the include guard:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cp">#endif</span></code></pre>
 </div>
 </div>
 </div>

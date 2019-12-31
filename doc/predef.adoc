@@ -369,9 +369,9 @@ macros:
 #include <predef/make.h>
 ----
 
-The Predef library uses Quickbook for documentation and for the
-individual predefs to appear in the reference section we add in-code
-documentation followed by the zero-value default definition of the
+The Predef library uses https://asciidoctor.org/[Asciidoctor] for documentation
+and for the individual predefs to appear in the reference section we add
+in-code documentation followed by the zero-value default definition of the
 predef macro. We strongly recommend this particular placement of the
 documentation and default definition because some development
 environments automatically interpret this and provide in-line help
@@ -379,10 +379,12 @@ for the macro. In particular this works for the popular Eclipse IDE:
 
 [source]
 ----
-/*`
-[heading `HASH_PREDEF_category_tag`]
+/* tag::reference[]
+
+= `HASH_PREDEF_category_tag`
 
 Documentation about what is detected.
+
 */
 
 #define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
@@ -391,11 +393,11 @@ Documentation about what is detected.
 Next is the detection and definition of the particular predef. The
 structure for this is to do a single overall check (`condition_a`) and
 place further version detection inside this. The first action inside
-the overall check is to "`#undef HASH_PREDEF_category_tag`" which undefines
+the overall check is to "`#undef HASH_PREDEF_category_tag`" which removes
 the zero-value default. The rest is up to the you how to do the checks
 for defining the version. But at minimum it must
-"`#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE`" as the fallback
-to minimally indicate that the predef was detected:
+"`#define HASH_PREDEF_category_tag HASH_PREDEF_VERSION_NUMBER_AVAILABLE`" as
+the fallback to minimally indicate that the predef was detected:
 
 [source]
 ----
@@ -425,6 +427,15 @@ And for convenience we also want to provide a `*_NAME` macro:
 #define HASH_PREDEF_category_tag_NAME "Name"
 ----
 
+We close out the include guard at this point. We do whis before the test
+declaration as the testing system includes the headers multiple times
+to generate the needed testing code.
+
+[source]
+----
+#endif
+----
+
 The testing of the predef macros is automated to generate checks for all
 the defined predefs, whether detected or not. To do this we need to
 declare the predef to the test system. This declaration is empty for
@@ -435,13 +446,6 @@ to create informational output:
 ----
 #include <predef/detail/test.h>
 HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_category_tag,HASH_PREDEF_category_tag_NAME)
-----
-
-And, of course, we last need to close out the include guard:
-
-[source]
-----
-#endif
 ----
 
 === Adding exclusive predefs
@@ -680,8 +684,6 @@ include::../include/predef/language/stdcpp.h[tag=reference]
 
 :leveloffset: +3
 
-include::../include/predef/library/c/_prefix.h[tag=reference]
-
 include::../include/predef/library/c/cloudabi.h[tag=reference]
 
 include::../include/predef/library/c/gnu.h[tag=reference]
@@ -691,8 +693,6 @@ include::../include/predef/library/c/uc.h[tag=reference]
 include::../include/predef/library/c/vms.h[tag=reference]
 
 include::../include/predef/library/c/zos.h[tag=reference]
-
-include::../include/predef/library/std/_prefix.h[tag=reference]
 
 include::../include/predef/library/std/cxx.h[tag=reference]
 
