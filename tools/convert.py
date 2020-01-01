@@ -75,9 +75,9 @@ class convert():
             ],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
-            [r'^tools/check/predef.jam', source_transform_prog+[
+            [r'^tools/check/predef.jam', [
                 [self.replace_, r'HASH_PREDEF_INCLUDE', 'BOOST_ROOT'],
-            ]],
+            ]+source_transform_prog],
             [r'^tools/ci/(.*)[.]py$', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
@@ -138,9 +138,9 @@ class convert():
             ]],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
-            [r'^tools/check/predef.jam', source_transform_prog+[
+            [r'^tools/check/predef.jam', [
                 [self.replace_, r'BOOST_ROOT', 'HASH_PREDEF_INCLUDE'],
-            ]],
+            ]+source_transform_prog],
             [r'^tools/ci/(.*)[.]py$', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
