@@ -63,19 +63,21 @@ class convert():
                 [self.rename_, r'^(include/)(.*)', '\\1boost/\\2']
             ]+source_transform_prog
             ],
-            [r'^doc/(.*)[.]qbk', [
+            [r'^doc/(.*)[.]adoc', [
                 [self.replace_, r'Hash Predef', 'Boost.Predef'],
                 [self.replace_, r'HASH_PREDEF_category_tag_H',
                     'BOOST_PREDEF_category_tag_H'],
                 [self.replace_, r'HASH_PREDEF_category_tag',
                     'BOOST_category_tag'],
-                [self.replace_, r'include [.][.]/include/predef',
-                    'include ../include/boost/predef'],
+                [self.replace_, r'include::[.][.]/include/predef',
+                    'include::../include/boost/predef'],
             ]+source_transform_prog
             ],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
-            [r'^tools/check/predef.jam', source_transform_prog],
+            [r'^tools/check/predef.jam', source_transform_prog+[
+                [self.replace_, r'HASH_PREDEF_INCLUDE', 'BOOST_ROOT'],
+            ]],
             [r'^tools/ci/(.*)[.]py$', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
@@ -126,17 +128,19 @@ class convert():
                 [self.rename_, r'^(include/)boost/(.*)', '\\1\\2']
             ]+source_transform_prog
             ],
-            [r'^doc/(.*)[.]qbk', source_transform_prog+[
+            [r'^doc/(.*)[.]adoc', source_transform_prog+[
                 [self.replace_, r'Boost[.]Predef', 'Hash Predef'],
                 [self.replace_, r'BOOST_cat.gory_tag',
                     'HASH_PREDEF_category_tag'],
                 [self.replace_, r'BOOST_CCOMP_', 'HASH_PREDEF_COMP_'],
-                [self.replace_, r'include [.][.]/include/boost/predef',
-                    'include ../include/predef'],
+                [self.replace_, r'include::[.][.]/include/boost/predef',
+                    'include::../include/predef'],
             ]],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
-            [r'^tools/check/predef.jam', source_transform_prog],
+            [r'^tools/check/predef.jam', source_transform_prog+[
+                [self.replace_, r'BOOST_ROOT', 'HASH_PREDEF_INCLUDE'],
+            ]],
             [r'^tools/ci/(.*)[.]py$', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
