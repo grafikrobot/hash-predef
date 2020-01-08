@@ -1,0 +1,131 @@
+/*
+Copyright Rene Rivera 2018-2019
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENSE.txt or http://www.boost.org/LICENSE_1_0.txt)
+*/
+
+body {
+    padding-top: 60px;
+}
+
+.menubar {
+	position: fixed;
+	display: block;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: #FFFC;
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+    text-align: center;
+    z-index: 5;
+}
+
+.menubar p {
+	margin: 0px;
+}
+
+.menubar image {
+	padding-right: 1em;
+}
+
+.menubar-item {
+	padding-left: 1em;
+    text-shadow: 0px 0px 3px grey;
+}
+
+#toctitle {
+    display: none;
+}
+
+#toc ul {
+    padding: 0 !important;
+}
+
+#toc ul a {
+    display: block;
+    padding: 0.1em 0.1em 0.1em 1em;
+    margin: 0;
+}
+
+#toc ul ul a {
+    margin: 0 !important;
+}
+
+#toc ul a:hover {
+    text-shadow: 0px 0px 3px grey;
+}
+
+#toc ul.sectlevel1 > li:first-child > a:first-child {
+    padding: 260px 0 0 0;
+    background: url(media/logo-light-with-shadow-190w.png) no-repeat center;
+    height: 0;
+    overflow: hidden;
+}
+
+#toc ul.sectlevel1 > li a:first-child {
+    font-weight: bold;
+    margin: 0.8em 0 0.5em 0;
+    text-transform: uppercase;
+}
+
+#toc ul.sectlevel2 > li a:first-child {
+    font-weight: normal;
+    text-transform: none;
+}
+
+.admonitionblock .icon .title {
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+}
+
+.caution .icon .title {
+    color: rgba(192, 51, 0, 1);
+}
+
+.important .icon .title {
+    color: rgba(192, 0, 0, 1);
+}
+
+.note .icon .title {
+    color: rgba(26, 64, 128, 1);
+}
+
+.tip .icon .title {
+    color: rgba(255, 192, 0, 1);
+}
+
+.warning .icon .title {
+    color: rgba(192, 102, 0, 1);
+}
+
+div.feature p {
+    margin-left: 48pt;
+    clear: both;
+}
+
+div.feature p span.icon {
+    display: block !important;
+    margin-left: -48pt;
+    float: left;
+    font-size: 20pt;
+    width: 36pt;
+    height: 36pt;
+    text-align: center;
+    line-height: 36pt;
+}
+
+.logo {
+	float: right;
+	margin: 0 0 2em 2em;
+}
+
+div.sect1 {
+    clear: both;
+}
+
+#copyright p {
+    text-align: center;
+    font-size: 10pt !important;
+    font-style: italic;
+}
