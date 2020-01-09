@@ -134,8 +134,8 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/boostorg/build/archive/master.tar.bz2
-        tar -jxf build-master.tar.bz2
+        wget -nv https://github.com/boostorg/build/archive/master.tar.gz
+        tar -zxf build-master.tar.gz
         cd build-master
         CXX= ./bootstrap.sh
         sudo ./b2 install
@@ -245,8 +245,8 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/boostorg/build/archive/master.tar.bz2
-        tar -jxf build-master.tar.bz2
+        wget -nv https://github.com/boostorg/build/archive/master.tar.gz
+        tar -zxf build-master.tar.gz
         cd build-master
         CXX= ./bootstrap.sh
         sudo ./b2 install
@@ -346,8 +346,8 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/boostorg/build/archive/master.tar.bz2
-        tar -jxf build-master.tar.bz2
+        wget -nv https://github.com/boostorg/build/archive/master.tar.gz
+        tar -zxf build-master.tar.gz
         cd build-master
         CXX= ./bootstrap.sh
         sudo ./b2 install
