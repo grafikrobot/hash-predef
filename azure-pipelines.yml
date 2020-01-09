@@ -135,8 +135,8 @@ stages:
         set -e
         pushd ${HOME}
         wget -nv https://github.com/boostorg/build/archive/master.tar.gz
-        tar -zxf build-master.tar.gz
-        cd build-master
+        tar -zxf master.tar.gz
+        cd master
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -246,8 +246,8 @@ stages:
         set -e
         pushd ${HOME}
         wget -nv https://github.com/boostorg/build/archive/master.tar.gz
-        tar -zxf build-master.tar.gz
-        cd build-master
+        tar -zxf master.tar.gz
+        cd master
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -347,8 +347,8 @@ stages:
         set -e
         pushd ${HOME}
         wget -nv https://github.com/boostorg/build/archive/master.tar.gz
-        tar -zxf build-master.tar.gz
-        cd build-master
+        tar -zxf master.tar.gz
+        cd master
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
