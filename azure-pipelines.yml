@@ -361,6 +361,10 @@ stages:
         mkdir -p "${DOC_DIR}" || exit 1
         popd
       displayName: 'Clone Website'
+      env:
+        GH_TOKEN: $(GitHubToken)
+        WEB_DIR: website
+        DOC_DIR: manual/$(Build.SourceBranchName)
     - bash: |
         echo "using asciidoctor ;" > ${HOME}/user-config.jam
         pushd doc
