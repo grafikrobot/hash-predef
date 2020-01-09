@@ -136,7 +136,7 @@ stages:
         pushd ${HOME}
         wget -nv https://github.com/boostorg/build/archive/master.tar.gz
         tar -zxf master.tar.gz
-        cd master
+        cd build-master
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -247,7 +247,7 @@ stages:
         pushd ${HOME}
         wget -nv https://github.com/boostorg/build/archive/master.tar.gz
         tar -zxf master.tar.gz
-        cd master
+        cd build-master
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -348,7 +348,7 @@ stages:
         pushd ${HOME}
         wget -nv https://github.com/boostorg/build/archive/master.tar.gz
         tar -zxf master.tar.gz
-        cd master
+        cd build-master
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -357,17 +357,17 @@ stages:
         rm -rf ${WEB_DIR}
         git clone --verbose --branch gh-pages --depth 1 "https://${GH_TOKEN}github.com/grafikrobot/hash-predef.git" ${WEB_DIR} || exit 1
         pushd ${WEB_DIR}
-        git rm --ignore-unmatch -r "manual/${AZP_BRANCH_NAME}" || exit 1
-        mkdir -p "manual/${AZP_BRANCH_NAME}" || exit 1
+        git rm --ignore-unmatch -r "${DOC_DIR}" || exit 1
+        mkdir -p "${DOC_DIR}" || exit 1
         popd
       displayName: 'Clone Website'
     - bash: |
         echo "using asciidoctor ;" > ${HOME}/user-config.jam
         pushd doc
-        b2 --doc-dir=${WEB_DIR}/manual/${AZP_BRANCH_NAME} html
+        b2 --doc-dir=${WEB_DIR}/${DOC_DIR} html
         git config user.email "doc-bot"
         git config user.name "doc-bot"
-        cd ${WEB_DIR}/manual/${AZP_BRANCH_NAME}
+        cd ${WEB_DIR}/${DOC_DIR}
         git add --verbose . || exit 1
         git commit -m "Update documentation."
         git push
@@ -376,3 +376,4 @@ stages:
       env:
         GH_TOKEN: $(GitHubToken)
         WEB_DIR: website
+        DOC_DIR: manual/$(Build.SourceBranchName)
