@@ -37,11 +37,11 @@ stages:
         GCC 9 (GNU):
           TOOLSET: gcc
           CXX: g++-9
-          B2_ARGS: cxxstd=03,11,14,17,2a cxxstd-dialect=gnu
+          B2_ARGS: 'cxxstd=03,11,14,17,2a cxxstd-dialect=gnu'
         GCC 9 (ISO):
           TOOLSET: gcc
           CXX: g++-9
-          B2_ARGS: cxxstd=03,11,14,17,2a cxxstd-dialect=iso
+          B2_ARGS: 'cxxstd=03,11,14,17,2a cxxstd-dialect=iso'
         GCC 9:
           TOOLSET: gcc
           CXX: g++-9
