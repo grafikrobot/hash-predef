@@ -30,95 +30,123 @@ stages:
   jobs:
 
   - job: 'Linux'
-    pool:
-      vmImage: 'ubuntu-16.04'
     strategy:
       matrix:
         GCC 9 (GNU):
           TOOLSET: gcc
           CXX: g++-9
+          PACKAGES: g++-9
           B2_ARGS: 'cxxstd=03,11,14,17,2a cxxstd-dialect=gnu'
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 9 (ISO):
           TOOLSET: gcc
           CXX: g++-9
+          PACKAGES: g++-9
           B2_ARGS: 'cxxstd=03,11,14,17,2a cxxstd-dialect=iso'
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 9:
           TOOLSET: gcc
           CXX: g++-9
           PACKAGES: g++-9
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 8:
           TOOLSET: gcc
           CXX: g++-8
           PACKAGES: g++-8
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 7:
           TOOLSET: gcc
           CXX: g++-7
           PACKAGES: g++-7
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 6:
           TOOLSET: gcc
           CXX: g++-6
           PACKAGES: g++-6
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 5:
           TOOLSET: gcc
           CXX: g++-5
           PACKAGES: g++-5
+          VM_IMAGE: 'ubuntu-18.04'
         GCC 4.9:
           TOOLSET: gcc
           CXX: g++-4.9
           PACKAGES: g++-4.9
+          VM_IMAGE: 'ubuntu-16.04'
         GCC 4.8:
           TOOLSET: gcc
           CXX: g++-4.8
           PACKAGES: g++-4.8
+          VM_IMAGE: 'ubuntu-16.04'
         GCC 4.7:
           TOOLSET: gcc
           CXX: g++-4.7
           PACKAGES: g++-4.7
+          VM_IMAGE: 'ubuntu-16.04'
+        Clang 9:
+          TOOLSET: clang
+          CXX: clang++-9
+          PACKAGES: clang-9
+          LLVM_REPO: llvm-toolchain-xenial-9
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 8:
           TOOLSET: clang
           CXX: clang++-8
           PACKAGES: clang-8
           LLVM_REPO: llvm-toolchain-xenial-8
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 7:
           TOOLSET: clang
           CXX: clang++-7
           PACKAGES: clang-7
           LLVM_REPO: llvm-toolchain-xenial-7
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 6:
           TOOLSET: clang
           CXX: clang++-6.0
           PACKAGES: clang-6.0
           LLVM_REPO: llvm-toolchain-xenial-6.0
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 5:
           TOOLSET: clang
           CXX: clang++-5.0
           PACKAGES: clang-5.0
           LLVM_REPO: llvm-toolchain-xenial-5.0
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 4:
           TOOLSET: clang
           CXX: clang++-4.0
           PACKAGES: clang-4.0
           LLVM_REPO: llvm-toolchain-xenial-4.0
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 3.9:
           TOOLSET: clang
           CXX: clang++-3.9
           PACKAGES: clang-3.9
+          VM_IMAGE: 'ubuntu-18.04'
         Clang 3.8:
           TOOLSET: clang
           CXX: clang++-3.8
           PACKAGES: clang-3.8
+          VM_IMAGE: 'ubuntu-16.04'
         Clang 3.7:
           TOOLSET: clang
           CXX: clang++-3.7
           PACKAGES: clang-3.7
+          VM_IMAGE: 'ubuntu-16.04'
         Clang 3.6:
           TOOLSET: clang
           CXX: clang++-3.6
           PACKAGES: clang-3.6
+          VM_IMAGE: 'ubuntu-16.04'
         Clang 3.5:
           TOOLSET: clang
           CXX: clang++-3.5
           PACKAGES: clang-3.5
+          VM_IMAGE: 'ubuntu-16.04'
+    pool:
+      vmImage: $(VM_IMAGE)
     steps:
     - bash: |
         set -e
@@ -153,21 +181,31 @@ stages:
   - job: 'macOS'
     strategy:
       matrix:
+        Xcode 11.3.1:
+          TOOLSET: clang
+          CXX: clang++
+          XCODE_APP: /Applications/Xcode_11.3.1.app
+          VM_IMAGE: 'macOS-10.15'
+        Xcode 11.3:
+          TOOLSET: clang
+          CXX: clang++
+          XCODE_APP: /Applications/Xcode_11.3.app
+          VM_IMAGE: 'macOS-10.15'
         Xcode 11.2:
           TOOLSET: clang
           CXX: clang++
           XCODE_APP: /Applications/Xcode_11.2.app
-          VM_IMAGE: 'macOS-10.14'
+          VM_IMAGE: 'macOS-10.15'
         Xcode 11.1:
           TOOLSET: clang
           CXX: clang++
           XCODE_APP: /Applications/Xcode_11.1.app
-          VM_IMAGE: 'macOS-10.14'
+          VM_IMAGE: 'macOS-10.15'
         Xcode 11.0:
           TOOLSET: clang
           CXX: clang++
           XCODE_APP: /Applications/Xcode_11.app
-          VM_IMAGE: 'macOS-10.14'
+          VM_IMAGE: 'macOS-10.15'
         Xcode 10.2.1:
           TOOLSET: clang
           CXX: clang++
@@ -261,68 +299,92 @@ stages:
         popd
       displayName: Test
 
-  # - job: 'Windows'
-  #   strategy:
-  #     matrix:
-  #       VS 2019:
-  #         TOOLSET: vc142
-  #         B2_ARGS: address-model=32,64 cxxstd=14,latest
-  #         VM_IMAGE: 'windows-2019'
-  #       VS 2019 (UWP DESKTOP):
-  #         TOOLSET: vc142
-  #         B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
-  #         VM_IMAGE: 'windows-2019'
-  #       VS 2019 (UWP PHONE):
-  #         TOOLSET: vc142
-  #         B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP
-  #         VM_IMAGE: 'windows-2019'
-  #       VS 2019 (UWP STORE):
-  #         TOOLSET: vc142
-  #         B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP
-  #         VM_IMAGE: 'windows-2019'
-  #       VS 2019 (UWP SERVER):
-  #         TOOLSET: vc142
-  #         B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_SERVER
-  #         VM_IMAGE: 'windows-2019'
-  #       VS 2019 (UWP SYSTEM):
-  #         TOOLSET: vc142
-  #         B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_SYSTEM
-  #         VM_IMAGE: 'windows-2019'
-  #       VS 2017:
-  #         TOOLSET: vc141
-  #         VM_IMAGE: 'vs2017-win2016'
-  #       VS 2015:
-  #         TOOLSET: vc14
-  #         VM_IMAGE: 'vs2015-win2012r2'
-  #       VS 2013:
-  #         TOOLSET: vc12
-  #         VM_IMAGE: 'vs2015-win2012r2'
-  #       MinGW 8.1.0:
-  #         TOOLSET: mingw
-  #         VM_IMAGE: 'vs2017-win2016'
-  #       MinGW 8.1.0 (UWP DESKTOP):
-  #         TOOLSET: mingw
-  #         B2_ARGS: define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
-  #         VM_IMAGE: 'vs2017-win2016'
-  #       MinGW 8.1.0 (UWP STORE):
-  #         TOOLSET: mingw
-  #         B2_ARGS: define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP
-  #         VM_IMAGE: 'vs2017-win2016'
-  #   pool:
-  #     vmImage: $(VM_IMAGE)
-  #   steps:
-  #   - powershell: |
-  #       pushd $env:HOME
-  #       ./bootstrap.bat
-  #       ./b2.exe install
-  #       popd
-  #     displayName: 'Install B2'
-  #   - powershell: |
-  #       echo "using" $env:TOOLSET ":" ":" $env:CXX ";" > $env:HOME/user-config.jam
-  #       cd test
-  #       b2 --debug-configuration -a toolset=$env:TOOLSET $env:B2_ARGS
-  #       cd ..
-  #     displayName: Test
+  - job: 'Windows'
+    strategy:
+      matrix:
+        VS 2019:
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.2
+          B2_ARGS: address-model=32,64 cxxstd=14,latest
+          VM_IMAGE: 'windows-2019'
+        VS 2019 (UWP DESKTOP):
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.2
+          B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
+          VM_IMAGE: 'windows-2019'
+        VS 2019 (UWP PHONE):
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.2
+          B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP
+          VM_IMAGE: 'windows-2019'
+        VS 2019 (UWP STORE):
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.2
+          B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP
+          VM_IMAGE: 'windows-2019'
+        VS 2019 (UWP SERVER):
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.2
+          B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_SERVER
+          VM_IMAGE: 'windows-2019'
+        VS 2019 (UWP SYSTEM):
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.2
+          B2_ARGS: address-model=64 define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_SYSTEM
+          VM_IMAGE: 'windows-2019'
+        VS 2017:
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.1
+          VM_IMAGE: 'vs2017-win2016'
+        VS 2015:
+          TOOLSET: msvc
+          TOOLSET_VERSION: 14.0
+          VM_IMAGE: 'vs2015-win2012r2'
+        VS 2013:
+          TOOLSET: msvc
+          TOOLSET_VERSION: 12.0
+          VM_IMAGE: 'vs2015-win2012r2'
+        MinGW 8.1.0:
+          TOOLSET: mingw
+          VM_IMAGE: 'vs2017-win2016'
+        MinGW 8.1.0 (UWP DESKTOP):
+          TOOLSET: mingw
+          B2_ARGS: define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP
+          VM_IMAGE: 'vs2017-win2016'
+        MinGW 8.1.0 (UWP STORE):
+          TOOLSET: mingw
+          B2_ARGS: define=_WIN32_WINNT=0x0A00 define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP
+          VM_IMAGE: 'vs2017-win2016'
+    pool:
+      vmImage: $(VM_IMAGE)
+    steps:
+    - script: |
+        cd %BUILD_SOURCESDIRECTORY%/..
+        curl "https://github.com/boostorg/build/archive/master.zip" -L -o b2.zip
+      displayName: Download B2
+    - task: ExtractFiles@1
+      inputs:
+        archiveFilePatterns: $(Build.SourcesDirectory)/../b2.zip
+        destinationFolder: $(Build.SourcesDirectory)/..
+        cleanDestinationFolder: false
+      displayName: Extract B2
+    - script: |
+        echo using %TOOLSET% ^: %TOOLSET_VERSION% ^; > %HOMEDRIVE%%HOMEPATH%/user-config.jam
+        cd %BUILD_SOURCESDIRECTORY%/../build-master
+        cmd.exe /c bootstrap.bat
+        b2.exe install
+      displayName: Install B2
+    - powershell: |
+        pushd $env:HOME
+        ./bootstrap.bat
+        ./b2.exe install
+        popd
+      displayName: 'Install B2'
+    - powershell: |
+        set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../build-master
+        cd %BUILD_SOURCESDIRECTORY%/test
+        %BUILD_SOURCESDIRECTORY%/../build-develop/b2.exe --debug-configuration -a toolset=%TOOLSET% $env:B2_ARGS
+      displayName: Test
 
 - stage: WebsiteUpdate
   displayName: 'Website Update'
