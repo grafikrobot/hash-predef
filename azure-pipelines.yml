@@ -374,10 +374,10 @@ stages:
         cmd.exe /c bootstrap.bat
         b2.exe install
       displayName: Install B2
-    - powershell: |
+    - script: |
         set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../build-master
         cd %BUILD_SOURCESDIRECTORY%/test
-        %BUILD_SOURCESDIRECTORY%/../build-develop/b2.exe --debug-configuration -a toolset=%TOOLSET% $env:B2_ARGS
+        %BUILD_SOURCESDIRECTORY%/../build-develop/b2.exe --debug-configuration -a toolset=%TOOLSET% %B2_ARGS%
       displayName: Test
 
 - stage: WebsiteUpdate
