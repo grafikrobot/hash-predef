@@ -372,12 +372,11 @@ stages:
         echo using %TOOLSET% ^: %TOOLSET_VERSION% ^; > %HOMEDRIVE%%HOMEPATH%/user-config.jam
         cd %BUILD_SOURCESDIRECTORY%/../build-master
         cmd.exe /c bootstrap.bat
-        b2.exe install
       displayName: Install B2
     - script: |
         set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../build-master
         cd %BUILD_SOURCESDIRECTORY%/test
-        %BUILD_SOURCESDIRECTORY%/../build-develop/b2.exe --debug-configuration -a toolset=%TOOLSET% %B2_ARGS%
+        %BUILD_SOURCESDIRECTORY%/../build-master/b2.exe --debug-configuration -a toolset=%TOOLSET% %B2_ARGS%
       displayName: Test
 
 - stage: WebsiteUpdate
