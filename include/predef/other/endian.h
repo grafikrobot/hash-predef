@@ -13,7 +13,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/library/c/gnu.h>
 #include <predef/os/macos.h>
 #include <predef/os/bsd.h>
-#include <predef/os/android.h>
+#include <predef/platform/android.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_ENDIAN_*`
@@ -54,7 +54,7 @@ information and acquired knowledge:
  */
 #if !HASH_PREDEF_ENDIAN_BIG_BYTE && !HASH_PREDEF_ENDIAN_BIG_WORD && \
     !HASH_PREDEF_ENDIAN_LITTLE_BYTE && !HASH_PREDEF_ENDIAN_LITTLE_WORD
-#   if HASH_PREDEF_LIB_C_GNU || HASH_PREDEF_OS_ANDROID
+#   if HASH_PREDEF_LIB_C_GNU || HASH_PREDEF_PLAT_ANDROID
 #       include <endian.h>
 #   else
 #       if HASH_PREDEF_OS_MACOS

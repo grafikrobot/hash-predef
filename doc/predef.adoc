@@ -724,8 +724,6 @@ include::../include/predef/os/aix.h[tag=reference]
 
 include::../include/predef/os/amigaos.h[tag=reference]
 
-include::../include/predef/os/android.h[tag=reference]
-
 include::../include/predef/os/beos.h[tag=reference]
 
 include::../include/predef/os/bsd.h[tag=reference]

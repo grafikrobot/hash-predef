@@ -29,6 +29,4 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/os/vms.h>
 #include <predef/os/windows.h>
 
-#include <predef/os/android.h>
-
 #endif
