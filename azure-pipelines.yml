@@ -390,7 +390,7 @@ stages:
     steps:
     - task: UsePythonVersion@0
       inputs:
-        versionSpec: '2.x'
+        versionSpec: '3.x'
     - task: UseRubyVersion@0
     - bash: |
         pip install --user Pygments
