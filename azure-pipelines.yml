@@ -244,6 +244,7 @@ stages:
         uname -a
         sudo xcode-select -switch ${XCODE_APP}
         which clang++
+        clang++ --version
       displayName: 'Install CXX'
     - bash: |
         set -e
