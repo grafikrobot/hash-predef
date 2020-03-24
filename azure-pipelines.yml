@@ -231,11 +231,6 @@ stages:
           CXX: clang++
           XCODE_APP: /Applications/Xcode_10.app
           VM_IMAGE: 'macOS-10.14'
-        Xcode 9.4.1:
-          TOOLSET: clang
-          CXX: clang++
-          XCODE_APP: /Applications/Xcode_9.4.1.app
-          VM_IMAGE: 'macOS-10.14'
     pool:
       vmImage: $(VM_IMAGE)
     steps:
