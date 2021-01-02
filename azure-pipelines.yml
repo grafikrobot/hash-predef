@@ -162,9 +162,9 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/boostorg/build/archive/master.tar.gz
-        tar -zxf master.tar.gz
-        cd build-master
+        wget -nv https://github.com/boostorg/build/archive/develop.tar.gz
+        tar -zxf develop.tar.gz
+        cd build-develop
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -244,9 +244,9 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/boostorg/build/archive/master.tar.gz
-        tar -zxf master.tar.gz
-        cd build-master
+        wget -nv https://github.com/boostorg/build/archive/develop.tar.gz
+        tar -zxf develop.tar.gz
+        cd build-develop
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
@@ -313,7 +313,7 @@ stages:
     steps:
     - script: |
         cd %BUILD_SOURCESDIRECTORY%/..
-        curl "https://github.com/boostorg/build/archive/master.zip" -L -o b2.zip
+        curl "https://github.com/boostorg/build/archive/develop.zip" -L -o b2.zip
       displayName: Download B2
     - task: ExtractFiles@1
       inputs:
@@ -323,13 +323,13 @@ stages:
       displayName: Extract B2
     - script: |
         echo using %TOOLSET% ^: %TOOLSET_VERSION% ^; > %HOMEDRIVE%%HOMEPATH%/user-config.jam
-        cd %BUILD_SOURCESDIRECTORY%/../build-master
+        cd %BUILD_SOURCESDIRECTORY%/../build-develop
         cmd.exe /c bootstrap.bat
       displayName: Install B2
     - script: |
-        set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../build-master
+        set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../build-develop
         cd %BUILD_SOURCESDIRECTORY%/test
-        %BUILD_SOURCESDIRECTORY%/../build-master/b2.exe --debug-configuration -a toolset=%TOOLSET% %B2_ARGS%
+        %BUILD_SOURCESDIRECTORY%/../build-develop/b2.exe --debug-configuration -a toolset=%TOOLSET% %B2_ARGS%
       displayName: Test
 
 - stage: WebsiteUpdate
@@ -354,9 +354,9 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/boostorg/build/archive/master.tar.gz
-        tar -zxf master.tar.gz
-        cd build-master
+        wget -nv https://github.com/boostorg/build/archive/develop.tar.gz
+        tar -zxf develop.tar.gz
+        cd build-develop
         CXX= ./bootstrap.sh
         sudo ./b2 install
         popd
