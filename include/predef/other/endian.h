@@ -54,18 +54,14 @@ information and acquired knowledge:
  */
 #if !HASH_PREDEF_ENDIAN_BIG_BYTE && !HASH_PREDEF_ENDIAN_BIG_WORD && \
     !HASH_PREDEF_ENDIAN_LITTLE_BYTE && !HASH_PREDEF_ENDIAN_LITTLE_WORD
-#   if HASH_PREDEF_LIB_C_GNU || HASH_PREDEF_PLAT_ANDROID
+#   if HASH_PREDEF_LIB_C_GNU || HASH_PREDEF_PLAT_ANDROID || HASH_PREDEF_OS_BSD_OPEN
 #       include <endian.h>
 #   else
 #       if HASH_PREDEF_OS_MACOS
 #           include <machine/endian.h>
 #       else
 #           if HASH_PREDEF_OS_BSD
-#               if HASH_PREDEF_OS_BSD_OPEN
-#                   include <machine/endian.h>
-#               else
-#                   include <sys/endian.h>
-#               endif
+#               include <sys/endian.h>
 #           endif
 #       endif
 #   endif
