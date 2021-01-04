@@ -12,7 +12,7 @@ freebsd_task:
     - { name: 'FreeBSD, GCC 9', env: { CXX: 'g++9', PACKAGE: 'gcc9-devel', TOOLSET: gcc }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, GCC 8', env: { CXX: 'g++8', PACKAGE: 'gcc8-devel', TOOLSET: gcc }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, GCC 7', env: { CXX: 'g++7', PACKAGE: 'gcc7', TOOLSET: gcc }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
-    - { name: 'FreeBSD, Clang 10', env: { CXX: 'clang++10', PACKAGE: 'llvm10, TOOLSET: clang' }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
+    - { name: 'FreeBSD, Clang 10', env: { CXX: 'clang++10', PACKAGE: 'llvm10', TOOLSET: clang }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, Clang 9', env: { CXX: 'clang++90', PACKAGE: 'llvm90', TOOLSET: clang }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, Clang 8', env: { CXX: 'clang++80', PACKAGE: 'llvm80' , TOOLSET: clang}, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, Clang 7', env: { CXX: 'clang++70', PACKAGE: 'llvm70', TOOLSET: clang }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
@@ -33,7 +33,7 @@ freebsd_task:
     "tar -zxf develop.tar.gz",
     "cd build-develop",
     "CXX= ./bootstrap.sh",
-    "sudo ./b2 install",
+    "sudo ./b2 install toolset=clang",
     "cd \"${PCD}\""
     ]
   # Test.
