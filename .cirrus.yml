@@ -42,5 +42,6 @@ freebsd_task:
     "CXX_PATH=`which ${CXX}`",
     "echo \"using ${TOOLSET} : : ${CXX_PATH} ;\" > ${HOME}/user-config.jam",
     "cd test",
-    "b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS}"
+    "b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS} predef-info",
+    "b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef"
     ]

@@ -25,11 +25,14 @@ project
 
 using testing ;
 
-test-suite predef :
+test-suite predef-info :
     [ run info_as_cpp.cpp : : : <test-info>always_show_run_output ]
     [ run info_as_c.c : : : <test-info>always_show_run_output ]
     [ run info_as_objcpp.mm : : : <test-info>always_show_run_output ]
     [ run info_as_objc.m : : : <test-info>always_show_run_output ]
+    ;
+
+test-suite predef :
     [ run version.cpp ]
     [ run make.cpp ]
     [ compile macos_endian.c : [ predef-require "HASH_PREDEF_OS_MACOS" : cpp ] ]
@@ -45,10 +48,10 @@ test-suite predef :
 
 # Minimal testing done for predef for CI. Since
 # we don't have many we can just do all of them.
-alias minimal : predef ;
+alias minimal : predef predef-info ;
 
 # Full testing target for regular regression tests.
-alias full : predef ;
+alias full : predef predef-info ;
 
 # Extra's target. Nothing for Predef.
 alias extra ;
