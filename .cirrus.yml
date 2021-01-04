@@ -27,20 +27,19 @@ freebsd_task:
   # Install B2.
   install_b2_script: [
     "set -e",
-    "pushd ${HOME}",
+    "export \"PCD=${PWD}\"" ; cd ${HOME}",
     "wget -nv https://github.com/boostorg/build/archive/develop.tar.gz",
     "tar -zxf develop.tar.gz",
     "cd build-develop",
     "CXX= ./bootstrap.sh",
     "sudo ./b2 install",
-    "popd"
+    "cd \"${PCD}\""
     ]
   # Test.
   test_script: [
     "set -e",
     "CXX_PATH=`which ${CXX}`",
     "echo \"using ${TOOLSET} : : ${CXX_PATH} ;\" > ${HOME}/user-config.jam",
-    "pushd test",
-    "b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS}",
-    "popd"
+    "cd test",
+    "b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS}"
     ]
