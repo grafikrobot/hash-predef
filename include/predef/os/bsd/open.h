@@ -80,6 +80,7 @@ http://en.wikipedia.org/wiki/Openbsd[OpenBSD] operating system.
     defined(__OpenBSD__) \
     )
 #   ifndef HASH_PREDEF_OS_BSD_AVAILABLE
+#       undef HASH_PREDEF_OS_BSD
 #       define HASH_PREDEF_OS_BSD HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #       define HASH_PREDEF_OS_BSD_AVAILABLE
 #   endif
