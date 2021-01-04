@@ -32,7 +32,7 @@ http://libcxx.llvm.org/[libc++] {CPP} Standard Library.
 
 #if defined(_LIBCPP_VERSION)
 #   undef HASH_PREDEF_LIB_STD_CXX
-#   define HASH_PREDEF_LIB_STD_CXX HASH_PREDEF_MAKE_10_VPPP(_LIBCPP_VERSION)
+#   define HASH_PREDEF_LIB_STD_CXX HASH_PREDEF_MAKE_10_VVPPP(_LIBCPP_VERSION)
 #endif
 
 #if HASH_PREDEF_LIB_STD_CXX
