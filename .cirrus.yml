@@ -22,7 +22,8 @@ freebsd_task:
   install_script: [
     "uname -a",
     "env ASSUME_ALWAYS_YES=YES pkg bootstrap",
-    "env ASSUME_ALWAYS_YES=YES pkg install ${PACKAGE}"
+    "env ASSUME_ALWAYS_YES=YES pkg install ${PACKAGE}",
+    "env ASSUME_ALWAYS_YES=YES pkg install wget"
     ]
   # Install B2.
   install_b2_script: [
