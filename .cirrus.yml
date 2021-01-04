@@ -27,7 +27,7 @@ freebsd_task:
   # Install B2.
   install_b2_script: [
     "set -e",
-    "export \"PCD=${PWD}\"" ; cd ${HOME}",
+    "export \"PCD=${PWD}\" ; cd ${HOME}",
     "wget -nv https://github.com/boostorg/build/archive/develop.tar.gz",
     "tar -zxf develop.tar.gz",
     "cd build-develop",
