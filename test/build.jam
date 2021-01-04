@@ -72,7 +72,7 @@ local HEADERS = [ path.glob
 local single_header_cpp ;
 for local h in $(HEADERS)
 {
-    local header_include = [ path.relative $(h) $(HASH_PREDEF_INCLUDE) ] ;
+    local header_include = [ path.relative $(h) [ path.make $(HASH_PREDEF_INCLUDE) ] ] ;
     local header_cpp = [ regex.replace $(header_include:S=.cpp) "/" "_" ] ;
     .HEADER($(header_cpp:B:S=)) = $(header_include) ;
     make $(header_cpp) : : @gen_single_header_cpp ;
