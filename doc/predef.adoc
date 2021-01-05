@@ -828,6 +828,8 @@ include::../include/predef/hardware/simd/x86_amd/versions.h[tag=reference]
 
 include::../include/predef/other/endian.h[tag=reference]
 
+include::../include/predef/other/wordsize.h[tag=reference]
+
 include::../include/predef/other/workaround.h[tag=reference]
 
 :leveloffset: -3

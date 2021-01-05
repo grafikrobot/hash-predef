@@ -75,6 +75,11 @@ http://en.wikipedia.org/wiki/M68k[Motorola 68k] architecture.
 #   define HASH_PREDEF_ARCH_M68K_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_M68K
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_M68K_NAME "Motorola 68k"
 
 #endif

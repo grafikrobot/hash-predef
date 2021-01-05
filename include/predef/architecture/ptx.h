@@ -37,6 +37,11 @@ https://en.wikipedia.org/wiki/Parallel_Thread_Execution[PTX] architecture.
 #   define HASH_PREDEF_ARCH_PTX_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_PTX
+#   undef HASH_PREDEF_ARCH_WORD_BITS_64
+#   define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_PTX_NAME "PTX"
 
 #endif

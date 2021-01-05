@@ -29,6 +29,5 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/architecture/sys390.h>
 #include <predef/architecture/x86.h>
 #include <predef/architecture/z.h>
-/*#include <predef/architecture/.h>*/
 
 #endif

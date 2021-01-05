@@ -126,6 +126,16 @@ http://en.wikipedia.org/wiki/ARM_architecture[ARM] architecture.
 #   define HASH_PREDEF_ARCH_ARM_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_ARM
+#   if HASH_PREDEF_ARCH_ARM >= BOOST_VERSION_NUMBER(8,0,0)
+#       undef HASH_PREDEF_ARCH_WORD_BITS_64
+#       define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#   else
+#       undef HASH_PREDEF_ARCH_WORD_BITS_32
+#       define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
 #define HASH_PREDEF_ARCH_ARM_NAME "ARM"
 
 #endif

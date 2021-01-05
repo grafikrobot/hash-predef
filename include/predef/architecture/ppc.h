@@ -65,6 +65,11 @@ http://en.wikipedia.org/wiki/PowerPC[PowerPC] architecture.
 #   define HASH_PREDEF_ARCH_PPC_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_PPC
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_PPC_NAME "PowerPC"
 
 #endif

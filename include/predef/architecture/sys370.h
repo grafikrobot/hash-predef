@@ -36,6 +36,11 @@ http://en.wikipedia.org/wiki/System/370[System/370] architecture.
 #   define HASH_PREDEF_ARCH_SYS370_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_SYS370
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_SYS370_NAME "System/370"
 
 #endif

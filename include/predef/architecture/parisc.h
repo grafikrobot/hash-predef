@@ -57,6 +57,11 @@ http://en.wikipedia.org/wiki/PA-RISC_family[HP/PA RISC] architecture.
 #   define HASH_PREDEF_ARCH_PARISC_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_PARISC
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_PARISC_NAME "HP/PA RISC"
 
 #endif

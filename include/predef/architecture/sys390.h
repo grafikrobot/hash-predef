@@ -36,6 +36,11 @@ http://en.wikipedia.org/wiki/System/390[System/390] architecture.
 #   define HASH_PREDEF_ARCH_SYS390_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_SYS390
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_SYS390_NAME "System/390"
 
 #endif

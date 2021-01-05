@@ -35,6 +35,11 @@ http://en.wikipedia.org/wiki/RISC-V[RISC-V] architecture.
 #   define HASH_PREDEF_ARCH_RISCV_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_RISCV
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_RISCV_NAME "RISC-V"
 
 #endif

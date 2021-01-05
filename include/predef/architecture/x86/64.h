@@ -41,6 +41,11 @@ http://en.wikipedia.org/wiki/Ia64[Intel IA-64] architecture.
 #   define HASH_PREDEF_ARCH_X86_64_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_X86_64
+#   undef HASH_PREDEF_ARCH_WORD_BITS_64
+#   define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_X86_64_NAME "Intel x86-64"
 
 #include <predef/architecture/x86.h>

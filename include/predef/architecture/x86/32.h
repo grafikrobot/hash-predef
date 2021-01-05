@@ -78,6 +78,11 @@ If available versions [3-6] are specifically detected.
 #   define HASH_PREDEF_ARCH_X86_32_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_X86_32
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_X86_32_NAME "Intel x86-32"
 
 #include <predef/architecture/x86.h>

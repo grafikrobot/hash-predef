@@ -52,6 +52,11 @@ http://en.wikipedia.org/wiki/DEC_Alpha[DEC Alpha] architecture.
 #   define HASH_PREDEF_ARCH_ALPHA_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_ALPHA
+#   undef HASH_PREDEF_ARCH_WORD_BITS_64
+#   define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_ALPHA_NAME "DEC Alpha"
 
 #endif

@@ -35,6 +35,11 @@ http://en.wikipedia.org/wiki/Z/Architecture[z/Architecture] architecture.
 #   define HASH_PREDEF_ARCH_Z_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_Z
+#   undef HASH_PREDEF_ARCH_WORD_BITS_64
+#   define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_Z_NAME "z/Architecture"
 
 #endif

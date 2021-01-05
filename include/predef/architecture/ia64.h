@@ -42,6 +42,11 @@ http://en.wikipedia.org/wiki/Ia64[Intel Itanium 64] architecture.
 #   define HASH_PREDEF_ARCH_IA64_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_IA64
+#   undef HASH_PREDEF_ARCH_WORD_BITS_64
+#   define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_IA64_NAME "Intel Itanium 64"
 
 #endif

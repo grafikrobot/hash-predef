@@ -58,6 +58,11 @@ http://en.wikipedia.org/wiki/Convex_Computer[Convex Computer] architecture.
 #   define HASH_PREDEF_ARCH_CONVEX_AVAILABLE
 #endif
 
+#if HASH_PREDEF_ARCH_CONVEX
+#   undef HASH_PREDEF_ARCH_WORD_BITS_32
+#   define HASH_PREDEF_ARCH_WORD_BITS_32 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#endif
+
 #define HASH_PREDEF_ARCH_CONVEX_NAME "Convex Computer"
 
 #endif
