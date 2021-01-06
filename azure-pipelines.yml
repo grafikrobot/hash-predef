@@ -10,10 +10,6 @@ trigger:
     - develop
     - master
     - feature/*
-pr:
-  branches:
-    include:
-    - develop
   paths:
     exclude:
     - .circleci/*
@@ -23,6 +19,10 @@ pr:
     - .semaphore/*
     - .travis.yml
     - appveyor.yml
+pr:
+  branches:
+    include:
+    - develop
 
 variables:
   AZP: 1
