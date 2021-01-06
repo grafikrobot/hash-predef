@@ -30,9 +30,9 @@ environment:
   - { job_name: 'VS 2012', TOOLSET: "msvc", TOOLSET_VERSION: '11.0', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015' }
   - { job_name: 'VS 2010', TOOLSET: "msvc", TOOLSET_VERSION: '10.0', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015' }
   # The "recent" MinGW installs available on Appveyor.
-  - { job_name: 'MinGW-w64 8.1', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015'}
-  - { job_name: 'MinGW-w64 7.3', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015'}
-  - { job_name: 'MinGW-w64 6.3', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-6.3.0-posix-seh-rt_v5-rev1/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015'}
+  # - { job_name: 'MinGW-w64 8.1', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015'}
+  # - { job_name: 'MinGW-w64 7.3', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015'}
+  # - { job_name: 'MinGW-w64 6.3', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-6.3.0-posix-seh-rt_v5-rev1/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015'}
 
 platform:
   - x86
@@ -42,8 +42,9 @@ matrix:
   exclude:
     - { platform: x64, job_name: 'VS 2012' }
     - { platform: x64, job_name: 'VS 2010' }
-    - { platform: x86, TOOLSET: 'gcc' }
+    # - { platform: x86, TOOLSET: 'gcc' }
 
+for:
 # msvc job steps.
 - matrix:
     only:
