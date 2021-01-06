@@ -72,7 +72,7 @@ for:
 # Windows MinGW job steps.
 - matrix:
     only:
-      - COMPILER: 'WIN-MINGW'
+      - TOOLSET: 'gcc'
   install:
     - cmd: |
         echo ">>>>> INSTALL B2 .."
