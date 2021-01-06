@@ -86,6 +86,7 @@ for:
     # The build itself just calls the compiler directly.
     - cmd: |
         echo ">>>>> TEST .."
+        set PATH=%CXXPATH%\..\;%PATH%
         set BOOST_BUILD_PATH=%APPVEYOR_BUILD_FOLDER%/../build-develop
         cd %APPVEYOR_BUILD_FOLDER%/test
         %APPVEYOR_BUILD_FOLDER%/../build-develop/b2.exe --verbose-test -a toolset=%TOOLSET% %B2_ARGS% predef-info
