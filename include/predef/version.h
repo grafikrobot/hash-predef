@@ -10,6 +10,6 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #include <predef/version_number.h>
 
-#define HASH_PREDEF_VERSION HASH_PREDEF_VERSION_NUMBER(1,12,0)
+#define HASH_PREDEF_VERSION HASH_PREDEF_VERSION_NUMBER(1,13,0)
 
 #endif
