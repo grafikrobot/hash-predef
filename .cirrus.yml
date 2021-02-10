@@ -12,6 +12,7 @@ freebsd_task:
     - { name: 'FreeBSD, GCC 9', env: { CXX: 'g++9', PACKAGE: 'gcc9-devel', TOOLSET: gcc }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, GCC 8', env: { CXX: 'g++8', PACKAGE: 'gcc8-devel', TOOLSET: gcc }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, GCC 7', env: { CXX: 'g++7', PACKAGE: 'gcc7', TOOLSET: gcc }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
+    - { name: 'FreeBSD, Clang 11', env: { CXX: 'clang++11', PACKAGE: 'llvm11', TOOLSET: clang }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, Clang 10', env: { CXX: 'clang++10', PACKAGE: 'llvm10', TOOLSET: clang }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, Clang 9', env: { CXX: 'clang++90', PACKAGE: 'llvm90', TOOLSET: clang }, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
     - { name: 'FreeBSD, Clang 8', env: { CXX: 'clang++80', PACKAGE: 'llvm80' , TOOLSET: clang}, freebsd_instance: { image_family: 'freebsd-13-0-snap' } }
@@ -22,9 +23,9 @@ freebsd_task:
   install_script: [
     "uname -a",
     "env ASSUME_ALWAYS_YES=YES pkg bootstrap",
-    "env ASSUME_ALWAYS_YES=YES pkg install ${PACKAGE}",
     "env ASSUME_ALWAYS_YES=YES pkg install wget",
-    "env ASSUME_ALWAYS_YES=YES pkg install ncurses"
+    "env ASSUME_ALWAYS_YES=YES pkg install ncurses",
+    "env ASSUME_ALWAYS_YES=YES pkg install ${PACKAGE}"
     ]
   # Install B2.
   install_b2_script: [
