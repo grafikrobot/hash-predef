@@ -23,7 +23,8 @@ freebsd_task:
     "uname -a",
     "env ASSUME_ALWAYS_YES=YES pkg bootstrap",
     "env ASSUME_ALWAYS_YES=YES pkg install ${PACKAGE}",
-    "env ASSUME_ALWAYS_YES=YES pkg install wget"
+    "env ASSUME_ALWAYS_YES=YES pkg install wget",
+    "env ASSUME_ALWAYS_YES=YES pkg install ncurses"
     ]
   # Install B2.
   install_b2_script: [
