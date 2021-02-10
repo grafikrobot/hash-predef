@@ -14,6 +14,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/architecture/arm.h>
 #include <predef/architecture/blackfin.h>
 #include <predef/architecture/convex.h>
+#include <predef/architecture/e2k.h>
 #include <predef/architecture/ia64.h>
 #include <predef/architecture/m68k.h>
 #include <predef/architecture/mips.h>
