@@ -34,10 +34,10 @@ http://en.wikipedia.org/wiki/SPARC[SPARC] architecture.
 
 #if defined(__sparc__) || defined(__sparc)
 #   undef HASH_PREDEF_ARCH_SPARC
-#   if !defined(HASH_PREDEF_ARCH_SPARC) && (defined(__sparcv9) || defined(__sparc_v9__)
+#   if !defined(HASH_PREDEF_ARCH_SPARC) && (defined(__sparcv9) || defined(__sparc_v9__))
 #       define HASH_PREDEF_ARCH_SPARC HASH_PREDEF_VERSION_NUMBER(9,0,0)
 #   endif
-#   if !defined(HASH_PREDEF_ARCH_SPARC) && (defined(__sparcv8) || defined(__sparc_v8__)
+#   if !defined(HASH_PREDEF_ARCH_SPARC) && (defined(__sparcv8) || defined(__sparc_v8__))
 #       define HASH_PREDEF_ARCH_SPARC HASH_PREDEF_VERSION_NUMBER(8,0,0)
 #   endif
 #   if !defined(HASH_PREDEF_ARCH_SPARC)
