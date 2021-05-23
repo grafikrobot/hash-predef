@@ -1,4 +1,3 @@
 sources:
   "1.14-alpha":
     url: "https://github.com/grafikrobot/hash-predef/archive/refs/heads/develop.tar.gz"
-    sha256: "db404962aad52b05edcf4bb08b63f99878a0937d0b1b0d6b9b79e1bc52efa489"
