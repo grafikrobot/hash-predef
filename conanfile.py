@@ -39,3 +39,6 @@ This is an entirely standlone version of the Boost.Predef library.
     def package(self):
         self.copy(pattern="*.h", dst="include",
                   src=os.path.join(self.source_subfolder, "include"))
+
+    def package_id(self):
+        self.info.header_only()
