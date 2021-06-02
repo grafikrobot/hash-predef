@@ -29,7 +29,6 @@ This is an entirely standlone version of the Boost.Predef library.
     license = "BSL-1.0"
     no_copy_source = True
     url = "https://github.com/grafikrobot/hash-predef"
-    version = "1.14-alpha"
 
     source_subfolder = "source_subfolder"
 
