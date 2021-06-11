@@ -30,15 +30,13 @@ This is an entirely standlone version of the Boost.Predef library.
     no_copy_source = True
     url = "https://github.com/grafikrobot/hash-predef"
 
-    source_subfolder = "source_subfolder"
-
     def source(self):
         tools.get(**self.conan_data["sources"][self.version],
-                  strip_root=True, destination=self.source_subfolder)
+                  strip_root=True, destination="source_subfolder")
 
     def package(self):
         self.copy(pattern="*.h", dst="include",
-                  src=os.path.join(self.source_subfolder, "include"))
+                  src=os.path.join("source_subfolder", "include"))
 
     def package_id(self):
         self.info.header_only()
