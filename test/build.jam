@@ -30,8 +30,8 @@ using testing ;
 test-suite predef-info :
     [ run info_as_cpp.cpp : : : <test-info>always_show_run_output ]
     [ run info_as_c.c : : : <test-info>always_show_run_output ]
-    [ run info_as_objcpp.mm : : : <test-info>always_show_run_output <target-os>macos ]
-    [ run info_as_objc.m : : : <test-info>always_show_run_output <target-os>macos ]
+    [ run info_as_objcpp.mm : : : <test-info>always_show_run_output <target-os>darwin ]
+    [ run info_as_objc.m : : : <test-info>always_show_run_output <target-os>darwin ]
     ;
 
 test-suite predef :
