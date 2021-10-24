@@ -1,11 +1,11 @@
 = Hash Predef
-:author: Rene Rivera
+:author: René Ferdinand Rivera Morell
 :toc: left
 :toclevels: 3
 :sectanchors:
 :sectnums:
 :nofooter:
-:source-highlighter: pygments
+:source-highlighter: rouge
 :source-language: cpp
 :caution-caption: ⚑
 :important-caption: ‼
