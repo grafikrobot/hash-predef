@@ -73,12 +73,14 @@ class convert():
                     'include::../include/boost/predef'],
             ]+source_transform_prog
             ],
+            [r'^doc/(.*)[.]css', []],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/predef.jam', [
                 [self.replace_, r'HASH_PREDEF_INCLUDE', 'BOOST_ROOT'],
             ]+source_transform_prog],
             [r'^tools/ci/(.*)[.]py$', []],
+            [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
                 [self.replace_, r'Hash Predef', 'Boost.Predef'],
@@ -86,6 +88,9 @@ class convert():
                 [self.replace_, r'hash-predef', 'boost-predef'],
                 [self.replace_, r'HashPredef', 'BoostPredef'],
                 [self.replace_, r'hash_predef', 'boost_predef'],
+            ]],
+            [r'^doc/build[.]jam', [
+                [self.replace_, r'HASH_PREDEF', 'BOOST_PREDEF'],
             ]],
             [r'^test/build[.]jam', [
                 [self.replace_, r'"HASH_PREDEF_', '"BOOST_'],
@@ -149,6 +154,14 @@ class convert():
                 [self.replace_, r'boost-predef', 'hash-predef'],
                 [self.replace_, r'BoostPredef', 'HashPredef'],
                 [self.replace_, r'boost_predef', 'hash_predef'],
+            ]],
+            [r'^doc/build[.]jam', [
+                [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
+            ]],
+            [r'^test/build[.]jam', [
+                [self.replace_, r'"BOOST_', '"HASH_PREDEF_'],
+                [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
+                [self.replace_, r'/predef[.]h', '/boost/predef.h'],
             ]],
             [r'^build[.]jam', [
                 [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
@@ -215,7 +228,8 @@ class convert():
         else:
             qbk = entry['content'].splitlines()
         if qbk[0].startswith('[article '):
-            adoc_info['title'] = re.fullmatch(r'\[article (.*)', qbk[0]).group(1)
+            adoc_info['title'] = re.fullmatch(
+                r'\[article (.*)', qbk[0]).group(1)
             adoc_info['copyright'] = []
             adoc_info['author'] = []
             qbk_i += 1
@@ -223,7 +237,8 @@ class convert():
                 line = qbk[qbk_i]
                 copyright = re.fullmatch(r'\s+\[copyright\s+([^]]+)\]', line)
                 if copyright:
-                    adoc_info['copyright'].append('Copyright '+copyright.group(1))
+                    adoc_info['copyright'].append(
+                        'Copyright '+copyright.group(1))
                     qbk_i += 1
                     continue
                 purpose = re.fullmatch(r'[^[]+.purpose\s+([^]]+)', line)
@@ -234,7 +249,8 @@ class convert():
                 authors = re.fullmatch(r'[^[]+.authors\s+\[([^]]+)\]\]', line)
                 if authors:
                     author = authors.group(1).split(',')
-                    adoc_info['author'].append(author[1].strip()+' '+author[0].strip())
+                    adoc_info['author'].append(
+                        author[1].strip()+' '+author[0].strip())
                     qbk_i += 1
                     continue
                 qbk_i += 1
@@ -267,7 +283,7 @@ class convert():
                 '</style>',
                 '++++',
                 'endif::[]'
-                ])
+            ])
             colophon.extend([
                 '[colophon]',
                 '== Colophon',
@@ -276,7 +292,7 @@ class convert():
                 '(See accompanying file LICENSE_1_0.txt or copy at',
                 'https://www.boost.org/LICENSE_1_0.txt)',
                 '',
-                ])
+            ])
             if 'copyright' in adoc_info and len(adoc_info['copyright']) > 0:
                 colophon.append('; '.join(adoc_info['copyright']))
         adoc.extend(self.qbk_to_adoc_(qbk[qbk_i:-1], entry['name_source']))
@@ -294,7 +310,8 @@ class convert():
         for doc_comment in doc_comments:
             doc = doc_comment.splitlines()[1:-1]
             doc = self.qbk_to_adoc_(doc, entry['name_source'], section_level=1)
-            doc = '/* tag::reference[]\n'+'\n'.join(doc)+'\n*/ // end::reference[]\n'
+            doc = '/* tag::reference[]\n' + \
+                '\n'.join(doc)+'\n*/ // end::reference[]\n'
             content = content.replace(doc_comment, doc)
         entry['content'] = content
         return entry
@@ -372,14 +389,18 @@ class convert():
             elif re.match(r'\s*\[include\s+', line):
                 match = re.fullmatch(r'\s*\[include\s+(.*)\]', line)
                 if match.group(1).endswith('.qbk'):
-                    result.append('include::%s[]'%(match.group(1).replace('.qbk','.adoc')))
+                    result.append('include::%s[]' %
+                                  (match.group(1).replace('.qbk', '.adoc')))
                 elif '*' in match.group(1):
                     name_dir = os.path.dirname(name_source)
-                    files = list(glob.glob(os.path.join(name_dir, match.group(1))))
+                    files = list(
+                        glob.glob(os.path.join(name_dir, match.group(1))))
                     for f in sorted(files):
-                        result.append('include::%s[leveloffset=%s,tag=reference]'%(f.replace(name_dir+os.sep, ''), section_level-1))
+                        result.append('include::%s[leveloffset=%s,tag=reference]' % (
+                            f.replace(name_dir+os.sep, ''), section_level-1))
                 else:
-                    result.append('include::%s[leveloffset=%s,tag=reference]'%(match.group(1), section_level-1))
+                    result.append('include::%s[leveloffset=%s,tag=reference]' % (
+                        match.group(1), section_level-1))
             elif line.startswith('[def '):
                 pass
             elif line == '[teletype]':
