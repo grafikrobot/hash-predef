@@ -141,12 +141,14 @@ class convert():
                 [self.replace_, r'include::[.][.]/include/boost/predef',
                     'include::../include/predef'],
             ]],
+            [r'^doc/(.*)[.]css', []],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/predef.jam', [
                 [self.replace_, r'BOOST_ROOT', 'HASH_PREDEF_INCLUDE'],
             ]+source_transform_prog],
             [r'^tools/ci/(.*)[.]py$', []],
+            [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
                 [self.replace_, r'Boost[.]Predef', 'Hash Predef'],
@@ -161,7 +163,7 @@ class convert():
             [r'^test/build[.]jam', [
                 [self.replace_, r'"BOOST_', '"HASH_PREDEF_'],
                 [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
-                [self.replace_, r'/predef[.]h', '/boost/predef.h'],
+                [self.replace_, r'/boost/predef[.]h', '/predef.h'],
             ]],
             [r'^build[.]jam', [
                 [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
