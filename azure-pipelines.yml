@@ -64,7 +64,6 @@ stages:
       vmImage: $(VM_IMAGE)
     steps:
     - bash: |
-        echo "BUILD_REPOSITORY_NAME = ${BUILD_REPOSITORY_NAME}"
         set -e
         uname -a
         ./tools/ci/linux-cxx-install.sh
