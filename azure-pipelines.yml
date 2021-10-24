@@ -64,6 +64,7 @@ stages:
       vmImage: $(VM_IMAGE)
     steps:
     - bash: |
+        echo "BUILD_REPOSITORY_NAME = ${BUILD_REPOSITORY_NAME}"
         set -e
         uname -a
         ./tools/ci/linux-cxx-install.sh
@@ -216,7 +217,7 @@ stages:
 
 - stage: WebsiteUpdate
   displayName: 'Website Update'
-  condition: and(in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/develop'), eq(variables['Build.Repository.Name'], 'hash-predef'))
+  condition: and(in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/develop'), eq(variables['Build.Repository.Name'], 'grafikrobot/hash-predef'))
   jobs:
 
   - job: Documentation
