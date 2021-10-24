@@ -2,7 +2,7 @@
 # subject to the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE.txt)
 #
-# Copyright Rene Ferdinand Rivera Morell 2020.
+# Copyright René Ferdinand Rivera Morell 2020-2021.
 
 branches:
   only:
@@ -34,8 +34,8 @@ environment:
   - { job_name: 'MinGW-w64 7.3', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-7.3.0-posix-seh-rt_v5-rev0/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015' }
   - { job_name: 'MinGW-w64 6.3', TOOLSET: "gcc", CXXPATH: 'C:/mingw-w64/x86_64-6.3.0-posix-seh-rt_v5-rev1/mingw64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2015' }
   # Cygwin versions available.
-  - { job_name: 'Cygwin32 3.1.7', TOOLSET: 'gcc', CXXPATH: 'C:/cygwin/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2019' }
-  - { job_name: 'Cygwin64 3.1.7', TOOLSET: 'gcc', CXXPATH: 'C:/cygwin64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2019' }
+  # - { job_name: 'Cygwin32 3.1.7', TOOLSET: 'gcc', CXXPATH: 'C:/cygwin/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2019' }
+  # - { job_name: 'Cygwin64 3.1.7', TOOLSET: 'gcc', CXXPATH: 'C:/cygwin64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2019' }
   - { job_name: 'Cygwin32 3.0.7', TOOLSET: 'gcc', CXXPATH: 'C:/cygwin/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2017' }
   - { job_name: 'Cygwin64 3.0.7', TOOLSET: 'gcc', CXXPATH: 'C:/cygwin64/bin/g++.exe', APPVEYOR_BUILD_WORKER_IMAGE: 'Visual Studio 2017' }
 
