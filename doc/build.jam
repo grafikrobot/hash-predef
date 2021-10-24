@@ -11,8 +11,6 @@ import path ;
 
 project predefdoc ;
 
-path-constant PYGMENTS_DIR : . ;
-
 doc-dir = [ MATCH "--doc-dir=(.*)" : [ modules.peek : ARGV ] ] ;
 doc-dir ?= . ;
 
