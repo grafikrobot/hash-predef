@@ -172,10 +172,6 @@ stages:
           TOOLSET: msvc
           TOOLSET_VERSION: 14.3
           VM_IMAGE: 'windows-2022'
-        VS 2017:
-          TOOLSET: msvc
-          TOOLSET_VERSION: 14.1
-          VM_IMAGE: 'vs2017-win2016'
         MinGW 8.1.0:
           TOOLSET: gcc
           VM_IMAGE: 'windows-2019'
