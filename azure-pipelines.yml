@@ -50,8 +50,8 @@ stages:
         GCC 7: { CXX: g++-7, PACKAGES: g++-7, VM_IMAGE: 'ubuntu-18.04', TOOLSET: gcc }
         GCC 6: { CXX: g++-6, PACKAGES: g++-6, VM_IMAGE: 'ubuntu-18.04', TOOLSET: gcc }
         GCC 5: { CXX: g++-5, PACKAGES: g++-5, VM_IMAGE: 'ubuntu-18.04', TOOLSET: gcc }
-        Clang 13: { CXX: clang++-13, PACKAGES: clang-13, LLVM_OS: focal, LLVM_VER: 11, VM_IMAGE: 'ubuntu-20.04', TOOLSET: clang }
-        Clang 12: { CXX: clang++-12, PACKAGES: clang-12, LLVM_OS: focal, LLVM_VER: 11, VM_IMAGE: 'ubuntu-20.04', TOOLSET: clang }
+        Clang 13: { CXX: clang++-13, PACKAGES: clang-13, LLVM_OS: focal, LLVM_VER: 13, VM_IMAGE: 'ubuntu-20.04', TOOLSET: clang }
+        Clang 12: { CXX: clang++-12, PACKAGES: clang-12, LLVM_OS: focal, LLVM_VER: 12, VM_IMAGE: 'ubuntu-20.04', TOOLSET: clang }
         Clang 11: { CXX: clang++-11, PACKAGES: clang-11, LLVM_OS: focal, LLVM_VER: 11, VM_IMAGE: 'ubuntu-20.04', TOOLSET: clang }
         Clang 10: { CXX: clang++-10, PACKAGES: clang-10, LLVM_OS: bionic, LLVM_VER: 10, VM_IMAGE: 'ubuntu-18.04', TOOLSET: clang }
         Clang 9: { CXX: clang++-9, PACKAGES: clang-9, LLVM_OS: bionic, LLVM_VER: 9, VM_IMAGE: 'ubuntu-18.04', TOOLSET: clang }
