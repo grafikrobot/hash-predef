@@ -222,9 +222,6 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '2.x'
     - task: UseRubyVersion@0
     - bash: |
         gem install asciidoctor
