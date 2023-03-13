@@ -9,9 +9,9 @@ a standalone project. To use externally you would need a `use-project`
 declaration and to use the project as a dependency where needed:
 
 ----
-use-project /hash-predef : /path/to/hash-predef/root ;
+use-project /hash_predef : /path/to/hash_predef/root ;
 
-exe my_thing : main.cpp : <dependency>/hash-predef ;
+exe my_thing : main.cpp : <dependency>/hash_predef ;
 ----
 |#
 
