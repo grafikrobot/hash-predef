@@ -20,9 +20,9 @@ skip_commits:
     - .travis.yml
     - azure-pipelines.yml
 
-# Even though we have build_script specified below the Appveyor parser gets
-# confused and assume MSBuild mode. So we generically turn the build mode off.
-build: false
+# # Even though we have build_script specified below the Appveyor parser gets
+# # confused and assume MSBuild mode. So we generically turn the build mode off.
+# build: false
 
 environment:
   matrix:
