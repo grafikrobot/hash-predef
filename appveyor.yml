@@ -20,10 +20,6 @@ skip_commits:
     - .travis.yml
     - azure-pipelines.yml
 
-# # Even though we have build_script specified below the Appveyor parser gets
-# # confused and assume MSBuild mode. So we generically turn the build mode off.
-# build: false
-
 environment:
   matrix:
   # All the Visual Studio installs available on Appveyor
@@ -68,7 +64,7 @@ for:
         echo ">>>>> INSTALL B2 .."
         cd %APPVEYOR_BUILD_FOLDER%/..
         curl "https://github.com/bfgroup/b2/archive/refs/heads/release.zip" -L -o b2.zip
-        7z x b2-release.zip -r
+        7z x b2.zip -r
         echo using %TOOLSET% ^: %TOOLSET_VERSION% ^: %CXXPATH% ^; > %HOMEDRIVE%%HOMEPATH%/user-config.jam
         cd %APPVEYOR_BUILD_FOLDER%/../b2-release
         cmd.exe /c bootstrap.bat
