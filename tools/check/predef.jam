@@ -74,9 +74,9 @@ rule require ( expressions + : language ? )
 rule address-model ( )
 {
     return
-        [ check "BOOST_ARCH_WORD_BITS == 0.0.16" : : <address-model>16 ]
-        [ check "BOOST_ARCH_WORD_BITS == 0.0.32" : : <address-model>32 ]
-        [ check "BOOST_ARCH_WORD_BITS == 0.0.64" : : <address-model>64 ]
+        [ check "HASH_PREDEF_ARCH_WORD_BITS == 0.0.16" : : <address-model>16 ]
+        [ check "HASH_PREDEF_ARCH_WORD_BITS == 0.0.32" : : <address-model>32 ]
+        [ check "HASH_PREDEF_ARCH_WORD_BITS == 0.0.64" : : <address-model>64 ]
         ;
 }
 
@@ -88,9 +88,9 @@ rule architecture ( )
         x86 ia64 sparc ppc loongarch mips parisc arm riscv ;
     for arch in $(deducable-arch)
     {
-        result += [ check BOOST_ARCH_$(arch:U) : : <architecture>$(arch) ] ;
+        result += [ check HASH_PREDEF_ARCH_$(arch:U) : : <architecture>$(arch) ] ;
     }
-    result += [ check BOOST_ARCH_SYS390 : : <architecture>s390x ] ;
+    result += [ check HASH_PREDEF_ARCH_SYS390 : : <architecture>s390x ] ;
     return $(result) ;
 }
 
