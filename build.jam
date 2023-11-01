@@ -37,6 +37,14 @@ if [ project.is-jamroot-module $(__name__) ]
 explicit
     [ alias hash_predef ]
     [ alias all : hash_predef test//all tools/check ]
+    [ install install-global-headers
+        : [ glob-tree-ex include : *.h ]
+        : <install-source-root>include <location>(includedir) ]
+    [ install install-data
+        : build.jam [ glob-tree-ex tools/check : * ] [ glob-tree-ex include : *.h ]
+        : <install-source-root>. <location>(datadir)/hash_predef ]
+    [ alias install :
+        install-global-headers install-data ]
     ;
 
 call-if

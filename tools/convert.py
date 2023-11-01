@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 '''
 @author: René Ferdinand Rivera Morell
 @copyright: Copyright René Ferdinand Rivera Morell 2018-2021
@@ -81,6 +83,10 @@ class convert():
             [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
+                [self.replace_,
+                    r'HASH_PREDEF_VERSION', 'BOOST_PREDEF_VERSION'],
+                [self.replace_,
+                    r' VERSION "[^"]+"', ' VERSION "${BOOST_SUPERPROJECT_VERSION}"'],
                 [self.replace_, r'Hash Predef', 'Boost.Predef'],
                 [self.replace_, r'Hash::predef', 'Boost::predef'],
                 [self.replace_, r'hash-predef', 'boost-predef'],
@@ -92,6 +98,7 @@ class convert():
                 [self.replace_, r'include/predef', 'include/boost/predef'],
             ]+source_transform_prog],
             [r'^build[.]jam', [
+                [self.replace_, r'[(]datadir[)]/hash_predef', '(datadir)/boost_predef'],
                 [self.replace_, r'/hash_predef', '/boost/predef'],
                 [self.replace_, r'hash_predef', 'boost_predef'],
             ]]
@@ -142,6 +149,8 @@ class convert():
             [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
+                [self.replace_, r'BOOST_PREDEF_', 'HASH_PREDEF_'],
+                [self.replace_, r'BOOST_SUPERPROJECT_VERSION', 'HASH_PREDEF_VERSION'],
                 [self.replace_, r'Boost[.]Predef', 'Hash Predef'],
                 [self.replace_, r'Boost::predef', 'Hash::predef'],
                 [self.replace_, r'boost-predef', 'hash-predef'],

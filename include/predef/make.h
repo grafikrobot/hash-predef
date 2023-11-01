@@ -106,6 +106,10 @@ Macros are:
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VV00(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%100,0,0)
 /* tag::reference[]
+* `HASH_PREDEF_MAKE_10_VVR_0PPPPP(V, P)`, the second parameter specifies a year-month patch level with the first digit discarded
+*/ // end::reference[]
+#define HASH_PREDEF_MAKE_10_VVR_0PPPPP(V, P) HASH_PREDEF_VERSION_NUMBER(((V)/10)%100,(V)%10,(P)%100000)
+/* tag::reference[]
 * `HASH_PREDEF_MAKE_10_VVRR(V)`
 */ // end::reference[]
 #define HASH_PREDEF_MAKE_10_VVRR(V) HASH_PREDEF_VERSION_NUMBER(((V)/100)%100,(V)%100,0)

@@ -708,6 +708,8 @@ include::../include/predef/library/std/stlport.h[tag=reference]
 
 include::../include/predef/library/std/vacpp.h[tag=reference]
 
+include::../include/predef/library/std/msvc.h[tag=reference]
+
 :leveloffset: -3
 
 === `HASH_PREDEF_OS` operating system macros
