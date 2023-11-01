@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 '''
 @author: René Ferdinand Rivera Morell
 @copyright: Copyright René Ferdinand Rivera Morell 2018-2021
@@ -76,31 +78,29 @@ class convert():
             [r'^doc/(.*)[.]css', []],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
-            [r'^tools/check/predef.jam', [
-                [self.replace_, r'HASH_PREDEF_INCLUDE', 'BOOST_ROOT'],
-            ]+source_transform_prog],
+            [r'^tools/check/predef.jam', source_transform_prog],
             [r'^tools/ci/(.*)[.]py$', []],
             [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
+                [self.replace_,
+                    r'HASH_PREDEF_VERSION', 'BOOST_PREDEF_VERSION'],
+                [self.replace_,
+                    r' VERSION "[^"]+"', ' VERSION "${BOOST_SUPERPROJECT_VERSION}"'],
                 [self.replace_, r'Hash Predef', 'Boost.Predef'],
                 [self.replace_, r'Hash::predef', 'Boost::predef'],
                 [self.replace_, r'hash-predef', 'boost-predef'],
                 [self.replace_, r'HashPredef', 'BoostPredef'],
                 [self.replace_, r'hash_predef', 'boost_predef'],
             ]],
-            [r'^doc/build[.]jam', [
-                [self.replace_, r'HASH_PREDEF', 'BOOST_PREDEF'],
-            ]],
+            [r'^doc/build[.]jam', []],
             [r'^test/build[.]jam', [
-                [self.replace_, r'"HASH_PREDEF_', '"BOOST_'],
-                [self.replace_, r'HASH_PREDEF', 'BOOST_PREDEF'],
-                [self.replace_, r'/predef[.]h', '/boost/predef.h'],
-            ]],
+                [self.replace_, r'include/predef', 'include/boost/predef'],
+            ]+source_transform_prog],
             [r'^build[.]jam', [
-                [self.replace_, r'HASH_PREDEF', 'BOOST_PREDEF'],
+                [self.replace_, r'[(]datadir[)]/hash_predef', '(datadir)/boost_predef'],
                 [self.replace_, r'/hash_predef', '/boost/predef'],
-                [self.replace_, r'PREDEF_DIST : hash ', 'PREDEF_DIST : boost '],
+                [self.replace_, r'hash_predef', 'boost_predef'],
             ]]
         ])
 
@@ -144,31 +144,26 @@ class convert():
             [r'^doc/(.*)[.]css', []],
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
-            [r'^tools/check/predef.jam', [
-                [self.replace_, r'BOOST_ROOT', 'HASH_PREDEF_INCLUDE'],
-            ]+source_transform_prog],
+            [r'^tools/check/predef.jam', source_transform_prog],
             [r'^tools/ci/(.*)[.]py$', []],
             [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
+                [self.replace_, r'BOOST_PREDEF_', 'HASH_PREDEF_'],
+                [self.replace_, r'BOOST_SUPERPROJECT_VERSION', 'HASH_PREDEF_VERSION'],
                 [self.replace_, r'Boost[.]Predef', 'Hash Predef'],
                 [self.replace_, r'Boost::predef', 'Hash::predef'],
                 [self.replace_, r'boost-predef', 'hash-predef'],
                 [self.replace_, r'BoostPredef', 'HashPredef'],
                 [self.replace_, r'boost_predef', 'hash_predef'],
             ]],
-            [r'^doc/build[.]jam', [
-                [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
-            ]],
+            [r'^doc/build[.]jam', []],
             [r'^test/build[.]jam', [
-                [self.replace_, r'"BOOST_', '"HASH_PREDEF_'],
-                [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
-                [self.replace_, r'/boost/predef[.]h', '/predef.h'],
-            ]],
+                [self.replace_, r'include/boost/predef', 'include/predef'],
+            ]+source_transform_prog],
             [r'^build[.]jam', [
-                [self.replace_, r'BOOST_PREDEF', 'HASH_PREDEF'],
+                [self.replace_, r'boost_predef', 'hash_predef'],
                 [self.replace_, r'/boost/predef', '/hash_predef'],
-                [self.replace_, r'PREDEF_DIST : boost ', 'PREDEF_DIST : hash '],
             ]]
         ])
 
