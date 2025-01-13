@@ -16,9 +16,13 @@ APT_OPT="-o Acquire::Retries=3 -yq"
 
 set -e
 echo ">>>>>"
-echo ">>>>> APT: UPDATE.."
+echo ">>>>> APT: UPDATE 1/2.."
 echo ">>>>>"
 ${SUDO} apt-get ${APT_OPT} update
+echo ">>>>>"
+echo ">>>>> APT: INSTALL 1/2: wget.."
+echo ">>>>>"
+${SUDO} apt-get ${APT_OPT} install wget
 echo ">>>>>"
 echo ">>>>> APT: REPO.."
 echo ">>>>>"
@@ -28,13 +32,13 @@ if test -n "${LLVM_OS}" ; then
 	${SUDO} apt-add-repository "deb http://apt.llvm.org/${LLVM_OS}/ llvm-toolchain-${LLVM_OS}-${LLVM_VER} main"
 fi
 echo ">>>>>"
-echo ">>>>> APT: UPDATE.."
+echo ">>>>> APT: UPDATE 2/2.."
 echo ">>>>>"
 ${SUDO} apt-get ${APT_OPT} update
 echo ">>>>>"
-echo ">>>>> APT: INSTALL ${PACKAGES}.."
+echo ">>>>> APT: INSTALL 2/2: ${PACKAGES}.."
 echo ">>>>>"
-${SUDO} apt-get -o Acquire::Retries=3 -yq --no-install-suggests --no-install-recommends install ${PACKAGES}
+${SUDO} apt-get ${APT_OPT} install ${PACKAGES}
 
 # Use, modification, and distribution are
 # subject to the Boost Software License, Version 1.0. (See accompanying
