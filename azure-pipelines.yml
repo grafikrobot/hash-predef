@@ -236,7 +236,7 @@ stages:
         wget -nv https://github.com/bfgroup/b2/archive/release.tar.gz
         tar -zxf release.tar.gz
         cd b2-release
-        CXX= ./bootstrap.sh
+        ./bootstrap.sh
         sudo ./b2 install
         popd
       displayName: 'Install B2'
