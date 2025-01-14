@@ -237,6 +237,8 @@ stages:
         tar -zxf release.tar.gz
         cd b2-release
         ./bootstrap.sh ${TOOLSET}
+        CXX_PATH=`which ${CXX}`
+        echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
         sudo ./b2 install
         popd
       displayName: 'Install B2'
