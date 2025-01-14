@@ -236,7 +236,7 @@ stages:
         wget -nv https://github.com/bfgroup/b2/archive/release.tar.gz
         tar -zxf release.tar.gz
         cd b2-release
-        ./bootstrap.sh ${TOOLSET}
+        ./bootstrap.sh --cxx=${CXX} ${TOOLSET}
         CXX_PATH=`which ${CXX}`
         echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
         sudo ./b2 install
