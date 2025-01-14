@@ -239,7 +239,7 @@ stages:
         ./bootstrap.sh --cxx=${CXX} ${TOOLSET}
         CXX_PATH=`which ${CXX}`
         echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
-        sudo ./b2 install
+        sudo ./b2 --debug-configuration install toolset=${TOOLSET}
         popd
       displayName: 'Install B2'
     - bash: |
