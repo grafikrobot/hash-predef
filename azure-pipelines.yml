@@ -239,17 +239,14 @@ stages:
         ./bootstrap.sh --cxx=${CXX} ${TOOLSET}
         CXX_PATH=`which ${CXX}`
         echo "using ${TOOLSET} : : ${CXX_PATH} ;" > "${HOME}/user-config.jam"
-        echo "== ${HOME}/user-config.jam =="
-        cat "${HOME}/user-config.jam"
-        echo "== ${HOME}/user-config.jam =="
-        sudo ./b2 --debug-configuration install toolset=${TOOLSET}
+        sudo ./b2 --debug-configuration "--user-config=${HOME}/user-config.jam" install toolset=${TOOLSET}
         popd
       displayName: 'Install B2'
     - bash: |
         set -e
         pushd test
-        b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS} predef-info
-        b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
+        b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a toolset=${TOOLSET} ${B2_ARGS} predef-info
+        b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
         popd
       displayName: Test
 
