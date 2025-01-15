@@ -238,7 +238,10 @@ stages:
         cd b2-release
         ./bootstrap.sh --cxx=${CXX} ${TOOLSET}
         CXX_PATH=`which ${CXX}`
-        echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
+        echo "using ${TOOLSET} : : ${CXX_PATH} ;" > "${HOME}/user-config.jam"
+        echo "== ${HOME}/user-config.jam =="
+        cat "${HOME}/user-config.jam"
+        echo "== ${HOME}/user-config.jam =="
         sudo ./b2 --debug-configuration install toolset=${TOOLSET}
         popd
       displayName: 'Install B2'
