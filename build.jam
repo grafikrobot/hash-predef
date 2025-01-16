@@ -3,6 +3,8 @@
 # (See accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 
+require-b2 5.2 ;
+
 #|
 This B2 project provides support for using the Predef library externally as
 a standalone project. To use externally you would need a `use-project`
@@ -15,13 +17,9 @@ exe my_thing : main.cpp : <dependency>/hash_predef ;
 ----
 |#
 
+import-search tools/check ;
 import project ;
 import modules ;
-
-path-constant PREDEF_ROOT : . ;
-
-modules.poke : BOOST_BUILD_PATH
-    : $(PREDEF_ROOT)/tools/check [ modules.peek : BOOST_BUILD_PATH ] ;
 
 project /hash_predef
     : common-requirements
