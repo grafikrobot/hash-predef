@@ -250,6 +250,43 @@ stages:
         popd
       displayName: Test
 
+- stage: Extra
+  dependsOn: [Test]
+  jobs:
+
+  - job: 'Linux'
+    strategy:
+      matrix:
+        TinyCC: { CXX: tcc, PACKAGES: tcc, VM_IMAGE: 'ubuntu-latest', TOOLSET: gcc, B2_ARGS: '' }
+    pool:
+      vmImage: $(VM_IMAGE)
+    continueOnError: 'true'
+    steps:
+    - bash: |
+        set -e
+        uname -a
+        ./tools/ci/linux-cxx-install.sh
+      displayName: 'Install CXX'
+    - bash: |
+        set -e
+        pushd ${HOME}
+        wget -nv https://github.com/bfgroup/b2/archive/release.tar.gz
+        tar -zxf release.tar.gz
+        cd b2-release
+        CXX= ./bootstrap.sh
+        sudo ./b2 install
+        popd
+      displayName: 'Install B2'
+    - bash: |
+        set -e
+        CXX_PATH=`which ${CXX}`
+        echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
+        pushd test
+        b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS} predef-info
+        b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
+        popd
+      displayName: Test
+
 - stage: WebsiteUpdate
   displayName: 'Website Update'
   condition: and(in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/develop'), eq(variables['Build.Repository.Name'], 'grafikrobot/hash-predef'))
