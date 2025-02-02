@@ -257,7 +257,10 @@ stages:
   - job: 'Linux'
     strategy:
       matrix:
-        TinyCC: { CXX: tcc, PACKAGES: tcc, VM_IMAGE: 'ubuntu-latest', TOOLSET: gcc, B2_ARGS: '' }
+        TinyCC: {
+          CXX: tcc, PACKAGES: tcc, VM_IMAGE: 'ubuntu-latest', TOOLSET: gcc,
+          B2_ARGS: '',
+          B2_CONFIG: '<archiver>"tcc -ar"' }
     pool:
       vmImage: $(VM_IMAGE)
     continueOnError: 'true'
@@ -280,7 +283,7 @@ stages:
     - bash: |
         set -e
         CXX_PATH=`which ${CXX}`
-        echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
+        echo "using ${TOOLSET} : : ${CXX_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
         pushd test
         b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS} predef-info
         b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
