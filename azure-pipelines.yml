@@ -258,9 +258,10 @@ stages:
     strategy:
       matrix:
         TinyCC: {
-          CXX: tcc, PACKAGES: tcc, VM_IMAGE: 'ubuntu-latest', TOOLSET: gcc,
-          B2_ARGS: '',
-          B2_CONFIG: '<archiver>"tcc -ar"' }
+          EXE: tcc, PACKAGES: tcc, VM_IMAGE: 'ubuntu-latest',
+          TOOLSET: cc, VERSION: "tcc~0.9.27",
+          B2_CONFIG: '<cflags>"-std=c11" <-soname>-soname',
+          B2_ARGS: 'c' }
     pool:
       vmImage: $(VM_IMAGE)
     continueOnError: 'true'
@@ -273,20 +274,20 @@ stages:
     - bash: |
         set -e
         pushd ${HOME}
-        wget -nv https://github.com/bfgroup/b2/archive/release.tar.gz
-        tar -zxf release.tar.gz
-        cd b2-release
-        CXX= ./bootstrap.sh
+        wget -nv https://github.com/bfgroup/b2/archive/main.tar.gz
+        tar -zxf main.tar.gz
+        cd b2-main
+        ./bootstrap.sh
         sudo ./b2 install
         popd
       displayName: 'Install B2'
     - bash: |
         set -e
-        CXX_PATH=`which ${CXX}`
-        echo "using ${TOOLSET} : : ${CXX_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
+        EXE_PATH=`which ${EXE}`
+        echo "using ${TOOLSET} : ${VERSION} : ${EXE_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
         pushd test
-        b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS} predef-info
-        b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
+        b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS}
+        b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS}
         popd
       displayName: Test
 
