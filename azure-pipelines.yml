@@ -274,7 +274,10 @@ stages:
         Clang 6: {CXX: clang++-6.0, TOOLSET: clang-6.0, CONTAINER: "linux_clang6"}
         Clang 5: {CXX: clang++-5.0, TOOLSET: clang-5.0, CONTAINER: "linux_clang5"}
         Clang 4: {CXX: clang++-4.0, TOOLSET: clang-4.0, CONTAINER: "linux_clang4"}
-        Clang 3.9: {CXX: clang++-3.9, TOOLSET: clang-3.9, CONTAINER: "linux_clang3"}
+        Clang 3.9: {CXX: clang++-3.9, TOOLSET: clang-3.9, CONTAINER: "linux_clang39"}
+        Clang 3.8: {CXX: clang++-3.8, TOOLSET: clang-3.8, CONTAINER: "linux_clang38"}
+        Clang 3.7: {CXX: clang++-3.7, TOOLSET: clang-3.7, CONTAINER: "linux_clang37"}
+        Clang 3.6: {CXX: clang++-3.6, TOOLSET: clang-3.6, CONTAINER: "linux_clang36"}
     pool:
       vmImage: 'ubuntu-latest'
     container: $[ variables['CONTAINER'] ]
