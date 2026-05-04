@@ -48,6 +48,7 @@ resources:
         volumes: [
           "/node20217:/node20217:rw,rshared",
           "/node20217:/__e/node20:ro,rshared" ] }
+    - { container: linux_gcc16, image: 'teeks99/gcc-ubuntu:16', options: "${{variables.co_options}}" }
     - { container: linux_gcc15, image: 'teeks99/gcc-ubuntu:15', options: "${{variables.co_options}}" }
     - { container: linux_gcc14, image: 'teeks99/gcc-ubuntu:14', options: "${{variables.co_options}}" }
     - { container: linux_gcc13, image: 'teeks99/gcc-ubuntu:13', options: "${{variables.co_options}}" }
