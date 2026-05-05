@@ -10,7 +10,7 @@ parameters:
     default: ""
 
 stages:
-  - stage: "Compilers ${{ parameters.name }}"
+  - stage: "${{ parameters.name }}"
     jobs:
       - job: "Linux"
         strategy:

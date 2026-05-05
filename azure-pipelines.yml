@@ -90,8 +90,7 @@ resources:
 stages:
 - template: "tools/ci/azp-linux.yml"
   parameters:
-    name: "Linux"
-    b2_args: ""
+    name: Compilers_Linux
 
 - stage: Test
   jobs:
