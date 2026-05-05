@@ -5,9 +5,12 @@ parameters:
   - name: b2_args
     type: string
     default: ""
+  - name: apt_packages
+    type: string
+    default: ""
 
 stages:
-  - stage: Compilers_${{ parameters.name }}
+  - stage: "Compilers ${{ parameters.name }}"
     jobs:
       - job: "Linux"
         strategy:
@@ -63,6 +66,11 @@ stages:
                 /usr/bin/docker exec -t -u root container apt-get -qq update
                 /usr/bin/docker exec -t -u root container apt-get -qq install sudo
                 /usr/bin/docker exec -t -u root container mv /etc/sudoers.bak /etc/sudoers
+          - bash: |
+              APT_OPT="-o Acquire::Retries=3 -yq"
+              apt-get ${APT_OPT} update
+              apt-get ${APT_OPT} install wget software-properties-common ${{ parameters.apt_packages }}
+            displayName: "Install Packages"
           - bash: |
               set -e
               pushd ${HOME}
