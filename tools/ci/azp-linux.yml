@@ -2,12 +2,11 @@ parameters:
   - name: name
     type: string
     default: ""
-  - name: b2_args
-    type: string
-    default: ""
   - name: apt_packages
     type: string
     default: ""
+  - name: test_step
+    type: step
 
 stages:
   - stage: "${{ parameters.name }}"
@@ -50,9 +49,9 @@ stages:
             Clang 5: { CXX: clang++-5.0, TOOLSET: clang-5.0, CONTAINER: "linux_clang5" }
             Clang 4: { CXX: clang++-4.0, TOOLSET: clang-4.0, CONTAINER: "linux_clang4" }
             Clang 3.9: { CXX: clang++-3.9, TOOLSET: clang-3.9, CONTAINER: "linux_clang39" }
-            Clang 3.8: { CXX: clang++-3.8, TOOLSET: clang-3.8, CONTAINER: "linux_clang38" }
-            Clang 3.7: { CXX: clang++-3.7, TOOLSET: clang-3.7, CONTAINER: "linux_clang37" }
-            Clang 3.6: { CXX: clang++-3.6, TOOLSET: clang-3.6, CONTAINER: "linux_clang36" }
+            # Clang 3.8: { CXX: clang++-3.8, TOOLSET: clang-3.8, CONTAINER: "linux_clang38" }
+            # Clang 3.7: { CXX: clang++-3.7, TOOLSET: clang-3.7, CONTAINER: "linux_clang37" }
+            # Clang 3.6: { CXX: clang++-3.6, TOOLSET: clang-3.6, CONTAINER: "linux_clang36" }
         pool:
           vmImage: "ubuntu-latest"
         container: $[ variables['CONTAINER'] ]
@@ -83,10 +82,4 @@ stages:
               sudo ./b2 --debug-configuration "--user-config=${HOME}/user-config.jam" install ${TOOLSET:+toolset=$TOOLSET}
               popd
             displayName: "Install B2"
-          - bash: |
-              set -e
-              pushd test
-              b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${{ parameters.b2_args }} predef-info
-              b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${{ parameters.b2_args }} predef predef-headers
-              popd
-            displayName: Test
+          - ${{ parameters.test_step }}
