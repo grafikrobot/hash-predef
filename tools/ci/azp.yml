@@ -47,6 +47,9 @@ parameters:
       - "clang-5"
       - "clang-4"
       - "clang-3.9"
+  - name: b2_tests
+    type: object
+    default: []
 
 stages:
   - stage: "${{ parameters.name }}"
@@ -155,4 +158,10 @@ stages:
               sudo ./b2 --debug-configuration "--user-config=${HOME}/user-config.jam" install ${TOOLSET:+toolset=$TOOLSET}
               popd
             displayName: "Install B2"
-          - ${{ parameters.test_steps }}
+          - ${{ each b2_test in parameters.b2_tests }}:
+            - bash: |
+                set -e
+                pushd "${{ b2_test.dir }}"
+                b2 "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} ${{ b2_test.args }}
+                popd
+              displayName: "${{ b2_test.name }}"
