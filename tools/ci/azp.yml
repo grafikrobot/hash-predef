@@ -5,8 +5,6 @@ parameters:
   - name: apt_packages
     type: string
     default: ""
-  - name: test_steps
-    type: stepList
   - name: depends_on
     type: object
     default: []
