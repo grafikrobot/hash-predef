@@ -131,7 +131,7 @@ stages:
         pool:
           vmImage: "ubuntu-latest"
         container: $[ variables['CONTAINER'] ]
-        condition: "containsValue( parameters.toolsets, variables['TOOLSET'] )"
+        condition: "containsValue( ${{ parameters.toolsets }}, $[ variables['TOOLSET'] ] )"
         steps:
           - task: CmdLine@2
             displayName: Sudorize
