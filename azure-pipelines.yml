@@ -247,7 +247,8 @@ stages:
   - template: "tools/ci/azp-linux.yml"
     parameters:
       name: Core
-      toolsets: [ "gcc-16" ]
+      toolsets:
+        - "gcc-16"
       test_steps:
         - bash: |
             set -e
