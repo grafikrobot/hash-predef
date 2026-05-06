@@ -288,13 +288,13 @@ stages:
       name: Compilers
       depends_on: [ "Core" ]
       test_steps:
-        bash: |
-          set -e
-          pushd test
-          b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef-info
-          b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef predef-headers
-          popd
-        displayName: Test
+        - bash: |
+            set -e
+            pushd test
+            b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef-info
+            b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef predef-headers
+            popd
+          displayName: Test
 
   - stage: Test
     dependsOn: [ "Core" ]
