@@ -45,6 +45,11 @@ parameters:
       - "clang-5"
       - "clang-4"
       - "clang-3.9"
+      - "clang-darwin-26.0"
+      - "clang-darwin-16.4"
+      - "clang-darwin-15."
+      - "msvc-14.5"
+      - "msvc-14.3"
   - name: b2_tests
     type: object
     default: []
@@ -157,9 +162,102 @@ stages:
               popd
             displayName: "Install B2"
           - ${{ each b2_test in parameters.b2_tests }}:
-            - bash: |
-                set -e
-                pushd "${{ b2_test.dir }}"
-                b2 "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} ${{ b2_test.args }}
-                popd
-              displayName: "${{ b2_test.name }}"
+              - bash: |
+                  set -e
+                  pushd "${{ b2_test.dir }}"
+                  b2 "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} ${{ b2_test.args }}
+                  popd
+                displayName: "${{ b2_test.name }}"
+      - job: "macOS"
+        strategy:
+          matrix:
+            ${{ if containsValue( parameters.toolsets, 'clang-darwin-26.0' ) }}:
+              Xcode 26.0.1:
+                {
+                  CXX: clang++-,
+                  TOOLSET: clang,
+                  XCODE_APP: /Applications/Xcode_26.0.1.app,
+                  VM_IMAGE: "macOS-15",
+                }
+            ${{ if containsValue( parameters.toolsets, 'clang-darwin-16.4' ) }}:
+              Xcode 16.4:
+                {
+                  TOOLSET: clang,
+                  CXX: clang++,
+                  XCODE_APP: /Applications/Xcode_16.4.app,
+                  VM_IMAGE: "macOS-15",
+                }
+            ${{ if containsValue( parameters.toolsets, 'clang-darwin-15.4' ) }}:
+              Xcode 15.4:
+                {
+                  TOOLSET: clang,
+                  CXX: clang++,
+                  XCODE_APP: /Applications/Xcode_15.4.app,
+                  VM_IMAGE: "macOS-14",
+                }
+        pool:
+          vmImage: $(VM_IMAGE)
+        steps:
+          - bash: |
+              set -e
+              uname -a
+              sudo xcode-select -switch ${XCODE_APP}
+              which clang++
+              clang++ --version
+            displayName: "Install CXX"
+          - bash: |
+              set -e
+              pushd ${HOME}
+              wget -nv https://github.com/bfgroup/b2/archive/release.tar.gz
+              tar -zxf release.tar.gz
+              cd b2-release
+              CXX= ./bootstrap.sh
+              sudo ./b2 install
+              popd
+            displayName: "Install B2"
+          - ${{ each b2_test in parameters.b2_tests }}:
+              - bash: |
+                  set -e
+                  CXX_PATH=`which ${CXX}`
+                  echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
+                  pushd "${{ b2_test.dir }}"
+                  b2 "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} ${{ b2_test.args }}
+                  popd
+                displayName: "${{ b2_test.name }}"
+      - job: "Windows"
+        strategy:
+          matrix:
+            ${{ if containsValue( parameters.toolsets, 'msvc-14.5' ) }}:
+              VS 2025:
+                TOOLSET: msvc
+                TOOLSET_VERSION: 14.5
+                VM_IMAGE: "windows-2025-vs2026"
+            ${{ if containsValue( parameters.toolsets, 'msvc-14.3' ) }}:
+              VS 2022:
+                TOOLSET: msvc
+                TOOLSET_VERSION: 14.3
+                VM_IMAGE: "windows-2022"
+        pool:
+          vmImage: $(VM_IMAGE)
+        steps:
+          - script: |
+              cd %BUILD_SOURCESDIRECTORY%/..
+              curl "https://github.com/bfgroup/b2/archive/release.zip" -L -o b2.zip
+            displayName: Download B2
+          - task: ExtractFiles@1
+            inputs:
+              archiveFilePatterns: $(Build.SourcesDirectory)/../b2.zip
+              destinationFolder: $(Build.SourcesDirectory)/..
+              cleanDestinationFolder: false
+            displayName: Extract B2
+          - script: |
+              echo using %TOOLSET% ^: %TOOLSET_VERSION% ^; > %HOMEDRIVE%%HOMEPATH%/user-config.jam
+              cd %BUILD_SOURCESDIRECTORY%/../b2-release
+              cmd.exe /c bootstrap.bat
+            displayName: Install B2
+          - ${{ each b2_test in parameters.b2_tests }}:
+              - bash: |
+                  set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../b2-release
+                  cd "%BUILD_SOURCESDIRECTORY%/${{ b2_test.dir }}"
+                  %BUILD_SOURCESDIRECTORY%/../b2-release/b2.exe toolset=%TOOLSET% ${{ b2_test.args }}
+                displayName: "${{ b2_test.name }}"
