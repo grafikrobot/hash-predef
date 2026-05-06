@@ -246,7 +246,46 @@ resources:
 stages:
   - template: "tools/ci/azp-linux.yml"
     parameters:
-      name: Compilers_Linux
+      name: Core
+      toolsets: [ "gcc-16" ]
+      test_steps:
+        - bash: |
+            set -e
+            pushd test
+            b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef-info
+            b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef predef-headers
+            popd
+          env:
+            B2_ARGS: "cxxstd=03,11,14,17,20,23 cxxstd-dialect=gnu"
+          displayName: GNU
+        - bash: |
+            set -e
+            pushd test
+            b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef-info
+            b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef predef-headers
+            popd
+          env:
+            B2_ARGS: "cxxstd=03,11,14,17,20,23 cxxstd-dialect=iso"
+          displayName: ISO
+        - bash: |
+            set -e
+            pushd test
+            b2 --verbose-test "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef-info
+            b2 --debug-configuration "--user-config=${HOME}/user-config.jam" -a ${TOOLSET:+toolset=$TOOLSET} ${B2_ARGS} predef predef-headers
+            popd
+          env:
+            B2_ARGS: "cxxstd=03,11,14,17,20,23 cxxstd-dialect=iso warnings=pedantic
+              warnings-as-errors=on cxxflags=-Woverloaded-virtual
+              cxxflags=-Wshadow cxxflags=-Wnon-virtual-dtor
+              cxxflags=-Wzero-as-null-pointer-constant cxxflags=-Wsign-promo
+              cxxflags=-Wsign-compare cxxflags=-Wsign-conversion
+              cxxflags=-Wundef"
+          displayName: Warnings
+
+  - template: "tools/ci/azp-linux.yml"
+    parameters:
+      name: Compilers
+      depends_on: [ "Core" ]
       test_step:
         bash: |
           set -e
@@ -257,77 +296,8 @@ stages:
         displayName: Test
 
   - stage: Test
+    dependsOn: [ "Core" ]
     jobs:
-
-      - job: "Linux"
-        strategy:
-          matrix:
-            GCC 15 (GNU):
-              {
-                CXX: g++-15,
-                PACKAGES: g++-15,
-                TOOLSET: gcc,
-                B2_ARGS: "cxxstd=03,11,14,17,20,23 cxxstd-dialect=gnu",
-                CONTAINER: "linux_gcc15",
-              }
-            GCC 15 (ISO):
-              {
-                CXX: g++-15,
-                PACKAGES: g++-15,
-                TOOLSET: gcc,
-                B2_ARGS: "cxxstd=03,11,14,17,20,23 cxxstd-dialect=iso",
-                CONTAINER: "linux_gcc15",
-              }
-            GCC 15 (ISO, Warnings):
-              {
-                CXX: g++-15,
-                PACKAGES: g++-15,
-                TOOLSET: gcc,
-                B2_ARGS: "cxxstd=03,11,14,17,20,23 cxxstd-dialect=iso warnings=pedantic
-                  warnings-as-errors=on cxxflags=-Woverloaded-virtual
-                  cxxflags=-Wshadow cxxflags=-Wnon-virtual-dtor
-                  cxxflags=-Wzero-as-null-pointer-constant cxxflags=-Wsign-promo
-                  cxxflags=-Wsign-compare cxxflags=-Wsign-conversion
-                  cxxflags=-Wundef",
-                CONTAINER: "linux_gcc15",
-              }
-            Clang 23:
-              {
-                CXX: clang++-23,
-                PACKAGES: clang-23,
-                LLVM_OS: noble,
-                LLVM_VER: 23,
-                TOOLSET: clang,
-              }
-        pool:
-          vmImage: "ubuntu-latest"
-        container: $[ variables['CONTAINER'] ]
-        steps:
-          - bash: |
-              set -e
-              uname -a
-              ./tools/ci/linux-cxx-install.sh
-            displayName: "Install CXX"
-          - bash: |
-              set -e
-              pushd ${HOME}
-              wget -nv https://github.com/bfgroup/b2/archive/release.tar.gz
-              tar -zxf release.tar.gz
-              cd b2-release
-              CXX= ./bootstrap.sh
-              sudo ./b2 install
-              popd
-            displayName: "Install B2"
-          - bash: |
-              set -e
-              CXX_PATH=`which ${CXX}`
-              echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
-              pushd test
-              b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS} predef-info
-              b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
-              popd
-            displayName: Test
-
       - job: "macOS"
         strategy:
           matrix:
@@ -381,7 +351,6 @@ stages:
               b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS} predef predef-headers
               popd
             displayName: Test
-
       - job: "Windows"
         strategy:
           matrix:
@@ -460,55 +429,54 @@ stages:
               %BUILD_SOURCESDIRECTORY%/../b2-release/b2.exe --debug-configuration -a toolset=%TOOLSET% %B2_ARGS% predef predef-headers
             displayName: Test
 
-  - stage: Extra
-    dependsOn: [ Test ]
-    jobs:
-
-      - job: "Linux"
-        strategy:
-          matrix:
-            TinyCC:
-              {
-                EXE: tcc,
-                PACKAGES: tcc,
-                VM_IMAGE: "ubuntu-latest",
-                TOOLSET: cc,
-                VERSION: "tcc~0.9.27",
-                B2_CONFIG: "<cflags>\"-std=c11\" <-soname>-soname",
-                B2_ARGS: "c",
-              }
-        pool:
-          vmImage: $(VM_IMAGE)
-        continueOnError: "true"
-        steps:
-          - bash: |
-              set -e
-              uname -a
-              ./tools/ci/linux-cxx-install.sh
-            displayName: "Install CXX"
-          - bash: |
-              set -e
-              pushd ${HOME}
-              wget -nv https://github.com/bfgroup/b2/archive/main.tar.gz
-              tar -zxf main.tar.gz
-              cd b2-main
-              ./bootstrap.sh
-              sudo ./b2 install
-              popd
-            displayName: "Install B2"
-          - bash: |
-              set -e
-              EXE_PATH=`which ${EXE}`
-              echo "using ${TOOLSET} : ${VERSION} : ${EXE_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
-              pushd test
-              b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS}
-              b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS}
-              popd
-            displayName: Test
+  # - stage: Extra
+  #   dependsOn: [ Test ]
+  #   jobs:
+  #     - job: "Linux"
+  #       strategy:
+  #         matrix:
+  #           TinyCC:
+  #             {
+  #               EXE: tcc,
+  #               PACKAGES: tcc,
+  #               VM_IMAGE: "ubuntu-latest",
+  #               TOOLSET: cc,
+  #               VERSION: "tcc~0.9.27",
+  #               B2_CONFIG: "<cflags>\"-std=c11\" <-soname>-soname",
+  #               B2_ARGS: "c",
+  #             }
+  #       pool:
+  #         vmImage: $(VM_IMAGE)
+  #       continueOnError: "true"
+  #       steps:
+  #         - bash: |
+  #             set -e
+  #             uname -a
+  #             ./tools/ci/linux-cxx-install.sh
+  #           displayName: "Install CXX"
+  #         - bash: |
+  #             set -e
+  #             pushd ${HOME}
+  #             wget -nv https://github.com/bfgroup/b2/archive/main.tar.gz
+  #             tar -zxf main.tar.gz
+  #             cd b2-main
+  #             ./bootstrap.sh
+  #             sudo ./b2 install
+  #             popd
+  #           displayName: "Install B2"
+  #         - bash: |
+  #             set -e
+  #             EXE_PATH=`which ${EXE}`
+  #             echo "using ${TOOLSET} : ${VERSION} : ${EXE_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
+  #             pushd test
+  #             b2 --verbose-test -a toolset=${TOOLSET} ${B2_ARGS}
+  #             b2 --debug-configuration -a toolset=${TOOLSET} ${B2_ARGS}
+  #             popd
+  #           displayName: Test
 
   - stage: WebsiteUpdate
     displayName: "Website Update"
-    dependsOn: [ Test, Compilers_Linux ]
+    dependsOn: [ Core, Compilers, Test ]
     condition: and(in(variables['Build.SourceBranch'], 'refs/heads/master',
       'refs/heads/develop'), eq(variables['Build.Repository.Name'],
       'grafikrobot/hash-predef'))

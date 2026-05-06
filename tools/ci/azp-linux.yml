@@ -5,11 +5,52 @@ parameters:
   - name: apt_packages
     type: string
     default: ""
-  - name: test_step
-    type: step
+  - name: test_steps
+    type: stepList
+  - name: depends_on
+    type: object
+    default: []
+  - name: toolsets
+    type: stringList
+    default:
+      - "gcc-16"
+      - "gcc-15"
+      - "gcc-14"
+      - "gcc-13"
+      - "gcc-12"
+      - "gcc-11"
+      - "gcc-9"
+      - "gcc-8"
+      - "gcc-7"
+      - "gcc-6"
+      - "gcc-5"
+      - "gcc-4.9"
+      - "gcc-4.8"
+      - "clang-23"
+      - "clang-22"
+      - "clang-21"
+      - "clang-20"
+      - "clang-19"
+      - "clang-18"
+      - "clang-17"
+      - "clang-16"
+      - "clang-15"
+      - "clang-14"
+      - "clang-13"
+      - "clang-12"
+      - "clang-11"
+      - "clang-10"
+      - "clang-9"
+      - "clang-8"
+      - "clang-7"
+      - "clang-6"
+      - "clang-5"
+      - "clang-4"
+      - "clang-3.9"
 
 stages:
   - stage: "${{ parameters.name }}"
+    dependsOn: ${{ parameters.depends_on }}
     jobs:
       - job: "Linux"
         strategy:
@@ -55,6 +96,7 @@ stages:
         pool:
           vmImage: "ubuntu-latest"
         container: $[ variables['CONTAINER'] ]
+        condition: ${{ containsValue(parameters.toolsets, variables['TOOLSET']) }}
         steps:
           - task: CmdLine@2
             displayName: Sudorize
@@ -82,4 +124,4 @@ stages:
               sudo ./b2 --debug-configuration "--user-config=${HOME}/user-config.jam" install ${TOOLSET:+toolset=$TOOLSET}
               popd
             displayName: "Install B2"
-          - ${{ parameters.test_step }}
+          - ${{ parameters.test_steps }}
