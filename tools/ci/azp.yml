@@ -169,9 +169,9 @@ stages:
                   popd
                 displayName: "${{ b2_test.name }}"
       - job: "macOS"
-        condition: or( containsValue( parameters.toolsets, 'clang-darwin-26.0' ),
+        condition: ${{ or( containsValue( parameters.toolsets, 'clang-darwin-26.0' ),
           containsValue( parameters.toolsets, 'clang-darwin-16.4' ),
-          containsValue( parameters.toolsets, 'clang-darwin-15.4' ) )
+          containsValue( parameters.toolsets, 'clang-darwin-15.4' ) ) }}
         strategy:
           matrix:
             ${{ if containsValue( parameters.toolsets, 'clang-darwin-26.0' ) }}:
@@ -228,8 +228,8 @@ stages:
                   popd
                 displayName: "${{ b2_test.name }}"
       - job: "Windows"
-        condition: or( containsValue( parameters.toolsets, 'msvc-14.5' ), containsValue(
-          parameters.toolsets, 'msvc-14.3' ) )
+        condition: ${{ or( containsValue( parameters.toolsets, 'msvc-14.5' ),
+          containsValue( parameters.toolsets, 'msvc-14.3' ) ) }}
         strategy:
           matrix:
             ${{ if containsValue( parameters.toolsets, 'msvc-14.5' ) }}:
