@@ -196,7 +196,7 @@ stages:
                   VM_IMAGE: "macOS-14",
                 }
         pool:
-          vmImage: $(VM_IMAGE)
+          vmImage: $[ variables['VM_IMAGE'] ]
         steps:
           - bash: |
               set -e
@@ -238,7 +238,7 @@ stages:
                 TOOLSET_VERSION: 14.3
                 VM_IMAGE: "windows-2022"
         pool:
-          vmImage: $(VM_IMAGE)
+          vmImage: $[ variables['VM_IMAGE'] ]
         steps:
           - script: |
               cd %BUILD_SOURCESDIRECTORY%/..
