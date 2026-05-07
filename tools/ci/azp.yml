@@ -169,12 +169,15 @@ stages:
                   popd
                 displayName: "${{ b2_test.name }}"
       - job: "macOS"
+        condition: or( containsValue( parameters.toolsets, 'clang-darwin-26.0' ),
+          containsValue( parameters.toolsets, 'clang-darwin-16.4' ),
+          containsValue( parameters.toolsets, 'clang-darwin-15.4' ) )
         strategy:
           matrix:
             ${{ if containsValue( parameters.toolsets, 'clang-darwin-26.0' ) }}:
               Xcode 26.0.1:
                 {
-                  CXX: clang++-,
+                  CXX: clang++,
                   TOOLSET: clang,
                   XCODE_APP: /Applications/Xcode_26.0.1.app,
                   VM_IMAGE: "macOS-15",
@@ -182,16 +185,16 @@ stages:
             ${{ if containsValue( parameters.toolsets, 'clang-darwin-16.4' ) }}:
               Xcode 16.4:
                 {
-                  TOOLSET: clang,
                   CXX: clang++,
+                  TOOLSET: clang,
                   XCODE_APP: /Applications/Xcode_16.4.app,
                   VM_IMAGE: "macOS-15",
                 }
             ${{ if containsValue( parameters.toolsets, 'clang-darwin-15.4' ) }}:
               Xcode 15.4:
                 {
-                  TOOLSET: clang,
                   CXX: clang++,
+                  TOOLSET: clang,
                   XCODE_APP: /Applications/Xcode_15.4.app,
                   VM_IMAGE: "macOS-14",
                 }
@@ -225,6 +228,8 @@ stages:
                   popd
                 displayName: "${{ b2_test.name }}"
       - job: "Windows"
+        condition: or( containsValue( parameters.toolsets, 'msvc-14.5' ), containsValue(
+          parameters.toolsets, 'msvc-14.3' ) )
         strategy:
           matrix:
             ${{ if containsValue( parameters.toolsets, 'msvc-14.5' ) }}:
