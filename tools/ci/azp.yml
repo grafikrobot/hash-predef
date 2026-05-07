@@ -59,6 +59,33 @@ stages:
     dependsOn: ${{ parameters.depends_on }}
     jobs:
       - job: "Linux"
+        condition: ${{ or( containsValue( parameters.toolsets, 'gcc-16' ),
+          containsValue( parameters.toolsets, 'gcc-15' ), containsValue(
+          parameters.toolsets, 'gcc-14' ), containsValue( parameters.toolsets,
+          'gcc-13' ), containsValue( parameters.toolsets, 'gcc-12' ),
+          containsValue( parameters.toolsets, 'gcc-11' ), containsValue(
+          parameters.toolsets, 'gcc-10' ), containsValue( parameters.toolsets,
+          'gcc-9' ), containsValue( parameters.toolsets, 'gcc-8' ),
+          containsValue( parameters.toolsets, 'gcc-7' ), containsValue(
+          parameters.toolsets, 'gcc-6' ), containsValue( parameters.toolsets,
+          'gcc-5' ), containsValue( parameters.toolsets, 'gcc-4.9' ),
+          containsValue( parameters.toolsets, 'gcc-4.8' ), containsValue(
+          parameters.toolsets, 'clang-23' ), containsValue( parameters.toolsets,
+          'clang-22' ), containsValue( parameters.toolsets, 'clang-21' ),
+          containsValue( parameters.toolsets, 'clang-20' ), containsValue(
+          parameters.toolsets, 'clang-19' ), containsValue( parameters.toolsets,
+          'clang-18' ), containsValue( parameters.toolsets, 'clang-17' ),
+          containsValue( parameters.toolsets, 'clang-16' ), containsValue(
+          parameters.toolsets, 'clang-15' ), containsValue( parameters.toolsets,
+          'clang-14' ), containsValue( parameters.toolsets, 'clang-13' ),
+          containsValue( parameters.toolsets, 'clang-12' ), containsValue(
+          parameters.toolsets, 'clang-11' ), containsValue( parameters.toolsets,
+          'clang-10' ), containsValue( parameters.toolsets, 'clang-9' ),
+          containsValue( parameters.toolsets, 'clang-8' ), containsValue(
+          parameters.toolsets, 'clang-7' ), containsValue( parameters.toolsets,
+          'clang-6' ), containsValue( parameters.toolsets, 'clang-5' ),
+          containsValue( parameters.toolsets, 'clang-4' ), containsValue(
+          parameters.toolsets, 'clang-3.9' ) ) }}
         strategy:
           matrix:
             ${{ if containsValue( parameters.toolsets, 'gcc-16' ) }}:
@@ -261,7 +288,7 @@ stages:
               cmd.exe /c bootstrap.bat
             displayName: Install B2
           - ${{ each b2_test in parameters.b2_tests }}:
-              - bash: |
+              - script: |
                   set BOOST_BUILD_PATH=%BUILD_SOURCESDIRECTORY%/../b2-release
                   cd "%BUILD_SOURCESDIRECTORY%/${{ b2_test.dir }}"
                   %BUILD_SOURCESDIRECTORY%/../b2-release/b2.exe toolset=%TOOLSET% ${{ b2_test.args }}
