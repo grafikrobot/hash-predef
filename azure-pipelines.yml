@@ -294,23 +294,23 @@ stages:
         - "msvc-14.5"
       depends_on: [ "Core" ]
       b2_tests:
-        - name: "UWP DESKTOP"
+        - name: "UWP_DESKTOP"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP"
-        - name: "UWP PHONE"
+        - name: "UWP_PHONE"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP"
-        - name: "UWP STORE"
+        - name: "UWP_STORE"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP"
-        - name: "UWP SERVER"
+        - name: "UWP_SERVER"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_SERVER"
-        - name: "UWP SYSTEM"
+        - name: "UWP_SYSTEM"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_SYSTEM"
