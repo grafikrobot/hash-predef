@@ -289,28 +289,28 @@ stages:
 
   - template: "tools/ci/azp.yml"
     parameters:
-      name: "Windows UWP"
+      name: "Windows_UWP"
       toolsets:
         - "msvc-14.5"
       depends_on: [ "Core" ]
       b2_tests:
-        - name: "UWP_DESKTOP"
+        - name: "UWP DESKTOP"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP"
-        - name: "UWP_PHONE"
+        - name: "UWP PHONE"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP"
-        - name: "UWP_STORE"
+        - name: "UWP STORE"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP"
-        - name: "UWP_SERVER"
+        - name: "UWP SERVER"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_SERVER"
-        - name: "UWP_SYSTEM"
+        - name: "UWP SYSTEM"
           dir: test
           args: "address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_SYSTEM"
