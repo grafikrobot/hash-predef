@@ -193,7 +193,7 @@ stages:
               ./bootstrap.sh
               sudo ./b2 --debug-configuration install
               EXE_PATH=`which ${EXE}`
-              echo "using ${TOOLSET%%-[0-9]*} : ${EXE_PATH} : ${EXE} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
+              echo "using ${TOOLSET%%-[0-9]*} : : ${EXE_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
               popd
             displayName: "Install B2"
           - ${{ each b2_test in parameters.b2_tests }}:
