@@ -296,28 +296,28 @@ stages:
       b2_tests:
         - name: "UWP DESKTOP"
           dir: test
-          args: "address-model=64 define=_WIN32_WINNT=0x0A00
+          args: "--verbose-test -a address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP"
         - name: "UWP PHONE"
           dir: test
-          args: "address-model=64 define=_WIN32_WINNT=0x0A00
+          args: "--verbose-test -a address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP"
         - name: "UWP STORE"
           dir: test
-          args: "address-model=64 define=_WIN32_WINNT=0x0A00
+          args: "--verbose-test -a address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_PC_APP"
         - name: "UWP SERVER"
           dir: test
-          args: "address-model=64 define=_WIN32_WINNT=0x0A00
+          args: "--verbose-test -a address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_SERVER"
         - name: "UWP SYSTEM"
           dir: test
-          args: "address-model=64 define=_WIN32_WINNT=0x0A00
+          args: "--verbose-test -a address-model=64 define=_WIN32_WINNT=0x0A00
             define=WINAPI_FAMILY=WINAPI_FAMILY_SYSTEM"
 
   - stage: WebsiteUpdate
     displayName: "Website Update"
-    dependsOn: [ Core, Compilers ]
+    dependsOn: [ Core, Compilers, Windows_UWP ]
     condition: and(in(variables['Build.SourceBranch'], 'refs/heads/master',
       'refs/heads/develop'), eq(variables['Build.Repository.Name'],
       'grafikrobot/hash-predef'))
