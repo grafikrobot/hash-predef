@@ -45,9 +45,10 @@ parameters:
       - "clang-5"
       - "clang-4"
       - "clang-3.9"
+      - "tcc-0.9.27"
       - "clang-darwin-26.0"
       - "clang-darwin-16.4"
-      - "clang-darwin-15."
+      - "clang-darwin-15.4"
       - "msvc-14.5"
       - "msvc-14.3"
   - name: b2_tests
