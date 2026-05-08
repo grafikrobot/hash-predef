@@ -60,116 +60,133 @@ stages:
     dependsOn: ${{ parameters.depends_on }}
     jobs:
       - job: "Linux"
-        condition: ${{ or( containsValue( parameters.toolsets, 'gcc-16' ),
-          containsValue( parameters.toolsets, 'gcc-15' ), containsValue(
-          parameters.toolsets, 'gcc-14' ), containsValue( parameters.toolsets,
-          'gcc-13' ), containsValue( parameters.toolsets, 'gcc-12' ),
-          containsValue( parameters.toolsets, 'gcc-11' ), containsValue(
-          parameters.toolsets, 'gcc-10' ), containsValue( parameters.toolsets,
-          'gcc-9' ), containsValue( parameters.toolsets, 'gcc-8' ),
-          containsValue( parameters.toolsets, 'gcc-7' ), containsValue(
-          parameters.toolsets, 'gcc-6' ), containsValue( parameters.toolsets,
-          'gcc-5' ), containsValue( parameters.toolsets, 'gcc-4.9' ),
-          containsValue( parameters.toolsets, 'gcc-4.8' ), containsValue(
-          parameters.toolsets, 'clang-23' ), containsValue( parameters.toolsets,
-          'clang-22' ), containsValue( parameters.toolsets, 'clang-21' ),
-          containsValue( parameters.toolsets, 'clang-20' ), containsValue(
-          parameters.toolsets, 'clang-19' ), containsValue( parameters.toolsets,
-          'clang-18' ), containsValue( parameters.toolsets, 'clang-17' ),
-          containsValue( parameters.toolsets, 'clang-16' ), containsValue(
-          parameters.toolsets, 'clang-15' ), containsValue( parameters.toolsets,
-          'clang-14' ), containsValue( parameters.toolsets, 'clang-13' ),
-          containsValue( parameters.toolsets, 'clang-12' ), containsValue(
-          parameters.toolsets, 'clang-11' ), containsValue( parameters.toolsets,
-          'clang-10' ), containsValue( parameters.toolsets, 'clang-9' ),
-          containsValue( parameters.toolsets, 'clang-8' ), containsValue(
-          parameters.toolsets, 'clang-7' ), containsValue( parameters.toolsets,
-          'clang-6' ), containsValue( parameters.toolsets, 'clang-5' ),
-          containsValue( parameters.toolsets, 'clang-4' ), containsValue(
-          parameters.toolsets, 'clang-3.9' ) ) }}
+        condition: ${{ or( containsValue(parameters.toolsets,'gcc-16'),
+          containsValue(parameters.toolsets,'gcc-15'),
+          containsValue(parameters.toolsets,'gcc-14'),
+          containsValue(parameters.toolsets,'gcc-13'),
+          containsValue(parameters.toolsets,'gcc-12'),
+          containsValue(parameters.toolsets,'gcc-11'),
+          containsValue(parameters.toolsets,'gcc-10'),
+          containsValue(parameters.toolsets,'gcc-9'),
+          containsValue(parameters.toolsets,'gcc-8'),
+          containsValue(parameters.toolsets,'gcc-7'),
+          containsValue(parameters.toolsets,'gcc-6'),
+          containsValue(parameters.toolsets,'gcc-5'),
+          containsValue(parameters.toolsets,'gcc-4.9'),
+          containsValue(parameters.toolsets,'gcc-4.8'),
+          containsValue(parameters.toolsets,'clang-23'),
+          containsValue(parameters.toolsets,'clang-22'),
+          containsValue(parameters.toolsets,'clang-21'),
+          containsValue(parameters.toolsets,'clang-20'),
+          containsValue(parameters.toolsets,'clang-19'),
+          containsValue(parameters.toolsets,'clang-18'),
+          containsValue(parameters.toolsets,'clang-17'),
+          containsValue(parameters.toolsets,'clang-16'),
+          containsValue(parameters.toolsets,'clang-15'),
+          containsValue(parameters.toolsets,'clang-14'),
+          containsValue(parameters.toolsets,'clang-13'),
+          containsValue(parameters.toolsets,'clang-12'),
+          containsValue(parameters.toolsets,'clang-11'),
+          containsValue(parameters.toolsets,'clang-10'),
+          containsValue(parameters.toolsets,'clang-9'),
+          containsValue(parameters.toolsets,'clang-8'),
+          containsValue(parameters.toolsets,'clang-7'),
+          containsValue(parameters.toolsets,'clang-6'),
+          containsValue(parameters.toolsets,'clang-5'),
+          containsValue(parameters.toolsets,'clang-4'),
+          containsValue(parameters.toolsets,'clang-3.9'),
+          containsValue(parameters.toolsets,'tcc-0.9.27') ) }}
         strategy:
           matrix:
             ${{ if containsValue( parameters.toolsets, 'gcc-16' ) }}:
-              GCC 16: { EXE: g++-16, TOOLSET: gcc-16, CONTAINER: "linux_gcc16" }
+              GCC 16: { EXE: g++-16, TOOLSET: gcc-16, CONTAINER: "teeks99/gcc-ubuntu:16" }
             ${{ if containsValue( parameters.toolsets, 'gcc-15' ) }}:
-              GCC 15: { EXE: g++-15, TOOLSET: gcc-15, CONTAINER: "linux_gcc15" }
+              GCC 15: { EXE: g++-15, TOOLSET: gcc-15, CONTAINER: "teeks99/gcc-ubuntu:15" }
             ${{ if containsValue( parameters.toolsets, 'gcc-14' ) }}:
-              GCC 14: { EXE: g++-14, TOOLSET: gcc-14, CONTAINER: "linux_gcc14" }
+              GCC 14: { EXE: g++-14, TOOLSET: gcc-14, CONTAINER: "teeks99/gcc-ubuntu:14" }
             ${{ if containsValue( parameters.toolsets, 'gcc-13' ) }}:
-              GCC 13: { EXE: g++-13, TOOLSET: gcc-13, CONTAINER: "linux_gcc13" }
+              GCC 13: { EXE: g++-13, TOOLSET: gcc-13, CONTAINER: "teeks99/gcc-ubuntu:13" }
             ${{ if containsValue( parameters.toolsets, 'gcc-12' ) }}:
-              GCC 12: { EXE: g++-12, TOOLSET: gcc-12, CONTAINER: "linux_gcc12" }
+              GCC 12: { EXE: g++-12, TOOLSET: gcc-12, CONTAINER: "teeks99/gcc-ubuntu:12" }
             ${{ if containsValue( parameters.toolsets, 'gcc-11' ) }}:
-              GCC 11: { EXE: g++-11, TOOLSET: gcc-11, CONTAINER: "linux_gcc11" }
+              GCC 11: { EXE: g++-11, TOOLSET: gcc-11, CONTAINER: "teeks99/gcc-ubuntu:11" }
             ${{ if containsValue( parameters.toolsets, 'gcc-10' ) }}:
-              GCC 10: { EXE: g++-10, TOOLSET: gcc-10, CONTAINER: "linux_gcc10" }
+              GCC 10: { EXE: g++-10, TOOLSET: gcc-10, CONTAINER: "teeks99/gcc-ubuntu:10" }
             ${{ if containsValue( parameters.toolsets, 'gcc-9' ) }}:
-              GCC 9: { EXE: g++-9, TOOLSET: gcc-9, CONTAINER: "linux_gcc9" }
+              GCC 9: { EXE: g++-9, TOOLSET: gcc-9, CONTAINER: "teeks99/gcc-ubuntu:9" }
             ${{ if containsValue( parameters.toolsets, 'gcc-8' ) }}:
-              GCC 8: { EXE: g++-8, TOOLSET: gcc-8, CONTAINER: "linux_gcc8" }
+              GCC 8: { EXE: g++-8, TOOLSET: gcc-8, CONTAINER: "teeks99/gcc-ubuntu:8" }
             ${{ if containsValue( parameters.toolsets, 'gcc-7' ) }}:
-              GCC 7: { EXE: g++-7, TOOLSET: gcc-7, CONTAINER: "linux_gcc7" }
+              GCC 7: { EXE: g++-7, TOOLSET: gcc-7, CONTAINER: "teeks99/gcc-ubuntu:7" }
             ${{ if containsValue( parameters.toolsets, 'gcc-6' ) }}:
-              GCC 6: { EXE: g++-6, TOOLSET: gcc-6, CONTAINER: "linux_gcc6" }
+              GCC 6: { EXE: g++-6, TOOLSET: gcc-6, CONTAINER: "teeks99/gcc-ubuntu:6" }
             ${{ if containsValue( parameters.toolsets, 'gcc-5' ) }}:
-              GCC 5: { EXE: g++-5, TOOLSET: gcc-5, CONTAINER: "linux_gcc5" }
+              GCC 5: { EXE: g++-5, TOOLSET: gcc-5, CONTAINER: "teeks99/gcc-ubuntu:5" }
             ${{ if containsValue( parameters.toolsets, 'gcc-4.9' ) }}:
-              GCC 4.9: { EXE: g++-4.9, TOOLSET: gcc-4.9, CONTAINER: "linux_gcc49" }
+              GCC 4.9: { EXE: g++-4.9, TOOLSET: gcc-4.9, CONTAINER: "teeks99/gcc-ubuntu:4.9" }
             ${{ if containsValue( parameters.toolsets, 'gcc-4.8' ) }}:
-              GCC 4.8: { EXE: g++-4.8, TOOLSET: gcc-4.8, CONTAINER: "linux_gcc48" }
+              GCC 4.8: { EXE: g++-4.8, TOOLSET: gcc-4.8, CONTAINER: "teeks99/gcc-ubuntu:4.8" }
             ${{ if containsValue( parameters.toolsets, 'clang-23' ) }}:
-              Clang 23: { EXE: clang++-23, TOOLSET: clang-23, CONTAINER: "linux_clang23" }
+              Clang 23: { EXE: clang++-23, TOOLSET: clang-23, CONTAINER: "teeks99/clang-ubuntu:23" }
             ${{ if containsValue( parameters.toolsets, 'clang-22' ) }}:
-              Clang 22: { EXE: clang++-22, TOOLSET: clang-22, CONTAINER: "linux_clang22" }
+              Clang 22: { EXE: clang++-22, TOOLSET: clang-22, CONTAINER: "teeks99/clang-ubuntu:22" }
             ${{ if containsValue( parameters.toolsets, 'clang-21' ) }}:
-              Clang 21: { EXE: clang++-21, TOOLSET: clang-21, CONTAINER: "linux_clang21" }
+              Clang 21: { EXE: clang++-21, TOOLSET: clang-21, CONTAINER: "teeks99/clang-ubuntu:21" }
             ${{ if containsValue( parameters.toolsets, 'clang-20' ) }}:
-              Clang 20: { EXE: clang++-20, TOOLSET: clang-20, CONTAINER: "linux_clang20" }
+              Clang 20: { EXE: clang++-20, TOOLSET: clang-20, CONTAINER: "teeks99/clang-ubuntu:20" }
             ${{ if containsValue( parameters.toolsets, 'clang-19' ) }}:
-              Clang 19: { EXE: clang++-19, TOOLSET: clang-19, CONTAINER: "linux_clang19" }
+              Clang 19: { EXE: clang++-19, TOOLSET: clang-19, CONTAINER: "teeks99/clang-ubuntu:19" }
             ${{ if containsValue( parameters.toolsets, 'clang-18' ) }}:
-              Clang 18: { EXE: clang++-18, TOOLSET: clang-18, CONTAINER: "linux_clang18" }
+              Clang 18: { EXE: clang++-18, TOOLSET: clang-18, CONTAINER: "teeks99/clang-ubuntu:18" }
             ${{ if containsValue( parameters.toolsets, 'clang-17' ) }}:
-              Clang 17: { EXE: clang++-17, TOOLSET: clang-17, CONTAINER: "linux_clang17" }
+              Clang 17: { EXE: clang++-17, TOOLSET: clang-17, CONTAINER: "teeks99/clang-ubuntu:17" }
             ${{ if containsValue( parameters.toolsets, 'clang-16' ) }}:
-              Clang 16: { EXE: clang++-16, TOOLSET: clang-16, CONTAINER: "linux_clang16" }
+              Clang 16: { EXE: clang++-16, TOOLSET: clang-16, CONTAINER: "teeks99/clang-ubuntu:16" }
             ${{ if containsValue( parameters.toolsets, 'clang-15' ) }}:
-              Clang 15: { EXE: clang++-15, TOOLSET: clang-15, CONTAINER: "linux_clang15" }
+              Clang 15: { EXE: clang++-15, TOOLSET: clang-15, CONTAINER: "teeks99/clang-ubuntu:15" }
             ${{ if containsValue( parameters.toolsets, 'clang-14' ) }}:
-              Clang 14: { EXE: clang++-14, TOOLSET: clang-14, CONTAINER: "linux_clang14" }
+              Clang 14: { EXE: clang++-14, TOOLSET: clang-14, CONTAINER: "teeks99/clang-ubuntu:14" }
             ${{ if containsValue( parameters.toolsets, 'clang-13' ) }}:
-              Clang 13: { EXE: clang++-13, TOOLSET: clang-13, CONTAINER: "linux_clang13" }
+              Clang 13: { EXE: clang++-13, TOOLSET: clang-13, CONTAINER: "teeks99/clang-ubuntu:13" }
             ${{ if containsValue( parameters.toolsets, 'clang-12' ) }}:
-              Clang 12: { EXE: clang++-12, TOOLSET: clang-12, CONTAINER: "linux_clang12" }
+              Clang 12: { EXE: clang++-12, TOOLSET: clang-12, CONTAINER: "teeks99/clang-ubuntu:12" }
             ${{ if containsValue( parameters.toolsets, 'clang-11' ) }}:
-              Clang 11: { EXE: clang++-11, TOOLSET: clang-11, CONTAINER: "linux_clang11" }
+              Clang 11: { EXE: clang++-11, TOOLSET: clang-11, CONTAINER: "teeks99/clang-ubuntu:11" }
             ${{ if containsValue( parameters.toolsets, 'clang-10' ) }}:
-              Clang 10: { EXE: clang++-10, TOOLSET: clang-10, CONTAINER: "linux_clang10" }
+              Clang 10: { EXE: clang++-10, TOOLSET: clang-10, CONTAINER: "teeks99/clang-ubuntu:10" }
             ${{ if containsValue( parameters.toolsets, 'clang-9' ) }}:
-              Clang 9: { EXE: clang++-9, TOOLSET: clang-9, CONTAINER: "linux_clang9" }
+              Clang 9: { EXE: clang++-9, TOOLSET: clang-9, CONTAINER: "teeks99/clang-ubuntu:9" }
             ${{ if containsValue( parameters.toolsets, 'clang-8' ) }}:
-              Clang 8: { EXE: clang++-8, TOOLSET: clang-8, CONTAINER: "linux_clang8" }
+              Clang 8: { EXE: clang++-8, TOOLSET: clang-8, CONTAINER: "teeks99/clang-ubuntu:8" }
             ${{ if containsValue( parameters.toolsets, 'clang-7' ) }}:
-              Clang 7: { EXE: clang++-7, TOOLSET: clang-7, CONTAINER: "linux_clang7" }
+              Clang 7: { EXE: clang++-7, TOOLSET: clang-7, CONTAINER: "teeks99/clang-ubuntu:7" }
             ${{ if containsValue( parameters.toolsets, 'clang-6' ) }}:
-              Clang 6: { EXE: clang++-6.0, TOOLSET: clang-6.0, CONTAINER: "linux_clang6" }
+              Clang 6: { EXE: clang++-6.0, TOOLSET: clang-6.0, CONTAINER: "teeks99/clang-ubuntu:6" }
             ${{ if containsValue( parameters.toolsets, 'clang-5' ) }}:
-              Clang 5: { EXE: clang++-5.0, TOOLSET: clang-5.0, CONTAINER: "linux_clang5" }
+              Clang 5: { EXE: clang++-5.0, TOOLSET: clang-5.0, CONTAINER: "teeks99/clang-ubuntu:5" }
             ${{ if containsValue( parameters.toolsets, 'clang-4' ) }}:
-              Clang 4: { EXE: clang++-4.0, TOOLSET: clang-4.0, CONTAINER: "linux_clang4" }
+              Clang 4: { EXE: clang++-4.0, TOOLSET: clang-4.0, CONTAINER: "teeks99/clang-ubuntu:4" }
             ${{ if containsValue( parameters.toolsets, 'clang-3.9' ) }}:
-              Clang 3.9: { EXE: clang++-3.9, TOOLSET: clang-3.9, CONTAINER: "linux_clang39" }
+              Clang 3.9:
+                {
+                  EXE: clang++-3.9,
+                  TOOLSET: clang-3.9,
+                  CONTAINER: "teeks99/clang-ubuntu:3.9",
+                }
             ${{ if containsValue( parameters.toolsets, 'tcc-0.9.27' ) }}:
               TCC 0.9.27:
                 {
                   EXE: tcc,
                   TOOLSET: cc,
                   B2_CONFIG: "<cflags>\"-std=c11\" <-soname>-soname",
-                  CONTAINER: "ubuntu_2404",
+                  CONTAINER: "ubuntu:24.04",
                 }
         pool:
           vmImage: "ubuntu-latest"
-        container: $[ variables['CONTAINER'] ]
+        container:
+          image: $[ variables['CONTAINER'] ]
+          options: "--name container"
+          # volumes: $[ variables['CO_VOLUMES'] ]
         steps:
           - task: CmdLine@2
             displayName: Sudorize
