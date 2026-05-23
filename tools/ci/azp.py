@@ -350,7 +350,7 @@ class CXXPipelines(object):
             "TOOLSET_VERSION": "16.1.0",
             "VM_IMAGE": "windows-latest",
             "CXXSTD": "11,14,17,20,23",
-            "MINGW_RT": "rt_v14-rev0",
+            "MINGW_RT": "rt_v14-rev1",
         },
         "mingw-15": {
             "NAME": "MinGW 15",
