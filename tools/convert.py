@@ -79,7 +79,7 @@ class convert():
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/predef.jam', source_transform_prog],
-            [r'^tools/ci/(.*)[.]py$', []],
+            [r'^.ci/(.*)[.]py$', []],
             [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [
@@ -145,7 +145,7 @@ class convert():
             [r'^test/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/(.*)[.](cpp|c|m|mm|h)', source_transform_prog],
             [r'^tools/check/predef.jam', source_transform_prog],
-            [r'^tools/ci/(.*)[.]py$', []],
+            [r'^.ci/(.*)[.]py$', []],
             [r'^([.]cirrus[.]yml|appveyor[.]yml|azure-pipelines[.]yml)', []],
             [r'^(.*)[.]git(ignore|attributes)', []],
             [r'^(.*)CMakeLists.txt$', [

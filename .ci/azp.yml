@@ -36,7 +36,7 @@ stages:
               CMAKETESTS=`cat << EOM
               ${{ convertToJson(parameters.cmake_tests) }}
               EOM`
-              python tools/ci/azp.py --type=matrix --include=${{ join(',',parameters.toolsets) }} --exclude=${{ join(',',parameters.exclude) }} "--b2tests=${CMAKETESTS}" "--b2tests=${CMAKETESTS}"
+              python .ci/azp.py --type=matrix --include=${{ join(',',parameters.toolsets) }} --exclude=${{ join(',',parameters.exclude) }} "--b2tests=${CMAKETESTS}" "--b2tests=${CMAKETESTS}"
             name: Matrix
       - job: "Linux"
         dependsOn: "Matrix"

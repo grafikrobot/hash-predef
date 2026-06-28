@@ -26,7 +26,7 @@ pr:
       - develop
 
 stages:
-  - template: "tools/ci/azp.yml"
+  - template: ".ci/azp.yml"
     parameters:
       name: Core
       toolsets:
@@ -57,7 +57,7 @@ stages:
             cxxflags=-Wsign-promo cxxflags=-Wsign-compare
             cxxflags=-Wsign-conversion cxxflags=-Wundef"
 
-  - template: "tools/ci/azp.yml"
+  - template: ".ci/azp.yml"
     parameters:
       name: Compilers
       depends_on: [ "Core" ]
@@ -69,7 +69,7 @@ stages:
           dir: test
           args: "--debug-configuration -a predef predef-headers"
 
-  - template: "tools/ci/azp.yml"
+  - template: ".ci/azp.yml"
     parameters:
       name: "Windows_UWP"
       toolsets:
