@@ -129,11 +129,13 @@ stages:
               set -e
               pushd ${HOME}
               wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameters.b2_version }}/b2-${{ parameters.b2_version }}-macos-x86_64.bz2
-              tar -jxf b2-${{ parameters.b2_version }}-macos-x86_64.bz2
-              echo "" >> ${HOME}/.bashrc
-              echo "" >> ${HOME}/.bashrc
-              echo "export PATH=${HOME}/b2-${{ parameters.b2_version }}" >> ${HOME}/.bashrc
-              echo "" >> ${HOME}/.bashrc
+              tar -jxvf b2-${{ parameters.b2_version }}-macos-x86_64.bz2
+              echo "" >> .bashrc
+              echo "" >> .bashrc
+              echo "export PATH=${HOME}/b2-${{ parameters.b2_version }}" >> .bashrc
+              echo "" >> .bashrc
+              cat .bashrc
+              ls -la ${HOME}
               popd
             displayName: "Install B2"
           - ${{ each b2_test in parameters.b2_tests }}:
