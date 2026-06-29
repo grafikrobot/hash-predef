@@ -131,8 +131,8 @@ stages:
               wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameters.b2_version }}/b2-${{ parameters.b2_version }}-macos-x86_64.bz2
               tar -jxvf b2-${{ parameters.b2_version }}-macos-x86_64.bz2
               echo "" >> .bashrc
-              echo "" >> .bashrc
-              echo "export PATH=${HOME}/b2-${{ parameters.b2_version }}" >> .bashrc
+              echo "export PATH=${HOME}/b2-${{ parameters.b2_version }}:\$\{PATH\}" >> .bashrc
+              echo "echo '[.bachrc] PATH:' \$\{PATH\}" >> .bashrc
               echo "" >> .bashrc
               cat .bashrc
               ls -la ${HOME}
