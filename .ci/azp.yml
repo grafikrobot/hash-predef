@@ -130,13 +130,12 @@ stages:
               pushd ${HOME}
               wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameters.b2_version }}/b2-${{ parameters.b2_version }}-macos-x86_64.bz2
               tar -jxvf b2-${{ parameters.b2_version }}-macos-x86_64.bz2
-              export "PATH=${HOME}/b2-${{ parameters.b2_version }}:${PATH}"
               popd
             displayName: "Install B2"
           - ${{ each b2_test in parameters.b2_tests }}:
               - bash: |
                   set -e
-                  env | sort
+                  export "PATH=${HOME}/b2-${{ parameters.b2_version }}:${PATH}"
                   CXX_PATH=`which ${EXE}`
                   echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
                   pushd "${{ b2_test.dir }}"
