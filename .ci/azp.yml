@@ -26,7 +26,7 @@ parameters:
 
 stages:
   - stage: "${{ parameters.name }}"
-    dependsOn: ${{ parameerst.depends_on }}
+    dependsOn: ${{ parameters.depends_on }}
     jobs:
       - job: "Matrix"
         pool:
@@ -128,11 +128,11 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameerst.b2_version }}/b2-${{ parameerst.b2_version }}-macos-x86_64.bz2
-              tar -jxf b2-${{ parameerst.b2_version }}-macos-x86_64.bz2
+              wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameters.b2_version }}/b2-${{ parameters.b2_version }}-macos-x86_64.bz2
+              tar -jxf b2-${{ parameters.b2_version }}-macos-x86_64.bz2
               echo "" >> ${HOME}/.bashrc
               echo "" >> ${HOME}/.bashrc
-              echo "export PATH=${HOME}/b2-${{ parameerst.b2_version }}" >> ${HOME}/.bashrc
+              echo "export PATH=${HOME}/b2-${{ parameters.b2_version }}" >> ${HOME}/.bashrc
               echo "" >> ${HOME}/.bashrc
               popd
             displayName: "Install B2"
