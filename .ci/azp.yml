@@ -20,10 +20,13 @@ parameters:
   - name: exclude
     type: object
     default: []
+  - name: b2_version
+    type: string
+    default: "5.5.0"
 
 stages:
   - stage: "${{ parameters.name }}"
-    dependsOn: ${{ parameters.depends_on }}
+    dependsOn: ${{ parameerst.depends_on }}
     jobs:
       - job: "Matrix"
         pool:
@@ -125,11 +128,12 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              wget -nv https://github.com/bfgroup/b2/archive/main.tar.gz
-              tar -zxf main.tar.gz
-              cd b2-main
-              CXX= ./bootstrap.sh
-              sudo ./b2 install
+              wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameerst.b2_version }}/b2-${{ parameerst.b2_version }}-macos-x86_64.bz2
+              tar -jxf b2-${{ parameerst.b2_version }}-macos-x86_64.bz2
+              echo "" >> ${HOME}/.bashrc
+              echo "" >> ${HOME}/.bashrc
+              echo "export PATH=${HOME}/b2-${{ parameerst.b2_version }}" >> ${HOME}/.bashrc
+              echo "" >> ${HOME}/.bashrc
               popd
             displayName: "Install B2"
           - ${{ each b2_test in parameters.b2_tests }}:
