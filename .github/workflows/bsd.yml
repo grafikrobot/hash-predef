@@ -93,7 +93,7 @@ jobs:
         shell: vmsh {0}
         run: |
           set -e
-          pushd ${HOME}
+          cd ${HOME}
           wget --tries=3 -nv https://github.com/bfgroup/b2/archive/release.tar.gz
           tar -zxf release.tar.gz
           cd b2-release
@@ -101,12 +101,12 @@ jobs:
           sudo ./b2 install
           CXX_PATH=`which ${{ matrix.toolset.cxx }}`
           echo "using ${{ matrix.toolset.b2tool }} : : ${CXX_PATH} ;" > user-config.jam
-          popd
+          cd ${GITHUB_WORKSPACE}
       - name: "GNU (info)"
         shell: vmsh {0}
         run: |
           set -e
-          pushd test
+          cd test
           b2 --verbose-test -a toolset=${{ matrix.toolset.b2tool }} predef-info
           b2 --debug-configuration -a toolset=${{ matrix.toolset.b2tool }} predef predef-headers
-          popd
+          cd ..
