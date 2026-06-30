@@ -67,11 +67,10 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              wget -nv https://github.com/bfgroup/b2/archive/main.tar.gz
-              tar -zxf main.tar.gz
-              cd b2-main
-              ./bootstrap.sh
-              sudo ./b2 --debug-configuration install
+              B2_URL=`wget -q -O - https://api.github.com/repos/bfgroup/b2/releases/latest | grep browser_download_url | grep 'linux-x86_64[.]bz2["]' | cut -d '"' -f 4`
+              wget -nv "${B2_URL}" -O b2.bz2
+              tar -jxvf b2.bz2
+              mv b2-* b2
               EXE_PATH=`which ${EXE}`
               echo "using ${TOOLSET%%-[0-9]*} : : ${EXE_PATH} : ${B2_CONFIG} ;" > ${HOME}/user-config.jam
               popd
@@ -91,7 +90,7 @@ stages:
               - bash: |
                   set -e
                   pushd "${{ b2_test.dir }}"
-                  b2 "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} cxxstd=${CXXSTD} ${{ b2_test.args }}
+                  "${HOME}/b2/b2" "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} cxxstd=${CXXSTD} ${{ b2_test.args }}
                   popd
                 displayName: "${{ b2_test.name }}"
           - ${{ each cmake_test in parameters.cmake_tests }}:
@@ -134,11 +133,10 @@ stages:
           - ${{ each b2_test in parameters.b2_tests }}:
               - bash: |
                   set -e
-                  export "PATH=${HOME}/b2:${PATH}"
                   CXX_PATH=`which ${EXE}`
                   echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
                   pushd "${{ b2_test.dir }}"
-                  b2 "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} cxxstd=${CXXSTD} ${{ b2_test.args }}
+                  "${HOME}/b2/b2" "--user-config=${HOME}/user-config.jam" ${TOOLSET:+toolset=$TOOLSET} cxxstd=${CXXSTD} ${{ b2_test.args }}
                   popd
                 displayName: "${{ b2_test.name }}"
       - job: "Windows"
