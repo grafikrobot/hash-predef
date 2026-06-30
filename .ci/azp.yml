@@ -67,7 +67,7 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              B2_URL=`wget -q -O - https://api.github.com/repos/bfgroup/b2/releases/latest | grep browser_download_url | grep 'linux-x86_64[.]bz2["]' | cut -d '"' -f 4`
+              B2_URL=`wget --tries=3 -q -O - https://api.github.com/repos/bfgroup/b2/releases/latest | grep browser_download_url | grep 'linux-x86_64[.]bz2["]' | cut -d '"' -f 4`
               wget -nv "${B2_URL}" -O b2.bz2
               tar -jxvf b2.bz2
               mv b2-* b2
@@ -79,7 +79,7 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              CMAKE_URL=`wget -q -O - https://api.github.com/repos/Kitware/cmake/releases/latest | grep browser_download_url | grep "linux-x86_64[.]tar[.]gz" | cut -d '"' -f 4`
+              CMAKE_URL=`wget --tries=3 -q -O - https://api.github.com/repos/Kitware/cmake/releases/latest | grep browser_download_url | grep "linux-x86_64[.]tar[.]gz" | cut -d '"' -f 4`
               wget "${CMAKE_URL}" -O cmake.tgz
               tar zxvf cmake.tgz
               mv cmake-*-linux-x86_64 cmake
@@ -124,7 +124,7 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              B2_URL=`wget -q -O - https://api.github.com/repos/bfgroup/b2/releases/latest | grep browser_download_url | grep 'macos-x86_64[.]bz2["]' | cut -d '"' -f 4`
+              B2_URL=`wget --tries=3 -q -O - https://api.github.com/repos/bfgroup/b2/releases/latest | grep browser_download_url | grep 'macos-x86_64[.]bz2["]' | cut -d '"' -f 4`
               wget -nv "${B2_URL}" -O b2.bz2
               tar -jxvf b2.bz2
               mv b2-* b2
