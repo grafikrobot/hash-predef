@@ -98,7 +98,7 @@ jobs:
           tar -zxf release.tar.gz
           cd b2-release
           CXX= ./bootstrap.sh
-          sudo ./b2 install
+          ./b2 install
           CXX_PATH=`which ${{ matrix.toolset.cxx }}`
           echo "using ${{ matrix.toolset.b2tool }} : : ${CXX_PATH} ;" > user-config.jam
           cd ${GITHUB_WORKSPACE}
