@@ -20,9 +20,6 @@ parameters:
   - name: exclude
     type: object
     default: []
-  - name: b2_version
-    type: string
-    default: "5.5.0"
 
 stages:
   - stage: "${{ parameters.name }}"
@@ -128,14 +125,16 @@ stages:
           - bash: |
               set -e
               pushd ${HOME}
-              wget -nv https://github.com/bfgroup/b2/releases/download/${{ parameters.b2_version }}/b2-${{ parameters.b2_version }}-macos-x86_64.bz2
-              tar -jxvf b2-${{ parameters.b2_version }}-macos-x86_64.bz2
+              B2_URL=`wget -q -O - https://api.github.com/repos/bfgroup/b2/releases/latest | grep browser_download_url | grep 'macos-x86_64[.]bz2["]' | cut -d '"' -f 4`
+              wget -nv "${B2_URL}" -O b2.bz2
+              tar -jxvf b2.bz2
+              mv b2-* b2
               popd
             displayName: "Install B2"
           - ${{ each b2_test in parameters.b2_tests }}:
               - bash: |
                   set -e
-                  export "PATH=${HOME}/b2-${{ parameters.b2_version }}:${PATH}"
+                  export "PATH=${HOME}/b2:${PATH}"
                   CXX_PATH=`which ${EXE}`
                   echo "using ${TOOLSET} : : ${CXX_PATH} ;" > ${HOME}/user-config.jam
                   pushd "${{ b2_test.dir }}"
