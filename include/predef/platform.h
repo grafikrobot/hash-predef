@@ -1,5 +1,5 @@
 /*
-Copyright Rene Rivera 2013-2015
+Copyright René Ferdinand Rivera Morell
 Copyright (c) Microsoft Corporation 2014
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
