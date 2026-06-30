@@ -88,7 +88,7 @@ jobs:
           export ASSUME_ALWAYS_YES=YES
           pkg bootstrap
           pkg install ${{ matrix.toolset.package }}
-          pkg install python3
+          pkg install python3 wget
       - name: Setup
         shell: vmsh {0}
         run: |
