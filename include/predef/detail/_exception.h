@@ -9,7 +9,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #define HASH_PREDEF_DETAIL__EXCEPTION_H
 
 #if defined(__cplusplus)
-#include <exception>
+#	include <exception>
 #endif
 
 #endif

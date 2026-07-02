@@ -9,9 +9,9 @@ http://www.boost.org/LICENSE_1_0.txt)
 #define HASH_PREDEF_DETAIL__CASSERT_H
 
 #if defined(__cplusplus)
-#include <cassert>
+#	include <cassert>
 #else
-#include <assert.h>
+#	include <assert.h>
 #endif
 
 #endif

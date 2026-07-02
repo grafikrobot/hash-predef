@@ -10,9 +10,9 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 int main()
 {
-#if HASH_PREDEF_TESTED_AT(HASH_PREDEF_VERSION_NUMBER(2,0,0),1,0,0)
-    return 1;
+#if HASH_PREDEF_TESTED_AT(HASH_PREDEF_VERSION_NUMBER(2, 0, 0), 1, 0, 0)
+	return 1;
 #else
-    return 0;
+	return 0;
 #endif
 }

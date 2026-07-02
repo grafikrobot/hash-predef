@@ -10,10 +10,10 @@ http://www.boost.org/LICENSE_1_0.txt)
  * So we test that we only detect OSX in this combination.
  */
 #if defined(__APPLE__)
-#   include <sys/param.h>
-#   include <predef/os/bsd.h>
-#   include <predef/os/macos.h>
-#   if !HASH_PREDEF_OS_MACOS || HASH_PREDEF_OS_BSD
-#       error "HASH_PREDEF_OS_MACOS not detected and/or HASH_PREDEF_OS_BSD mis-detected."
-#   endif
+#include <predef/os/bsd.h>
+#include <predef/os/macos.h>
+#include <sys/param.h>
+#if !HASH_PREDEF_OS_MACOS || HASH_PREDEF_OS_BSD
+#error "HASH_PREDEF_OS_MACOS not detected and/or HASH_PREDEF_OS_BSD mis-detected."
+#endif
 #endif

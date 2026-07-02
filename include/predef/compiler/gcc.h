@@ -13,8 +13,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef/compiler/clang.h>
 #include <predef/compiler/tcc.h>
 
-#include <predef/version_number.h>
 #include <predef/make.h>
+#include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_COMP_GNUC`
@@ -36,25 +36,27 @@ Version number available as major, minor, and patch (if available).
 #define HASH_PREDEF_COMP_GNUC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__GNUC__)
-#   if !defined(HASH_PREDEF_COMP_GNUC_DETECTION) && defined(__GNUC_PATCHLEVEL__)
-#       define HASH_PREDEF_COMP_GNUC_DETECTION \
-            HASH_PREDEF_VERSION_NUMBER(__GNUC__,__GNUC_MINOR__,__GNUC_PATCHLEVEL__)
-#   endif
-#   if !defined(HASH_PREDEF_COMP_GNUC_DETECTION)
-#       define HASH_PREDEF_COMP_GNUC_DETECTION \
-            HASH_PREDEF_VERSION_NUMBER(__GNUC__,__GNUC_MINOR__,0)
-#   endif
+#	if !defined(HASH_PREDEF_COMP_GNUC_DETECTION) \
+		&& defined(__GNUC_PATCHLEVEL__)
+#		define HASH_PREDEF_COMP_GNUC_DETECTION \
+			HASH_PREDEF_VERSION_NUMBER( \
+				__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
+#	endif
+#	if !defined(HASH_PREDEF_COMP_GNUC_DETECTION)
+#		define HASH_PREDEF_COMP_GNUC_DETECTION \
+			HASH_PREDEF_VERSION_NUMBER(__GNUC__, __GNUC_MINOR__, 0)
+#	endif
 #endif
 
 #ifdef HASH_PREDEF_COMP_GNUC_DETECTION
-#   if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
-#       define HASH_PREDEF_COMP_GNUC_EMULATED HASH_PREDEF_COMP_GNUC_DETECTION
-#   else
-#       undef HASH_PREDEF_COMP_GNUC
-#       define HASH_PREDEF_COMP_GNUC HASH_PREDEF_COMP_GNUC_DETECTION
-#   endif
-#   define HASH_PREDEF_COMP_GNUC_AVAILABLE
-#   include <predef/detail/comp_detected.h>
+#	if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
+#		define HASH_PREDEF_COMP_GNUC_EMULATED HASH_PREDEF_COMP_GNUC_DETECTION
+#	else
+#		undef HASH_PREDEF_COMP_GNUC
+#		define HASH_PREDEF_COMP_GNUC HASH_PREDEF_COMP_GNUC_DETECTION
+#	endif
+#	define HASH_PREDEF_COMP_GNUC_AVAILABLE
+#	include <predef/detail/comp_detected.h>
 #endif
 
 #define HASH_PREDEF_COMP_GNUC_NAME "Gnu GCC C/C++"
@@ -62,9 +64,10 @@ Version number available as major, minor, and patch (if available).
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_GNUC,HASH_PREDEF_COMP_GNUC_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_GNUC, HASH_PREDEF_COMP_GNUC_NAME)
 
 #ifdef HASH_PREDEF_COMP_GNUC_EMULATED
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_GNUC_EMULATED,HASH_PREDEF_COMP_GNUC_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_COMP_GNUC_EMULATED, HASH_PREDEF_COMP_GNUC_NAME)
 #endif

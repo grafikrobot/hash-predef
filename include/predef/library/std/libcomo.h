@@ -6,18 +6,18 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_LIBRARY_STD_LIBCOMO_H
-#define HASH_PREDEF_LIBRARY_STD_LIBCOMO_H
+#	define HASH_PREDEF_LIBRARY_STD_LIBCOMO_H
 
-#include <predef/library/std/_prefix.h>
+#	include <predef/library/std/_prefix.h>
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_LIB_STD_COMO`
 
-http://www.comeaucomputing.com/libcomo/[Comeau Computing] Standard {CPP} Library.
-Version number available as major.
+http://www.comeaucomputing.com/libcomo/[Comeau Computing] Standard {CPP}
+Library. Version number available as major.
 
 [options="header"]
 |===
@@ -29,20 +29,21 @@ Version number available as major.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_LIB_STD_COMO HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_LIB_STD_COMO HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if defined(__LIBCOMO__)
-#   undef HASH_PREDEF_LIB_STD_COMO
-#   define HASH_PREDEF_LIB_STD_COMO HASH_PREDEF_VERSION_NUMBER(__LIBCOMO_VERSION__,0,0)
-#endif
+#	if defined(__LIBCOMO__)
+#		undef HASH_PREDEF_LIB_STD_COMO
+#		define HASH_PREDEF_LIB_STD_COMO \
+			HASH_PREDEF_VERSION_NUMBER(__LIBCOMO_VERSION__, 0, 0)
+#	endif
 
-#if HASH_PREDEF_LIB_STD_COMO
-#   define HASH_PREDEF_LIB_STD_COMO_AVAILABLE
-#endif
+#	if HASH_PREDEF_LIB_STD_COMO
+#		define HASH_PREDEF_LIB_STD_COMO_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_LIB_STD_COMO_NAME "Comeau Computing"
+#	define HASH_PREDEF_LIB_STD_COMO_NAME "Comeau Computing"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_STD_COMO,HASH_PREDEF_LIB_STD_COMO_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_STD_COMO, HASH_PREDEF_LIB_STD_COMO_NAME)

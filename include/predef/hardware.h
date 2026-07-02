@@ -6,11 +6,12 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
-#if !defined(HASH_PREDEF_HARDWARE_H) || defined(HASH_PREDEF_INTERNAL_GENERATE_TESTS)
-#ifndef HASH_PREDEF_HARDWARE_H
-#define HASH_PREDEF_HARDWARE_H
-#endif
+#if !defined(HASH_PREDEF_HARDWARE_H) \
+	|| defined(HASH_PREDEF_INTERNAL_GENERATE_TESTS)
+#	ifndef HASH_PREDEF_HARDWARE_H
+#		define HASH_PREDEF_HARDWARE_H
+#	endif
 
-#include <predef/hardware/simd.h>
+#	include <predef/hardware/simd.h>
 
 #endif

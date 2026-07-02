@@ -7,16 +7,16 @@
  */
 
 #ifndef HASH_PREDEF_LIBRARY_C_CLOUDABI_H
-#define HASH_PREDEF_LIBRARY_C_CLOUDABI_H
+#	define HASH_PREDEF_LIBRARY_C_CLOUDABI_H
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/library/c/_prefix.h>
 
-#include <predef/library/c/_prefix.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
-#if defined(__CloudABI__)
-#include <stddef.h>
-#endif
+#	if defined(__CloudABI__)
+#		include <stddef.h>
+#	endif
 
 /* tag::reference[]
 = `HASH_PREDEF_LIB_C_CLOUDABI`
@@ -34,21 +34,23 @@ Version number available as major, and minor.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_LIB_C_CLOUDABI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_LIB_C_CLOUDABI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if defined(__cloudlibc__)
-#   undef HASH_PREDEF_LIB_C_CLOUDABI
-#   define HASH_PREDEF_LIB_C_CLOUDABI \
-            HASH_PREDEF_VERSION_NUMBER(__cloudlibc_major__,__cloudlibc_minor__,0)
-#endif
+#	if defined(__cloudlibc__)
+#		undef HASH_PREDEF_LIB_C_CLOUDABI
+#		define HASH_PREDEF_LIB_C_CLOUDABI \
+			HASH_PREDEF_VERSION_NUMBER( \
+				__cloudlibc_major__, __cloudlibc_minor__, 0)
+#	endif
 
-#if HASH_PREDEF_LIB_C_CLOUDABI
-#   define HASH_PREDEF_LIB_C_CLOUDABI_AVAILABLE
-#endif
+#	if HASH_PREDEF_LIB_C_CLOUDABI
+#		define HASH_PREDEF_LIB_C_CLOUDABI_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_LIB_C_CLOUDABI_NAME "cloudlibc"
+#	define HASH_PREDEF_LIB_C_CLOUDABI_NAME "cloudlibc"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_C_CLOUDABI,HASH_PREDEF_LIB_C_CLOUDABI_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_LIB_C_CLOUDABI, HASH_PREDEF_LIB_C_CLOUDABI_NAME)

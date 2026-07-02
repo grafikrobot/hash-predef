@@ -9,7 +9,7 @@ import asciidoctor ;
 import modules ;
 import path ;
 
-project predefdoc ;
+project ;
 
 doc-dir = [ MATCH "--doc-dir=(.*)" : [ modules.peek : ARGV ] ] ;
 doc-dir ?= . ;
@@ -27,7 +27,6 @@ html index : predef.adoc :
 explicit index ;
 
 install html : index : <location>$(doc-dir) ;
-explicit html ;
 
 alias boostdoc ;
 explicit boostdoc ;

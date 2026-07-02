@@ -6,12 +6,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_LIBRARY_C_ZOS_H
-#define HASH_PREDEF_LIBRARY_C_ZOS_H
+#	define HASH_PREDEF_LIBRARY_C_ZOS_H
 
-#include <predef/library/c/_prefix.h>
+#	include <predef/library/c/_prefix.h>
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_LIB_C_ZOS`
@@ -30,28 +30,30 @@ Version number available as major, minor, and patch.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if defined(__LIBREL__)
-#   undef HASH_PREDEF_LIB_C_ZOS
-#   if !defined(HASH_PREDEF_LIB_C_ZOS) && defined(__LIBREL__)
-#       define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_MAKE_0X_VRRPPPP(__LIBREL__)
-#   endif
-#   if !defined(HASH_PREDEF_LIB_C_ZOS) && defined(__TARGET_LIB__)
-#       define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_MAKE_0X_VRRPPPP(__TARGET_LIB__)
-#   endif
-#   if !defined(HASH_PREDEF_LIB_C_ZOS)
-#       define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#   endif
-#endif
+#	if defined(__LIBREL__)
+#		undef HASH_PREDEF_LIB_C_ZOS
+#		if !defined(HASH_PREDEF_LIB_C_ZOS) && defined(__LIBREL__)
+#			define HASH_PREDEF_LIB_C_ZOS \
+				HASH_PREDEF_MAKE_0X_VRRPPPP(__LIBREL__)
+#		endif
+#		if !defined(HASH_PREDEF_LIB_C_ZOS) && defined(__TARGET_LIB__)
+#			define HASH_PREDEF_LIB_C_ZOS \
+				HASH_PREDEF_MAKE_0X_VRRPPPP(__TARGET_LIB__)
+#		endif
+#		if !defined(HASH_PREDEF_LIB_C_ZOS)
+#			define HASH_PREDEF_LIB_C_ZOS HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#		endif
+#	endif
 
-#if HASH_PREDEF_LIB_C_ZOS
-#   define HASH_PREDEF_LIB_C_ZOS_AVAILABLE
-#endif
+#	if HASH_PREDEF_LIB_C_ZOS
+#		define HASH_PREDEF_LIB_C_ZOS_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_LIB_C_ZOS_NAME "z/OS"
+#	define HASH_PREDEF_LIB_C_ZOS_NAME "z/OS"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_C_ZOS,HASH_PREDEF_LIB_C_ZOS_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_C_ZOS, HASH_PREDEF_LIB_C_ZOS_NAME)

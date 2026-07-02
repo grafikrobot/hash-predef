@@ -6,12 +6,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_PLAT_WINDOWS_SYSTEM_H
-#define HASH_PREDEF_PLAT_WINDOWS_SYSTEM_H
+#	define HASH_PREDEF_PLAT_WINDOWS_SYSTEM_H
 
-#include <predef/make.h>
-#include <predef/os/windows.h>
-#include <predef/platform/windows_uwp.h>
-#include <predef/version_number.h>
+#	include <predef/make.h>
+#	include <predef/os/windows.h>
+#	include <predef/platform/windows_uwp.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_PLAT_WINDOWS_SYSTEM`
@@ -27,22 +27,25 @@ for Windows System development.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_PLAT_WINDOWS_SYSTEM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_PLAT_WINDOWS_SYSTEM \
+		HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if HASH_PREDEF_OS_WINDOWS && \
-    defined(WINAPI_FAMILY_SYSTEM) && WINAPI_FAMILY == WINAPI_FAMILY_SYSTEM
-#   undef HASH_PREDEF_PLAT_WINDOWS_SYSTEM
-#   define HASH_PREDEF_PLAT_WINDOWS_SYSTEM HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#endif
- 
-#if HASH_PREDEF_PLAT_WINDOWS_SYSTEM
-#   define HASH_PREDEF_PLAT_WINDOWS_SYSTEM_AVAILABLE
-#   include <predef/detail/platform_detected.h>
-#endif
+#	if HASH_PREDEF_OS_WINDOWS && defined(WINAPI_FAMILY_SYSTEM) \
+		&& WINAPI_FAMILY == WINAPI_FAMILY_SYSTEM
+#		undef HASH_PREDEF_PLAT_WINDOWS_SYSTEM
+#		define HASH_PREDEF_PLAT_WINDOWS_SYSTEM \
+			HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_PLAT_WINDOWS_SYSTEM_NAME "Windows Drivers and Tools"
+#	if HASH_PREDEF_PLAT_WINDOWS_SYSTEM
+#		define HASH_PREDEF_PLAT_WINDOWS_SYSTEM_AVAILABLE
+#		include <predef/detail/platform_detected.h>
+#	endif
+
+#	define HASH_PREDEF_PLAT_WINDOWS_SYSTEM_NAME "Windows Drivers and Tools"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_PLAT_WINDOWS_SYSTEM,HASH_PREDEF_PLAT_WINDOWS_SYSTEM_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_PLAT_WINDOWS_SYSTEM, HASH_PREDEF_PLAT_WINDOWS_SYSTEM_NAME)

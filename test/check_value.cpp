@@ -11,16 +11,16 @@ http://www.boost.org/LICENSE_1_0.txt)
  * program and the related BB support.
  */
 
-#include <predef.h>
 #include <iostream>
+#include <predef.h>
 #include <string>
 
 #ifndef CHECK_VALUE
-#define CHECK_VALUE "undefined"
+#	define CHECK_VALUE "undefined"
 #endif
 
 int main()
 {
-	std::cout << "CHECK_VALUE == " << CHECK_VALUE << "\n" ;
+	std::cout << "CHECK_VALUE == " << CHECK_VALUE << "\n";
 	return 0;
 }

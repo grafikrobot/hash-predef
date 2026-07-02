@@ -6,17 +6,17 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_OS_QNXNTO_H
-#define HASH_PREDEF_OS_QNXNTO_H
+#	define HASH_PREDEF_OS_QNXNTO_H
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_OS_QNX`
 
 http://en.wikipedia.org/wiki/QNX[QNX] operating system.
-Version number available as major, and minor if possible. And
-version 4 is specifically detected.
+Version number available as major, and minor if possible. And version 4 is
+specifically detected.
 
 [options="header"]
 |===
@@ -30,31 +30,30 @@ version 4 is specifically detected.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_OS_QNX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_OS_QNX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if !defined(HASH_PREDEF_DETAIL_OS_DETECTED) && ( \
-    defined(__QNX__) || defined(__QNXNTO__) \
-    )
-#   undef HASH_PREDEF_OS_QNX
-#   if !defined(HASH_PREDEF_OS_QNX) && defined(_NTO_VERSION)
-#       define HASH_PREDEF_OS_QNX HASH_PREDEF_MAKE_10_VVRR(_NTO_VERSION)
-#   endif
-#   if !defined(HASH_PREDEF_OS_QNX) && defined(__QNX__)
-#       define HASH_PREDEF_OS_QNX HASH_PREDEF_VERSION_NUMBER(4,0,0)
-#   endif
-#   if !defined(HASH_PREDEF_OS_QNX)
-#       define HASH_PREDEF_OS_QNX HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#   endif
-#endif
+#	if !defined(HASH_PREDEF_DETAIL_OS_DETECTED) \
+		&& (defined(__QNX__) || defined(__QNXNTO__))
+#		undef HASH_PREDEF_OS_QNX
+#		if !defined(HASH_PREDEF_OS_QNX) && defined(_NTO_VERSION)
+#			define HASH_PREDEF_OS_QNX HASH_PREDEF_MAKE_10_VVRR(_NTO_VERSION)
+#		endif
+#		if !defined(HASH_PREDEF_OS_QNX) && defined(__QNX__)
+#			define HASH_PREDEF_OS_QNX HASH_PREDEF_VERSION_NUMBER(4, 0, 0)
+#		endif
+#		if !defined(HASH_PREDEF_OS_QNX)
+#			define HASH_PREDEF_OS_QNX HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#		endif
+#	endif
 
-#if HASH_PREDEF_OS_QNX
-#   define HASH_PREDEF_OS_QNX_AVAILABLE
-#   include <predef/detail/os_detected.h>
-#endif
+#	if HASH_PREDEF_OS_QNX
+#		define HASH_PREDEF_OS_QNX_AVAILABLE
+#		include <predef/detail/os_detected.h>
+#	endif
 
-#define HASH_PREDEF_OS_QNX_NAME "QNX"
+#	define HASH_PREDEF_OS_QNX_NAME "QNX"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_OS_QNX,HASH_PREDEF_OS_QNX_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_OS_QNX, HASH_PREDEF_OS_QNX_NAME)

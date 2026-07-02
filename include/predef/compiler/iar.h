@@ -8,8 +8,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 #ifndef HASH_PREDEF_COMPILER_IAR_H
 #define HASH_PREDEF_COMPILER_IAR_H
 
-#include <predef/version_number.h>
 #include <predef/make.h>
+#include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_COMP_IAR`
@@ -30,18 +30,18 @@ Version number available as major, minor, and patch.
 #define HASH_PREDEF_COMP_IAR HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__IAR_SYSTEMS_ICC__)
-#   define HASH_PREDEF_COMP_IAR_DETECTION HASH_PREDEF_MAKE_10_VVRR(__VER__)
+#	define HASH_PREDEF_COMP_IAR_DETECTION HASH_PREDEF_MAKE_10_VVRR(__VER__)
 #endif
 
 #ifdef HASH_PREDEF_COMP_IAR_DETECTION
-#   if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
-#       define HASH_PREDEF_COMP_IAR_EMULATED HASH_PREDEF_COMP_IAR_DETECTION
-#   else
-#       undef HASH_PREDEF_COMP_IAR
-#       define HASH_PREDEF_COMP_IAR HASH_PREDEF_COMP_IAR_DETECTION
-#   endif
-#   define HASH_PREDEF_COMP_IAR_AVAILABLE
-#   include <predef/detail/comp_detected.h>
+#	if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
+#		define HASH_PREDEF_COMP_IAR_EMULATED HASH_PREDEF_COMP_IAR_DETECTION
+#	else
+#		undef HASH_PREDEF_COMP_IAR
+#		define HASH_PREDEF_COMP_IAR HASH_PREDEF_COMP_IAR_DETECTION
+#	endif
+#	define HASH_PREDEF_COMP_IAR_AVAILABLE
+#	include <predef/detail/comp_detected.h>
 #endif
 
 #define HASH_PREDEF_COMP_IAR_NAME "IAR C/C++"
@@ -49,9 +49,9 @@ Version number available as major, minor, and patch.
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_IAR,HASH_PREDEF_COMP_IAR_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_IAR, HASH_PREDEF_COMP_IAR_NAME)
 
 #ifdef HASH_PREDEF_COMP_IAR_EMULATED
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_IAR_EMULATED,HASH_PREDEF_COMP_IAR_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_IAR_EMULATED, HASH_PREDEF_COMP_IAR_NAME)
 #endif

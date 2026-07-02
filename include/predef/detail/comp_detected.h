@@ -6,5 +6,5 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_DETAIL_COMP_DETECTED
-#define HASH_PREDEF_DETAIL_COMP_DETECTED 1
+#	define HASH_PREDEF_DETAIL_COMP_DETECTED 1
 #endif

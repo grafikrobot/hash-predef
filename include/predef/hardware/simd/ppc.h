@@ -7,10 +7,10 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_HARDWARE_SIMD_PPC_H
-#define HASH_PREDEF_HARDWARE_SIMD_PPC_H
+#	define HASH_PREDEF_HARDWARE_SIMD_PPC_H
 
-#include <predef/version_number.h>
-#include <predef/hardware/simd/ppc/versions.h>
+#	include <predef/hardware/simd/ppc/versions.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_HW_SIMD_PPC`
@@ -44,26 +44,27 @@ Version number depends on the most recent detected extension.
 
 */ // end::reference[]
 
-#define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#undef HASH_PREDEF_HW_SIMD_PPC
-#if !defined(HASH_PREDEF_HW_SIMD_PPC) && defined(__VECTOR4DOUBLE__)
-#   define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_HW_SIMD_PPC_QPX_VERSION
-#endif
-#if !defined(HASH_PREDEF_HW_SIMD_PPC) && defined(__VSX__)
-#   define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_HW_SIMD_PPC_VSX_VERSION
-#endif
-#if !defined(HASH_PREDEF_HW_SIMD_PPC) && (defined(__ALTIVEC__) || defined(__VEC__))
-#   define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_HW_SIMD_PPC_VMX_VERSION
-#endif
+#	undef HASH_PREDEF_HW_SIMD_PPC
+#	if !defined(HASH_PREDEF_HW_SIMD_PPC) && defined(__VECTOR4DOUBLE__)
+#		define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_HW_SIMD_PPC_QPX_VERSION
+#	endif
+#	if !defined(HASH_PREDEF_HW_SIMD_PPC) && defined(__VSX__)
+#		define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_HW_SIMD_PPC_VSX_VERSION
+#	endif
+#	if !defined(HASH_PREDEF_HW_SIMD_PPC) \
+		&& (defined(__ALTIVEC__) || defined(__VEC__))
+#		define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_HW_SIMD_PPC_VMX_VERSION
+#	endif
 
-#if !defined(HASH_PREDEF_HW_SIMD_PPC)
-#   define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
-#else
-#   define HASH_PREDEF_HW_SIMD_PPC_AVAILABLE
-#endif
+#	if !defined(HASH_PREDEF_HW_SIMD_PPC)
+#		define HASH_PREDEF_HW_SIMD_PPC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	else
+#		define HASH_PREDEF_HW_SIMD_PPC_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_HW_SIMD_PPC_NAME "PPC SIMD"
+#	define HASH_PREDEF_HW_SIMD_PPC_NAME "PPC SIMD"
 
 #endif
 

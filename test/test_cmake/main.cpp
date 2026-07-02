@@ -13,7 +13,4 @@ files.
 
 #include <predef.h>
 
-int main()
-{
-    return 0;
-}
+int main() { return 0; }

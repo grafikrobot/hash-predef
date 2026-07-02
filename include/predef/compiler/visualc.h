@@ -12,8 +12,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #include <predef/compiler/clang.h>
 
-#include <predef/version_number.h>
 #include <predef/make.h>
+#include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_COMP_MSVC`
@@ -31,66 +31,61 @@ Version number available as major, minor, and patch.
 | `+_MSC_VER+` | V.R.0
 |===
 
-NOTE: Release of Visual Studio after 2015 will no longer be identified
-by Hash Predef as the marketing version number. Instead we use the
-compiler version number directly, i.e. the _MSC_VER number.
+NOTE: Release of Visual Studio after 2015 will no longer be identified by Hash
+Predef as the marketing version number. Instead we use the compiler version
+number directly, i.e. the _MSC_VER number.
 */ // end::reference[]
 
 #define HASH_PREDEF_COMP_MSVC HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(_MSC_VER)
-#   if !defined (_MSC_FULL_VER)
-#       define HASH_PREDEF_COMP_MSVC_BUILD 0
-#   else
-        /* how many digits does the build number have? */
-#       if _MSC_FULL_VER / 10000 == _MSC_VER
-            /* four digits */
-#           define HASH_PREDEF_COMP_MSVC_BUILD (_MSC_FULL_VER % 10000)
-#       elif _MSC_FULL_VER / 100000 == _MSC_VER
-            /* five digits */
-#           define HASH_PREDEF_COMP_MSVC_BUILD (_MSC_FULL_VER % 100000)
-#       else
-#           error "Cannot determine build number from _MSC_FULL_VER"
-#       endif
-#   endif
-    /*
-    VS2014 was skipped in the release sequence for MS. Which
-    means that the compiler and VS product versions are no longer
-    in sync. Hence we need to use different formulas for
-    mapping from MSC version to VS product version.
+#	if !defined(_MSC_FULL_VER)
+#		define HASH_PREDEF_COMP_MSVC_BUILD 0
+#	else
+/* how many digits does the build number have? */
+#		if _MSC_FULL_VER / 10000 == _MSC_VER
+/* four digits */
+#			define HASH_PREDEF_COMP_MSVC_BUILD (_MSC_FULL_VER % 10000)
+#		elif _MSC_FULL_VER / 100000 == _MSC_VER
+/* five digits */
+#			define HASH_PREDEF_COMP_MSVC_BUILD (_MSC_FULL_VER % 100000)
+#		else
+#			error "Cannot determine build number from _MSC_FULL_VER"
+#		endif
+#	endif
+/*
+VS2014 was skipped in the release sequence for MS. Which means that the compiler
+and VS product versions are no longer in sync. Hence we need to use different
+formulas for mapping from MSC version to VS product version.
 
-    VS2017 is a total nightmare when it comes to version numbers.
-    Hence to avoid arguments relating to that both present and
-    future.. Any version after VS2015 will use solely the compiler
-    version, i.e. cl.exe, as the version number here.
-    */
-#   if (_MSC_VER > 1900)
-#       define HASH_PREDEF_COMP_MSVC_DETECTION HASH_PREDEF_VERSION_NUMBER(\
-            _MSC_VER/100,\
-            _MSC_VER%100,\
-            HASH_PREDEF_COMP_MSVC_BUILD)
-#   elif (_MSC_VER >= 1900)
-#       define HASH_PREDEF_COMP_MSVC_DETECTION HASH_PREDEF_VERSION_NUMBER(\
-            _MSC_VER/100-5,\
-            _MSC_VER%100,\
-            HASH_PREDEF_COMP_MSVC_BUILD)
-#   else
-#       define HASH_PREDEF_COMP_MSVC_DETECTION HASH_PREDEF_VERSION_NUMBER(\
-            _MSC_VER/100-6,\
-            _MSC_VER%100,\
-            HASH_PREDEF_COMP_MSVC_BUILD)
-#   endif
+VS2017 is a total nightmare when it comes to version numbers. Hence to avoid
+arguments relating to that both present and future.. Any version after VS2015
+will use solely the compiler version, i.e. cl.exe, as the version number here.
+*/
+#	if (_MSC_VER > 1900)
+#		define HASH_PREDEF_COMP_MSVC_DETECTION \
+			HASH_PREDEF_VERSION_NUMBER( \
+				_MSC_VER / 100, _MSC_VER % 100, HASH_PREDEF_COMP_MSVC_BUILD)
+#	elif (_MSC_VER >= 1900)
+#		define HASH_PREDEF_COMP_MSVC_DETECTION \
+			HASH_PREDEF_VERSION_NUMBER(_MSC_VER / 100 - 5, _MSC_VER % 100, \
+				HASH_PREDEF_COMP_MSVC_BUILD)
+#	else
+#		define HASH_PREDEF_COMP_MSVC_DETECTION \
+			HASH_PREDEF_VERSION_NUMBER(_MSC_VER / 100 - 6, _MSC_VER % 100, \
+				HASH_PREDEF_COMP_MSVC_BUILD)
+#	endif
 #endif
 
 #ifdef HASH_PREDEF_COMP_MSVC_DETECTION
-#   if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
-#       define HASH_PREDEF_COMP_MSVC_EMULATED HASH_PREDEF_COMP_MSVC_DETECTION
-#   else
-#       undef HASH_PREDEF_COMP_MSVC
-#       define HASH_PREDEF_COMP_MSVC HASH_PREDEF_COMP_MSVC_DETECTION
-#   endif
-#   define HASH_PREDEF_COMP_MSVC_AVAILABLE
-#   include <predef/detail/comp_detected.h>
+#	if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
+#		define HASH_PREDEF_COMP_MSVC_EMULATED HASH_PREDEF_COMP_MSVC_DETECTION
+#	else
+#		undef HASH_PREDEF_COMP_MSVC
+#		define HASH_PREDEF_COMP_MSVC HASH_PREDEF_COMP_MSVC_DETECTION
+#	endif
+#	define HASH_PREDEF_COMP_MSVC_AVAILABLE
+#	include <predef/detail/comp_detected.h>
 #endif
 
 #define HASH_PREDEF_COMP_MSVC_NAME "Microsoft Visual C/C++"
@@ -98,9 +93,10 @@ compiler version number directly, i.e. the _MSC_VER number.
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_MSVC,HASH_PREDEF_COMP_MSVC_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_MSVC, HASH_PREDEF_COMP_MSVC_NAME)
 
 #ifdef HASH_PREDEF_COMP_MSVC_EMULATED
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_MSVC_EMULATED,HASH_PREDEF_COMP_MSVC_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_COMP_MSVC_EMULATED, HASH_PREDEF_COMP_MSVC_NAME)
 #endif

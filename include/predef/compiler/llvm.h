@@ -12,8 +12,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #include <predef/compiler/clang.h>
 
-#include <predef/version_number.h>
 #include <predef/make.h>
+#include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_COMP_LLVM`
@@ -31,18 +31,18 @@ http://en.wikipedia.org/wiki/LLVM[LLVM] compiler.
 #define HASH_PREDEF_COMP_LLVM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__llvm__)
-#   define HASH_PREDEF_COMP_LLVM_DETECTION HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#	define HASH_PREDEF_COMP_LLVM_DETECTION HASH_PREDEF_VERSION_NUMBER_AVAILABLE
 #endif
 
 #ifdef HASH_PREDEF_COMP_LLVM_DETECTION
-#   if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
-#       define HASH_PREDEF_COMP_LLVM_EMULATED HASH_PREDEF_COMP_LLVM_DETECTION
-#   else
-#       undef HASH_PREDEF_COMP_LLVM
-#       define HASH_PREDEF_COMP_LLVM HASH_PREDEF_COMP_LLVM_DETECTION
-#   endif
-#   define HASH_PREDEF_COMP_LLVM_AVAILABLE
-#   include <predef/detail/comp_detected.h>
+#	if defined(HASH_PREDEF_DETAIL_COMP_DETECTED)
+#		define HASH_PREDEF_COMP_LLVM_EMULATED HASH_PREDEF_COMP_LLVM_DETECTION
+#	else
+#		undef HASH_PREDEF_COMP_LLVM
+#		define HASH_PREDEF_COMP_LLVM HASH_PREDEF_COMP_LLVM_DETECTION
+#	endif
+#	define HASH_PREDEF_COMP_LLVM_AVAILABLE
+#	include <predef/detail/comp_detected.h>
 #endif
 
 #define HASH_PREDEF_COMP_LLVM_NAME "LLVM"
@@ -50,9 +50,10 @@ http://en.wikipedia.org/wiki/LLVM[LLVM] compiler.
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_LLVM,HASH_PREDEF_COMP_LLVM_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_LLVM, HASH_PREDEF_COMP_LLVM_NAME)
 
 #ifdef HASH_PREDEF_COMP_LLVM_EMULATED
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_COMP_LLVM_EMULATED,HASH_PREDEF_COMP_LLVM_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_COMP_LLVM_EMULATED, HASH_PREDEF_COMP_LLVM_NAME)
 #endif

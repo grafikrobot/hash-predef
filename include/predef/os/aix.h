@@ -6,10 +6,10 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_OS_AIX_H
-#define HASH_PREDEF_OS_AIX_H
+#	define HASH_PREDEF_OS_AIX_H
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_OS_AIX`
@@ -31,37 +31,36 @@ Version number available as major, minor, and patch.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if !defined(HASH_PREDEF_DETAIL_OS_DETECTED) && ( \
-    defined(_AIX) || defined(__TOS_AIX__) \
-    )
-#   undef HASH_PREDEF_OS_AIX
-#   if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX43)
-#       define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(4,3,0)
-#   endif
-#   if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX41)
-#       define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(4,1,0)
-#   endif
-#   if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX32)
-#       define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(3,2,0)
-#   endif
-#   if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX3)
-#       define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(3,0,0)
-#   endif
-#   if !defined(HASH_PREDEF_OS_AIX)
-#       define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#   endif
-#endif
+#	if !defined(HASH_PREDEF_DETAIL_OS_DETECTED) \
+		&& (defined(_AIX) || defined(__TOS_AIX__))
+#		undef HASH_PREDEF_OS_AIX
+#		if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX43)
+#			define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(4, 3, 0)
+#		endif
+#		if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX41)
+#			define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(4, 1, 0)
+#		endif
+#		if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX32)
+#			define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(3, 2, 0)
+#		endif
+#		if !defined(HASH_PREDEF_OS_AIX) && defined(_AIX3)
+#			define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER(3, 0, 0)
+#		endif
+#		if !defined(HASH_PREDEF_OS_AIX)
+#			define HASH_PREDEF_OS_AIX HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#		endif
+#	endif
 
-#if HASH_PREDEF_OS_AIX
-#   define HASH_PREDEF_OS_AIX_AVAILABLE
-#   include <predef/detail/os_detected.h>
-#endif
+#	if HASH_PREDEF_OS_AIX
+#		define HASH_PREDEF_OS_AIX_AVAILABLE
+#		include <predef/detail/os_detected.h>
+#	endif
 
-#define HASH_PREDEF_OS_AIX_NAME "IBM AIX"
+#	define HASH_PREDEF_OS_AIX_NAME "IBM AIX"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_OS_AIX,HASH_PREDEF_OS_AIX_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_OS_AIX, HASH_PREDEF_OS_AIX_NAME)

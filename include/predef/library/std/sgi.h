@@ -6,12 +6,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_LIBRARY_STD_SGI_H
-#define HASH_PREDEF_LIBRARY_STD_SGI_H
+#	define HASH_PREDEF_LIBRARY_STD_SGI_H
 
-#include <predef/library/std/_prefix.h>
+#	include <predef/library/std/_prefix.h>
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_LIB_STD_SGI`
@@ -29,24 +29,24 @@ If available version number as major, minor, and patch.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_LIB_STD_SGI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_LIB_STD_SGI HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if defined(__STL_CONFIG_H)
-#   undef HASH_PREDEF_LIB_STD_SGI
-#   if defined(__SGI_STL)
-#       define HASH_PREDEF_LIB_STD_SGI HASH_PREDEF_MAKE_0X_VRP(__SGI_STL)
-#   else
-#       define HASH_PREDEF_LIB_STD_SGI HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#   endif
-#endif
+#	if defined(__STL_CONFIG_H)
+#		undef HASH_PREDEF_LIB_STD_SGI
+#		if defined(__SGI_STL)
+#			define HASH_PREDEF_LIB_STD_SGI HASH_PREDEF_MAKE_0X_VRP(__SGI_STL)
+#		else
+#			define HASH_PREDEF_LIB_STD_SGI HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#		endif
+#	endif
 
-#if HASH_PREDEF_LIB_STD_SGI
-#   define HASH_PREDEF_LIB_STD_SGI_AVAILABLE
-#endif
+#	if HASH_PREDEF_LIB_STD_SGI
+#		define HASH_PREDEF_LIB_STD_SGI_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_LIB_STD_SGI_NAME "SGI"
+#	define HASH_PREDEF_LIB_STD_SGI_NAME "SGI"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_STD_SGI,HASH_PREDEF_LIB_STD_SGI_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_STD_SGI, HASH_PREDEF_LIB_STD_SGI_NAME)

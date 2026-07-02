@@ -6,15 +6,15 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
-#include <predef/hardware/simd/x86.h>
-#include <predef/hardware/simd/x86_amd.h>
 #include <predef/hardware/simd/arm.h>
 #include <predef/hardware/simd/ppc.h>
+#include <predef/hardware/simd/x86.h>
+#include <predef/hardware/simd/x86_amd.h>
 
 #ifndef HASH_PREDEF_HARDWARE_SIMD_H
-#define HASH_PREDEF_HARDWARE_SIMD_H
+#	define HASH_PREDEF_HARDWARE_SIMD_H
 
-#include <predef/version_number.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = Using the `HASH_PREDEF_HW_SIMD_*` predefs
@@ -39,18 +39,19 @@ To check if any SIMD extension has been enabled, you can use:
 int main()
 {
 #if defined(HASH_PREDEF_HW_SIMD_AVAILABLE)
-    std::cout << "SIMD detected!" << std::endl;
+	std::cout << "SIMD detected!" << std::endl;
 #endif
-    return 0;
+	return 0;
 }
 ----
 
 When writing SIMD specific code, you may want to check if a particular extension
 has been detected. To do so you have to use the right architecture predef and
-compare it. Those predef are of the form `HASH_PREDEF_HW_SIMD_"ARCH"` (where `"ARCH"`
-is either `ARM`, `PPC`, or `X86`). For example, if you compile code for x86
-architecture, you will have to use `HASH_PREDEF_HW_SIMD_X86`. Its value will be the
-version number of the most recent SIMD extension detected for the architecture.
+compare it. Those predef are of the form `HASH_PREDEF_HW_SIMD_"ARCH"` (where
+`"ARCH"` is either `ARM`, `PPC`, or `X86`). For example, if you compile code for
+x86 architecture, you will have to use `HASH_PREDEF_HW_SIMD_X86`. Its value will
+be the version number of the most recent SIMD extension detected for the
+architecture.
 
 To check if an extension has been enabled:
 
@@ -62,15 +63,15 @@ To check if an extension has been enabled:
 int main()
 {
 #if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION
-    std::cout << "This is SSE3!" << std::endl;
+	std::cout << "This is SSE3!" << std::endl;
 #endif
-    return 0;
+	return 0;
 }
 ----
 
-NOTE: The *_VERSION* defines that map version number to actual real
-identifiers. This way it is easier to write comparisons without messing up with
-version numbers.
+NOTE: The *_VERSION* defines that map version number to actual real identifiers.
+This way it is easier to write comparisons without messing up with version
+numbers.
 
 To *"strictly"* check the most recent detected extension:
 
@@ -82,10 +83,10 @@ To *"strictly"* check the most recent detected extension:
 int main()
 {
 #if HASH_PREDEF_HW_SIMD_X86 == HASH_PREDEF_HW_SIMD_X86_SSE3_VERSION
-    std::cout << "This is SSE3 and this is the most recent enabled extension!"
-        << std::endl;
+	std::cout << "This is SSE3 and this is the most recent enabled extension!"
+		<< std::endl;
 #endif
-    return 0;
+	return 0;
 }
 ----
 
@@ -100,67 +101,71 @@ extensions macros, you can easily check for ranges of supported extensions:
 int main()
 {
 #if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_SSE2_VERSION &&\
-    HASH_PREDEF_HW_SIMD_X86 <= HASH_PREDEF_HW_SIMD_X86_SSSE3_VERSION
-    std::cout << "This is SSE2, SSE3 and SSSE3!" << std::endl;
+	HASH_PREDEF_HW_SIMD_X86 <= HASH_PREDEF_HW_SIMD_X86_SSSE3_VERSION
+	std::cout << "This is SSE2, SSE3 and SSSE3!" << std::endl;
 #endif
-    return 0;
+	return 0;
 }
 ----
 
-NOTE: Unlike gcc and clang, Visual Studio does not allow you to specify precisely
-the SSE variants you want to use, the only detections that will take place are
-SSE, SSE2, AVX and AVX2. For more informations,
-    see [@https://msdn.microsoft.com/en-us/library/b0084kay.aspx here].
+NOTE: Unlike gcc and clang, Visual Studio does not allow you to specify
+precisely the SSE variants you want to use, the only detections that will take
+place are SSE, SSE2, AVX and AVX2. For more informations, see
+[@https://msdn.microsoft.com/en-us/library/b0084kay.aspx here].
 
 
 */ // end::reference[]
 
-// We check if SIMD extension of multiples architectures have been detected,
-// if yes, then this is an error!
+//We check if SIMD extension of multiples architectures have been detected,
+//if yes, then this is an error!
 //
-// NOTE: _X86_AMD implies _X86, so there is no need to check for it here!
+//NOTE: _X86_AMD implies _X86, so there is no need to check for it here!
 //
-#if defined(HASH_PREDEF_HW_SIMD_ARM_AVAILABLE) && defined(HASH_PREDEF_HW_SIMD_PPC_AVAILABLE) ||\
-    defined(HASH_PREDEF_HW_SIMD_ARM_AVAILABLE) && defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE) ||\
-    defined(HASH_PREDEF_HW_SIMD_PPC_AVAILABLE) && defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE)
-#   error "Multiple SIMD architectures detected, this cannot happen!"
-#endif
+#	if defined(HASH_PREDEF_HW_SIMD_ARM_AVAILABLE) \
+			&& defined(HASH_PREDEF_HW_SIMD_PPC_AVAILABLE) \
+		|| defined(HASH_PREDEF_HW_SIMD_ARM_AVAILABLE) \
+			&& defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE) \
+		|| defined(HASH_PREDEF_HW_SIMD_PPC_AVAILABLE) \
+			&& defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE)
+#		error "Multiple SIMD architectures detected, this cannot happen!"
+#	endif
 
-#if defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE) && defined(HASH_PREDEF_HW_SIMD_X86_AMD_AVAILABLE)
-    // If both standard _X86 and _X86_AMD are available,
-    // then take the biggest version of the two!
-#   if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_AMD
-#      define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86
-#   else
-#      define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86_AMD
-#   endif
-#endif
+#	if defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE) \
+		&& defined(HASH_PREDEF_HW_SIMD_X86_AMD_AVAILABLE)
+//If both standard _X86 and _X86_AMD are available,
+//then take the biggest version of the two!
+#		if HASH_PREDEF_HW_SIMD_X86 >= HASH_PREDEF_HW_SIMD_X86_AMD
+#			define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86
+#		else
+#			define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86_AMD
+#		endif
+#	endif
 
-#if !defined(HASH_PREDEF_HW_SIMD)
-    // At this point, only one of these two is defined
-#   if defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE)
-#      define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86
-#   endif
-#   if defined(HASH_PREDEF_HW_SIMD_X86_AMD_AVAILABLE)
-#      define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86_AMD
-#   endif
-#endif
+#	if !defined(HASH_PREDEF_HW_SIMD)
+//At this point, only one of these two is defined
+#		if defined(HASH_PREDEF_HW_SIMD_X86_AVAILABLE)
+#			define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86
+#		endif
+#		if defined(HASH_PREDEF_HW_SIMD_X86_AMD_AVAILABLE)
+#			define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_X86_AMD
+#		endif
+#	endif
 
-#if defined(HASH_PREDEF_HW_SIMD_ARM_AVAILABLE)
-#   define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_ARM
-#endif
+#	if defined(HASH_PREDEF_HW_SIMD_ARM_AVAILABLE)
+#		define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_ARM
+#	endif
 
-#if defined(HASH_PREDEF_HW_SIMD_PPC_AVAILABLE)
-#   define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_PPC
-#endif
+#	if defined(HASH_PREDEF_HW_SIMD_PPC_AVAILABLE)
+#		define HASH_PREDEF_HW_SIMD HASH_PREDEF_HW_SIMD_PPC
+#	endif
 
-#if defined(HASH_PREDEF_HW_SIMD)
-#   define HASH_PREDEF_HW_SIMD_AVAILABLE
-#else
-#   define HASH_PREDEF_HW_SIMD HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
-#endif
+#	if defined(HASH_PREDEF_HW_SIMD)
+#		define HASH_PREDEF_HW_SIMD_AVAILABLE
+#	else
+#		define HASH_PREDEF_HW_SIMD HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_HW_SIMD_NAME "Hardware SIMD"
+#	define HASH_PREDEF_HW_SIMD_NAME "Hardware SIMD"
 
 #endif
 

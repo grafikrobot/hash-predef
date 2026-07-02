@@ -7,9 +7,9 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <predef.h>
 
 #ifdef CHECK
-#   if ((CHECK) == 0)
-#       error "FAILED"
-#   endif
+#	if ((CHECK) == 0)
+#		error "FAILED"
+#	endif
 #endif
 
 int dummy()

@@ -14,8 +14,8 @@ http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #if defined(__APPLE__)
-#   include <sys/param.h>
-#   include <predef/os/bsd.h>
-#   include <predef/os/macos.h>
-#   include <predef/other/endian.h>
+#include <predef/os/bsd.h>
+#include <predef/os/macos.h>
+#include <predef/other/endian.h>
+#include <sys/param.h>
 #endif

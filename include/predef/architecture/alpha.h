@@ -6,10 +6,10 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_ARCHITECTURE_ALPHA_H
-#define HASH_PREDEF_ARCHITECTURE_ALPHA_H
+#	define HASH_PREDEF_ARCHITECTURE_ALPHA_H
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_ARCH_ALPHA`
@@ -29,37 +29,37 @@ http://en.wikipedia.org/wiki/DEC_Alpha[DEC Alpha] architecture.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if defined(__alpha__) || defined(__alpha) || \
-    defined(_M_ALPHA)
-#   undef HASH_PREDEF_ARCH_ALPHA
-#   if !defined(HASH_PREDEF_ARCH_ALPHA) && defined(__alpha_ev4__)
-#       define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER(4,0,0)
-#   endif
-#   if !defined(HASH_PREDEF_ARCH_ALPHA) && defined(__alpha_ev5__)
-#       define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER(5,0,0)
-#   endif
-#   if !defined(HASH_PREDEF_ARCH_ALPHA) && defined(__alpha_ev6__)
-#       define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER(6,0,0)
-#   endif
-#   if !defined(HASH_PREDEF_ARCH_ALPHA)
-#       define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#   endif
-#endif
+#	if defined(__alpha__) || defined(__alpha) || defined(_M_ALPHA)
+#		undef HASH_PREDEF_ARCH_ALPHA
+#		if !defined(HASH_PREDEF_ARCH_ALPHA) && defined(__alpha_ev4__)
+#			define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER(4, 0, 0)
+#		endif
+#		if !defined(HASH_PREDEF_ARCH_ALPHA) && defined(__alpha_ev5__)
+#			define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER(5, 0, 0)
+#		endif
+#		if !defined(HASH_PREDEF_ARCH_ALPHA) && defined(__alpha_ev6__)
+#			define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER(6, 0, 0)
+#		endif
+#		if !defined(HASH_PREDEF_ARCH_ALPHA)
+#			define HASH_PREDEF_ARCH_ALPHA HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#		endif
+#	endif
 
-#if HASH_PREDEF_ARCH_ALPHA
-#   define HASH_PREDEF_ARCH_ALPHA_AVAILABLE
-#endif
+#	if HASH_PREDEF_ARCH_ALPHA
+#		define HASH_PREDEF_ARCH_ALPHA_AVAILABLE
+#	endif
 
-#if HASH_PREDEF_ARCH_ALPHA
-#   undef HASH_PREDEF_ARCH_WORD_BITS_64
-#   define HASH_PREDEF_ARCH_WORD_BITS_64 HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#endif
+#	if HASH_PREDEF_ARCH_ALPHA
+#		undef HASH_PREDEF_ARCH_WORD_BITS_64
+#		define HASH_PREDEF_ARCH_WORD_BITS_64 \
+			HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_ARCH_ALPHA_NAME "DEC Alpha"
+#	define HASH_PREDEF_ARCH_ALPHA_NAME "DEC Alpha"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_ARCH_ALPHA,HASH_PREDEF_ARCH_ALPHA_NAME)
+HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_ARCH_ALPHA, HASH_PREDEF_ARCH_ALPHA_NAME)

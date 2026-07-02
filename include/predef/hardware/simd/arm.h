@@ -7,10 +7,10 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_HARDWARE_SIMD_ARM_H
-#define HASH_PREDEF_HARDWARE_SIMD_ARM_H
+#	define HASH_PREDEF_HARDWARE_SIMD_ARM_H
 
-#include <predef/version_number.h>
-#include <predef/hardware/simd/arm/versions.h>
+#	include <predef/hardware/simd/arm/versions.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_HW_SIMD_ARM`
@@ -40,20 +40,22 @@ Version number depends on the most recent detected extension.
 
 */ // end::reference[]
 
-#define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#undef HASH_PREDEF_HW_SIMD_ARM
-#if !defined(HASH_PREDEF_HW_SIMD_ARM) && (defined(__ARM_NEON__) || defined(__aarch64__) || defined (_M_ARM) || defined (_M_ARM64))
-#   define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION
-#endif
+#	undef HASH_PREDEF_HW_SIMD_ARM
+#	if !defined(HASH_PREDEF_HW_SIMD_ARM) \
+		&& (defined(__ARM_NEON__) || defined(__aarch64__) || defined(_M_ARM) \
+			|| defined(_M_ARM64))
+#		define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_HW_SIMD_ARM_NEON_VERSION
+#	endif
 
-#if !defined(HASH_PREDEF_HW_SIMD_ARM)
-#   define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
-#else
-#   define HASH_PREDEF_HW_SIMD_ARM_AVAILABLE
-#endif
+#	if !defined(HASH_PREDEF_HW_SIMD_ARM)
+#		define HASH_PREDEF_HW_SIMD_ARM HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	else
+#		define HASH_PREDEF_HW_SIMD_ARM_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_HW_SIMD_ARM_NAME "ARM SIMD"
+#	define HASH_PREDEF_HW_SIMD_ARM_NAME "ARM SIMD"
 
 #endif
 

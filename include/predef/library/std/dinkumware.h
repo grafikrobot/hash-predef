@@ -6,12 +6,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_LIBRARY_STD_DINKUMWARE_H
-#define HASH_PREDEF_LIBRARY_STD_DINKUMWARE_H
+#	define HASH_PREDEF_LIBRARY_STD_DINKUMWARE_H
 
-#include <predef/library/std/_prefix.h>
+#	include <predef/library/std/_prefix.h>
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_LIB_STD_DINKUMWARE`
@@ -30,24 +30,28 @@ If available version number as major, minor, and patch.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_LIB_STD_DINKUMWARE HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_LIB_STD_DINKUMWARE \
+		HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if (defined(_YVALS) && !defined(__IBMCPP__)) || defined(_CPPLIB_VER)
-#   undef HASH_PREDEF_LIB_STD_DINKUMWARE
-#   if defined(_CPPLIB_VER)
-#       define HASH_PREDEF_LIB_STD_DINKUMWARE HASH_PREDEF_MAKE_10_VVRR(_CPPLIB_VER)
-#   else
-#       define HASH_PREDEF_LIB_STD_DINKUMWARE HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#   endif
-#endif
+#	if (defined(_YVALS) && !defined(__IBMCPP__)) || defined(_CPPLIB_VER)
+#		undef HASH_PREDEF_LIB_STD_DINKUMWARE
+#		if defined(_CPPLIB_VER)
+#			define HASH_PREDEF_LIB_STD_DINKUMWARE \
+				HASH_PREDEF_MAKE_10_VVRR(_CPPLIB_VER)
+#		else
+#			define HASH_PREDEF_LIB_STD_DINKUMWARE \
+				HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#		endif
+#	endif
 
-#if HASH_PREDEF_LIB_STD_DINKUMWARE
-#   define HASH_PREDEF_LIB_STD_DINKUMWARE_AVAILABLE
-#endif
+#	if HASH_PREDEF_LIB_STD_DINKUMWARE
+#		define HASH_PREDEF_LIB_STD_DINKUMWARE_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_LIB_STD_DINKUMWARE_NAME "Dinkumware"
+#	define HASH_PREDEF_LIB_STD_DINKUMWARE_NAME "Dinkumware"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_STD_DINKUMWARE,HASH_PREDEF_LIB_STD_DINKUMWARE_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_LIB_STD_DINKUMWARE, HASH_PREDEF_LIB_STD_DINKUMWARE_NAME)

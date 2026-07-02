@@ -6,12 +6,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_LIBRARY_STD_STLPORT_H
-#define HASH_PREDEF_LIBRARY_STD_STLPORT_H
+#	define HASH_PREDEF_LIBRARY_STD_STLPORT_H
 
-#include <predef/library/std/_prefix.h>
+#	include <predef/library/std/_prefix.h>
 
-#include <predef/version_number.h>
-#include <predef/make.h>
+#	include <predef/make.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_LIB_STD_STLPORT`
@@ -32,29 +32,33 @@ Version number available as major, minor, and patch.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_LIB_STD_STLPORT HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_LIB_STD_STLPORT HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if defined(__SGI_STL_PORT) || defined(_STLPORT_VERSION)
-#   undef HASH_PREDEF_LIB_STD_STLPORT
-#   if !defined(HASH_PREDEF_LIB_STD_STLPORT) && defined(_STLPORT_MAJOR)
-#       define HASH_PREDEF_LIB_STD_STLPORT \
-            HASH_PREDEF_VERSION_NUMBER(_STLPORT_MAJOR,_STLPORT_MINOR,_STLPORT_PATCHLEVEL)
-#   endif
-#   if !defined(HASH_PREDEF_LIB_STD_STLPORT) && defined(_STLPORT_VERSION)
-#       define HASH_PREDEF_LIB_STD_STLPORT HASH_PREDEF_MAKE_0X_VRP(_STLPORT_VERSION)
-#   endif
-#   if !defined(HASH_PREDEF_LIB_STD_STLPORT)
-#       define HASH_PREDEF_LIB_STD_STLPORT HASH_PREDEF_MAKE_0X_VRP(__SGI_STL_PORT)
-#   endif
-#endif
+#	if defined(__SGI_STL_PORT) || defined(_STLPORT_VERSION)
+#		undef HASH_PREDEF_LIB_STD_STLPORT
+#		if !defined(HASH_PREDEF_LIB_STD_STLPORT) && defined(_STLPORT_MAJOR)
+#			define HASH_PREDEF_LIB_STD_STLPORT \
+				HASH_PREDEF_VERSION_NUMBER( \
+					_STLPORT_MAJOR, _STLPORT_MINOR, _STLPORT_PATCHLEVEL)
+#		endif
+#		if !defined(HASH_PREDEF_LIB_STD_STLPORT) && defined(_STLPORT_VERSION)
+#			define HASH_PREDEF_LIB_STD_STLPORT \
+				HASH_PREDEF_MAKE_0X_VRP(_STLPORT_VERSION)
+#		endif
+#		if !defined(HASH_PREDEF_LIB_STD_STLPORT)
+#			define HASH_PREDEF_LIB_STD_STLPORT \
+				HASH_PREDEF_MAKE_0X_VRP(__SGI_STL_PORT)
+#		endif
+#	endif
 
-#if HASH_PREDEF_LIB_STD_STLPORT
-#   define HASH_PREDEF_LIB_STD_STLPORT_AVAILABLE
-#endif
+#	if HASH_PREDEF_LIB_STD_STLPORT
+#		define HASH_PREDEF_LIB_STD_STLPORT_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_LIB_STD_STLPORT_NAME "STLport"
+#	define HASH_PREDEF_LIB_STD_STLPORT_NAME "STLport"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_LIB_STD_STLPORT,HASH_PREDEF_LIB_STD_STLPORT_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_LIB_STD_STLPORT, HASH_PREDEF_LIB_STD_STLPORT_NAME)

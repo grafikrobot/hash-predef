@@ -10,8 +10,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 int main()
 {
-#if HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER_AVAILABLE,==,0,0,1)
-    fail();
+#if HASH_PREDEF_WORKAROUND(HASH_PREDEF_VERSION_NUMBER_AVAILABLE, ==, 0, 0, 1)
+	fail();
 #endif
-    return 0;
+	return 0;
 }

@@ -7,12 +7,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 */
 
 #ifndef HASH_PREDEF_PLAT_WINDOWS_PHONE_H
-#define HASH_PREDEF_PLAT_WINDOWS_PHONE_H
+#	define HASH_PREDEF_PLAT_WINDOWS_PHONE_H
 
-#include <predef/make.h>
-#include <predef/os/windows.h>
-#include <predef/platform/windows_uwp.h>
-#include <predef/version_number.h>
+#	include <predef/make.h>
+#	include <predef/os/windows.h>
+#	include <predef/platform/windows_uwp.h>
+#	include <predef/version_number.h>
 
 /* tag::reference[]
 = `HASH_PREDEF_PLAT_WINDOWS_PHONE`
@@ -28,22 +28,25 @@ for Windows Phone development.
 |===
 */ // end::reference[]
 
-#define HASH_PREDEF_PLAT_WINDOWS_PHONE HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
+#	define HASH_PREDEF_PLAT_WINDOWS_PHONE \
+		HASH_PREDEF_VERSION_NUMBER_NOT_AVAILABLE
 
-#if HASH_PREDEF_OS_WINDOWS && \
-    defined(WINAPI_FAMILY_PHONE_APP) && WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-#   undef HASH_PREDEF_PLAT_WINDOWS_PHONE
-#   define HASH_PREDEF_PLAT_WINDOWS_PHONE HASH_PREDEF_VERSION_NUMBER_AVAILABLE
-#endif
- 
-#if HASH_PREDEF_PLAT_WINDOWS_PHONE
-#   define HASH_PREDEF_PLAT_WINDOWS_PHONE_AVAILABLE
-#   include <predef/detail/platform_detected.h>
-#endif
+#	if HASH_PREDEF_OS_WINDOWS && defined(WINAPI_FAMILY_PHONE_APP) \
+		&& WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
+#		undef HASH_PREDEF_PLAT_WINDOWS_PHONE
+#		define HASH_PREDEF_PLAT_WINDOWS_PHONE \
+			HASH_PREDEF_VERSION_NUMBER_AVAILABLE
+#	endif
 
-#define HASH_PREDEF_PLAT_WINDOWS_PHONE_NAME "Windows Phone"
+#	if HASH_PREDEF_PLAT_WINDOWS_PHONE
+#		define HASH_PREDEF_PLAT_WINDOWS_PHONE_AVAILABLE
+#		include <predef/detail/platform_detected.h>
+#	endif
+
+#	define HASH_PREDEF_PLAT_WINDOWS_PHONE_NAME "Windows Phone"
 
 #endif
 
 #include <predef/detail/test.h>
-HASH_PREDEF_DECLARE_TEST(HASH_PREDEF_PLAT_WINDOWS_PHONE,HASH_PREDEF_PLAT_WINDOWS_PHONE_NAME)
+HASH_PREDEF_DECLARE_TEST(
+	HASH_PREDEF_PLAT_WINDOWS_PHONE, HASH_PREDEF_PLAT_WINDOWS_PHONE_NAME)
