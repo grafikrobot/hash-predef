@@ -113,6 +113,12 @@ Macros are:
 		HASH_PREDEF_VERSION_NUMBER( \
 			((V) / 1000) % 10, ((V) / 100) % 10, (V) % 100)
 /* tag::reference[]
+- `HASH_PREDEF_MAKE_10_VVRPP(V)`
+*/ // end::reference[]
+#	define HASH_PREDEF_MAKE_10_VVRPP(V) \
+		HASH_PREDEF_VERSION_NUMBER( \
+			((V) / 1000) % 100, ((V) / 100) % 10, (V) % 100)
+/* tag::reference[]
 - `HASH_PREDEF_MAKE_10_VRR(V)`
 */ // end::reference[]
 #	define HASH_PREDEF_MAKE_10_VRR(V) \

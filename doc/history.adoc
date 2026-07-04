@@ -9,6 +9,9 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 == 1.18.0
 
+* Fix version calculation for LLVM `libc++` to support the changed format of
+  LLVM versions 16 and above.
+
 == 1.17.0
 
 * Fix warnings at high levels current {CPP} compilers / standards.

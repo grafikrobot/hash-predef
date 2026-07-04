@@ -24,7 +24,7 @@ http://libcxx.llvm.org/[libc++] {CPP} Standard Library.
 
 | `+_LIBCPP_VERSION+` | {predef_detection}
 
-| `+_LIBCPP_VERSION+` | V.0.P
+| `+_LIBCPP_VERSION+` | V.R.P
 |===
 */ // end::reference[]
 
@@ -32,8 +32,13 @@ http://libcxx.llvm.org/[libc++] {CPP} Standard Library.
 
 #	if defined(_LIBCPP_VERSION)
 #		undef HASH_PREDEF_LIB_STD_CXX
-#		define HASH_PREDEF_LIB_STD_CXX \
-			HASH_PREDEF_MAKE_10_VVPPP(_LIBCPP_VERSION)
+#		if (_LIBCPP_VERSION <= 15999)
+#			define HASH_PREDEF_LIB_STD_CXX \
+				HASH_PREDEF_MAKE_10_VVRPP(_LIBCPP_VERSION)
+#		else
+#			define HASH_PREDEF_LIB_STD_CXX \
+				HASH_PREDEF_MAKE_10_VVRRPP(_LIBCPP_VERSION)
+#		endif
 #	endif
 
 #	if HASH_PREDEF_LIB_STD_CXX
