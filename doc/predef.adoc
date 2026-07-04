@@ -16,6 +16,9 @@
 :predef_symbol: Symbol
 :predef_version: Version
 :predef_detection: pass:q[*detection*]
+// :stylesheet: amber.css
+:stylesheet: tufte.css
+:rouge-style: base16.solarized
 
 == Introduction
 

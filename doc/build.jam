@@ -20,9 +20,8 @@ html index : predef.adoc :
     :
         <flags>--trace
         <flags>--verbose
-        <flags>--attribute=stylesheet=amber.css
-        <flags>--attribute=rouge-style=base16.solarized
         <dependency>$(headers)
+        <dependency>tufte.css
     ;
 explicit index ;
 
