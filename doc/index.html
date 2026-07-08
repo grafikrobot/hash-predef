@@ -23,8 +23,9 @@
 	--light-hr-color: #aaa;
 	--light-th-color: #ddd;
 
-	--font-family-regular: Palatino, "Palatino Linotype", "Palatino LT STD",
-		"Book Antiqua", Georgia, serif;
+	--font-family-regular:
+		Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua",
+		Georgia, serif;
 	--font-family-code: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
 	--font-size-base: 15px;
@@ -35,7 +36,7 @@
 
 	--narrow-margins: 8%;
 
-	--indent-block-border-left: solid var(--color-accent) 0.2rem;
+	--indent-block-border: solid var(--color-accent) 0.2rem;
 
 	color-scheme: light dark;
 }
@@ -123,6 +124,7 @@ p.subtitle,
 	font-size: 1.3rem;
 	display: block;
 	line-height: 1;
+	width: 55%;
 }
 
 .numeral {
@@ -445,7 +447,7 @@ h6 > code {
 	margin-left: 2rem;
 	padding-left: 1rem;
 	display: block;
-	border-left: var(--indent-block-border-left);
+	border-left: var(--indent-block-border);
 }
 
 .listingblock > .content,
@@ -574,7 +576,7 @@ label.margin-toggle:not(.sidenote-number) {
 	.sidenote,
 	.marginnote,
 	#toc {
-		display: none;
+		/* display: none; */
 	}
 
 	.sidebarblock,
@@ -640,12 +642,27 @@ label.margin-toggle:not(.sidenote-number) {
 	display: none;
 }
 
+#header h1 {
+	color: var(--color-accent);
+}
+
 #toc {
 	position: absolute;
-	width: 27%;
-	left: 60%;
+	width: 30%;
+	right: 5%;
 	margin-right: inherit;
-	padding-left: 5%;
+	margin-top: 3rem;
+	@media (max-width: 760px) {
+		position: static;
+		width: auto;
+		margin-top: inherit;
+		float: none;
+	}
+}
+#toc .sectlevel2 {
+	@media (max-width: 760px) {
+		display: none;
+	}
 }
 
 #toc ul {
@@ -669,6 +686,7 @@ a.anchor {
 	visibility: hidden;
 	text-align: center;
 	font-weight: normal;
+	color: var(--color-accent);
 }
 
 a.anchor:before {
@@ -683,16 +701,16 @@ a.anchor:hover {
 
 .admonitionblock .icon {
 	font-weight: bold;
-	font-size: 2rem;
-	width: 2rem;
+	font-size: 1.8rem;
+	width: 1.9rem;
 	text-align: center;
 	color: var(--color-accent);
 	vertical-align: text-top;
+	border-right: var(--indent-block-border);
 }
 
 .admonitionblock td.content {
-	padding-left: 1rem;
-	border-left: var(--indent-block-border-left);
+	padding-left: 1.1rem;
 }
 .admonitionblock .listingblock {
 	border-left: none !important;
@@ -714,6 +732,12 @@ table th {
 	@media (prefers-color-scheme: dark) {
 		background-color: var(--dark-th-color);
 	}
+}
+
+#content h2,
+#content h3,
+#content h4 {
+	color: var(--color-accent);
 }
 
 </style>
