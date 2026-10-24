@@ -35,6 +35,8 @@ jobs:
           - { cxx: "g++14", package: "lang/gcc14", b2tool: gcc }
           - { cxx: "g++13", package: "gcc13", b2tool: gcc }
           - { cxx: "g++12", package: "gcc12", b2tool: gcc }
+          - { cxx: "clang++23", package: "devel/llvm23", b2tool: clang }
+          - { cxx: "clang++22", package: "devel/llvm22", b2tool: clang }
           - { cxx: "clang++21", package: "devel/llvm21", b2tool: clang }
           - { cxx: "clang++20", package: "devel/llvm20", b2tool: clang }
           - { cxx: "clang++19", package: "devel/llvm19", b2tool: clang }
@@ -49,30 +51,30 @@ jobs:
           - { os: "freebsd", arch: "aarch64", toolset: { b2tool: gcc } }
           # - { os: "ghostbsd", arch: "aarch64" }
     steps:
-      - name: Checkout
+      - name: "Checkout"
         uses: actions/checkout@main
-      - name: Start FreeBSD
+      - name: "Start FreeBSD"
         if: ${{ matrix.os == 'freebsd' }}
         uses: vmactions/freebsd-vm@v1
         with:
           arch: ${{ matrix.arch }}
           usesh: true
           custom-shell-name: vmsh
-      - name: Start GhostBSD
+      - name: "Start GhostBSD"
         if: ${{ matrix.os == 'ghostbsd' }}
         uses: vmactions/ghostbsd-vm@v1
         with:
           arch: ${{ matrix.arch }}
           usesh: true
           custom-shell-name: vmsh
-      - name: Info-Basic
+      - name: "Info-Basic"
         shell: vmsh {0}
         run: |
           echo ${PWD}
           whoami
           env
           uname -a
-      - name: Info-FreeBSD
+      - name: "Info-FreeBSD"
         if: ${{ matrix.os == 'freebsd' }}
         shell: vmsh {0}
         run: |
@@ -81,7 +83,7 @@ jobs:
           sysctl hw.ncpu
           sysctl hw.physmem
           sysctl hw.usermem
-      - name: Install
+      - name: "Install"
         shell: vmsh {0}
         run: |
           uname -a
@@ -89,7 +91,8 @@ jobs:
           pkg bootstrap
           pkg install ${{ matrix.toolset.package }}
           pkg install python3 wget
-      - name: Setup
+          pkg info -l ${{ matrix.toolset.package }}
+      - name: "Setup"
         shell: vmsh {0}
         run: |
           set -e
@@ -101,6 +104,9 @@ jobs:
           ./b2 install
           CXX_PATH=`which ${{ matrix.toolset.cxx }}`
           echo "using ${{ matrix.toolset.b2tool }} : : ${CXX_PATH} ;" > user-config.jam
+          echo "===== user-config.jam"
+          cat user-config.jam
+          echo "====="
           cd ${GITHUB_WORKSPACE}
       - name: "GNU (info)"
         shell: vmsh {0}
