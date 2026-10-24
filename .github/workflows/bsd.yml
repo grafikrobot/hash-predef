@@ -102,6 +102,7 @@ jobs:
           cd b2-release
           CXX= ./bootstrap.sh
           ./b2 install
+          cd ${HOME}
           CXX_PATH=`which ${{ matrix.toolset.cxx }}`
           echo "using ${{ matrix.toolset.b2tool }} : : ${CXX_PATH} ;" > user-config.jam
           echo "===== user-config.jam"
