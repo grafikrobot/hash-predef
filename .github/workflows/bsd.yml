@@ -109,11 +109,17 @@ jobs:
           cat user-config.jam
           echo "====="
           cd ${GITHUB_WORKSPACE}
-      - name: "GNU (info)"
+      - name: "Predef Info"
         shell: vmsh {0}
         run: |
           set -e
           cd test
           b2 --verbose-test -a toolset=${{ matrix.toolset.b2tool }} predef-info
+          cd ..
+      - name: "Predef Tests"
+        shell: vmsh {0}
+        run: |
+          set -e
+          cd test
           b2 --debug-configuration -a toolset=${{ matrix.toolset.b2tool }} predef predef-headers
           cd ..
